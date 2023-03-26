@@ -1,5 +1,8 @@
 package primitives;
 
+/**
+ * Ray class represents a ray in 3D Cartesian coordinate system
+ */
 public class Ray {
  public Point p0;
  public Vector dir;

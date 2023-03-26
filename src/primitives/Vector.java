@@ -1,7 +1,7 @@
 package primitives;
 
-/** TODO : JAVADOC
- *
+/**
+ * The Vector class represents a 3D vector object.
  */
 public class Vector extends Point{
 
