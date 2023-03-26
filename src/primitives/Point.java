@@ -30,10 +30,10 @@ public class Point {
      }
 
      public Vector subtract(Point point1){
-          return new Vector(point1.xyz.subtract(point1.xyz));
+          return new Vector(this.xyz.subtract(point1.xyz));
      }
      public Point add(Vector vector){
-          return new Point(vector.xyz.add(vector.xyz));
+          return new Point(this.xyz.add(vector.xyz));
      }
 
      public double distanceSquared(Point point){
