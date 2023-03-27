@@ -6,7 +6,6 @@ import primitives.Vector;
  * The Plane class represents a 3D plane object, defined by a point and a normal vector.
  */
 public class Plane implements Geometry {
-
     /**
      * The point on the plane.
      */
