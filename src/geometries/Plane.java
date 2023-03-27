@@ -2,25 +2,25 @@ package geometries;
 
 import primitives.Point;
 import primitives.Vector;
+
 /**
  * The Plane class represents a 3D plane object, defined by a point and a normal vector.
  */
 public class Plane implements Geometry {
-
     /**
      * The point on the plane.
      */
-    private Point q0;
+    private final Point q0;
 
     /**
      * The normal vector to the plane.
      */
-    private Vector normal;
+    private final Vector normal;
 
     /**
      * Constructs a new Plane object with the specified point and normal vector.
      *
-     * @param q0 The point on the plane.
+     * @param q0     The point on the plane.
      * @param normal The normal vector to the plane.
      */
     public Plane(Point q0, Vector normal) {
@@ -36,35 +36,25 @@ public class Plane implements Geometry {
      * @param p3 The third point on the plane.
      */
     public Plane(Point p1, Point p2, Point p3) {
-        normal = getNormal(p1);
-        q0 = p2;
+        this.normal = null;
+        this.q0 = p2;
     }
-
-    /**
-     * implement from the GEOMETRY interface
-     *
-     * @param point The point at which to retrieve the normal vector.
-     * @return The normal vector to the plane at the specified point.
-     */
+    @Override
     public Vector getNormal(Point point) {
-        return null;
+        return this.normal;
     }
 
     /**
-     * Returns the normal vector to the plane.
-     *
      * @return The normal vector to the plane.
      */
     public Vector getNormal() {
-        return normal;
+        return this.normal;
     }
 
     /**
-     * Returns the point on the plane.
-     *
      * @return The point on the plane.
      */
     public Point getQ0() {
-        return q0;
+        return this.q0;
     }
 }

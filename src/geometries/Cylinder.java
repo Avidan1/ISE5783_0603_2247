@@ -12,7 +12,7 @@ public class Cylinder extends Tube {
     /**
      * The height of the cylinder.
      */
-    private double height;
+    private final double height;
 
     /**
      * Constructs a new Cylinder object with the specified axis ray, radius, and height.
@@ -25,15 +25,9 @@ public class Cylinder extends Tube {
         super(axisRay, radius);
         this.height = height;
     }
-
-    /**
-     * Returns the normal vector to the cylinder at the specified point.
-     *
-     * @param point The point at which to retrieve the normal vector.
-     * @return The normal vector to the cylinder at the specified point.
-     */
     @Override
     public Vector getNormal(Point point) {
-        return super.getNormal(point);
+        // TODO Auto-generated method stub
+        return null;
     }
 }

@@ -7,10 +7,13 @@ import primitives.Vector;
  * This class extends the RadialGeometry class and adds a center point to define the position of the sphere.
  */
 public class Sphere extends RadialGeometry {
-    Point center;
+    /**
+     * The center point of the sphere.
+     */
+    private final Point center;
 
     /**
-     * Creates a new Sphere object with the given center point and radius.
+     * Construct a new Sphere object with the given center point and radius.
      *
      * @param center the center point of the sphere
      * @param radius the radius of the sphere
@@ -19,15 +22,9 @@ public class Sphere extends RadialGeometry {
         super(radius);
         this.center = center;
     }
-
-    /**
-     * Returns the normal vector of the sphere at the given point.
-     *
-     * @param point the point to calculate the normal vector at
-     * @return the normal vector of the sphere at the given point
-     */
     @Override
     public Vector getNormal(Point point) {
+        //TODO Auto-generated method stub
         return null;
     }
 }

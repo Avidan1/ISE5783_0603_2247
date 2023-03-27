@@ -1,41 +1,55 @@
 package primitives;
-/**
 
- The Ray class represents a ray in a three-dimensional space.
+/**
+ * The Ray class represents a ray in a three-dimensional space.
  */
 public class Ray {
     /**
-
-     The starting point of the ray.
+     * The starting point of the ray.
      */
- public Point p0;
- public Vector dir;
-
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Ray{" +
-                "p0=" + p0 +
-                ", dir=" + dir +
-                '}';
-    }
-
-    public Point getP0() {
-        return p0;
-    }
-
-    public Vector getDir() {
-        return dir;
-    }
-
-    public boolean equals(Object obj) { //TODO - FIT
-        if (this == obj) return true;
-        if (obj instanceof Ray other)
-            return (this.p0.equals(other.p0) && this.dir.equals(other.dir));
-        return false;
-    }
-
+    private final Point p0;
+    /**
+     * The direction of the ray.
+     */
+    private final Vector dir;
+    /**
+     * Constructs a new Ray object with the specified starting point and direction.
+     *
+     * @param p0 The starting point of the ray.
+     * @param dir The direction of the ray.
+     */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
-        this.dir = dir.normalize() ;
+        this.dir = dir.normalize();
+    }
+    /**
+     * @return A string representation of the ray.
+     */
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "p0=" + this.p0 +
+                ", dir=" + this.dir +
+                '}';
+    }
+    @Override
+    /**
+     * @return True if the two rays are equal, false otherwise.
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return (obj instanceof Ray other) && this.p0.equals(other.p0) && this.dir.equals(other.dir);
+    }
+    /**
+     * @return The starting point of the ray.
+     */
+    public Point getP0() {
+        return this.p0;
+    }
+    /**
+     * @return The direction of the ray.
+     */
+    public Vector getDir() {
+        return this.dir;
     }
 }

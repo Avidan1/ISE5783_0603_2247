@@ -3,31 +3,39 @@ package primitives;
 /**
  * The Vector class represents a vector in a 3D Cartesian coordinate system.
  */
-public class Vector extends Point{
-
-     Vector(Double3 xyz) {
+public class Vector extends Point {
+    /**
+     * Constructs a new Vector object with the specified coordinates.
+     *
+     * @param xyz The coordinates of the vector.
+     */
+    Vector(Double3 xyz) {
         super(xyz);
-         if (xyz.equals(Double3.ZERO)) {
-             throw new IllegalArgumentException();
-         }
-
-
-     }
-
-    public Vector(double x, double y, double z) {
-        super(x, y, z);
-        if (this.xyz.equals(Double3.ZERO)){
+        if (xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException();
-        }
-    }
-    @Override
-    public String toString() {
-        return "Vector{" +
-                xyz.toString() +
-                '}';
     }
     /**
-     * Returns a new vector that is the sum of this vector and the given vector.
+     * Constructs a new Vector object with the specified coordinates.
+     *
+     * @param x The x coordinate of the vector.
+     * @param y The y coordinate of the vector.
+     * @param z The z coordinate of the vector.
+     */
+    public Vector(double x, double y, double z) {
+        super(x, y, z);
+        if (this.xyz.equals(Double3.ZERO))
+            throw new IllegalArgumentException();
+    }
+    /**
+     *
+     * @return a string representation of this vector
+     */
+    @Override
+    public String toString() {
+        return "Vector{" + xyz + "}";
+    }
+    /**
+     * Calculate a new vector that is the sum of this vector and the given vector.
      *
      * @param vector the vector to add to this vector
      * @return a new vector that is the sum of this vector and the given vector
@@ -36,61 +44,60 @@ public class Vector extends Point{
         return new Vector(xyz.add(vector.xyz));
     }
     /**
-     * Returns a scaled version of this vector.
+     * Calculate a scaled version of this vector.
      *
      * @param k the scaling factor
      * @return a scaled version of this vector
      */
-    public Vector scale (double k) {
-         return new Vector (xyz.scale(k));
+    public Vector scale(double k) {
+        return new Vector(xyz.scale(k));
     }
     /**
-     * Returns the dot product of this vector and the given vector.
+     * Calculate the dot product of this vector and the given vector.
      *
      * @param vector the vector to calculate the dot product with
      * @return the dot product of this vector and the given vector
      */
-    public double dotProduct (Vector vector) {
-        return ((this.xyz.d1 * vector.xyz.d1)
-               +(this.xyz.d2 * vector.xyz.d2)
-               +(this.xyz.d3 * vector.xyz.d3));
+    public double dotProduct(Vector vector) {
+        return (this.xyz.d1 * vector.xyz.d1)
+                + (this.xyz.d2 * vector.xyz.d2)
+                + (this.xyz.d3 * vector.xyz.d3);
     }
     /**
-     * Returns the cross product of this vector and the given vector.
+     * Calculate the cross product of this vector and the given vector.
      *
      * @param vector the vector to calculate the cross product with
      * @return the cross product of this vector and the given vector
      */
-    public Vector crossProduct (Vector vector) {
-    return new Vector((this.xyz.d2*vector.xyz.d3-this.xyz.d3*vector.xyz.d2),
-            (this.xyz.d3*vector.xyz.d1-this.xyz.d1*vector.xyz.d3),
-            (this.xyz.d1*vector.xyz.d2-this.xyz.d2*vector.xyz.d1));
+    public Vector crossProduct(Vector vector) {
+        return new Vector((this.xyz.d2 * vector.xyz.d3 - this.xyz.d3 * vector.xyz.d2),
+                (this.xyz.d3 * vector.xyz.d1 - this.xyz.d1 * vector.xyz.d3),
+                (this.xyz.d1 * vector.xyz.d2 - this.xyz.d2 * vector.xyz.d1));
     }
     /**
-     * Returns the squared length of this vector.
+     * Calculate the squared length of this vector.
      *
      * @return the squared length of this vector
      */
-    public double lengthSquared (){
-        return (this.xyz.d1*this.xyz.d1+
-                this.xyz.d2*this.xyz.d2+
-                this.xyz.d3*this.xyz.d3);
+    public double lengthSquared() {
+        return (this.xyz.d1 * this.xyz.d1 +
+                this.xyz.d2 * this.xyz.d2 +
+                this.xyz.d3 * this.xyz.d3);
     }
     /**
-     * Returns the length of this vector.
+     * Calculate the length of this vector.
      *
      * @return the length of this vector
      */
-    public double length () {
-         return Math.sqrt(this.lengthSquared());
+    public double length() {
+        return Math.sqrt(this.lengthSquared());
     }
     /**
-     * Returns a normalized version of this vector.
+     * Calculate a normalized version of this vector.
      *
      * @return a normalized version of this vector
      */
-    public Vector normalize () {
-         double len = this.length();
-         return new Vector (this.xyz.d1/len , this.xyz.d2/len , this.xyz.d3/len);
+    public Vector normalize() {
+        return new Vector(xyz.reduce(length()));
     }
-    }
+}
