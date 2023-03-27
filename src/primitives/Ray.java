@@ -1,6 +1,13 @@
 package primitives;
+/**
 
+ The Ray class represents a ray in a three-dimensional space.
+ */
 public class Ray {
+    /**
+
+     The starting point of the ray.
+     */
  public Point p0;
  public Vector dir;
 

@@ -1,7 +1,7 @@
 package primitives;
 
-/** TODO : JAVADOC
- *
+/**
+ * The Vector class represents a vector in a 3D Cartesian coordinate system.
  */
 public class Vector extends Point{
 
