@@ -41,7 +41,7 @@ public class Plane implements Geometry {
     }
 
     /**
-     * Returns the normal vector to the plane at the specified point.
+     * implement from the GEOMETRY interface
      *
      * @param point The point at which to retrieve the normal vector.
      * @return The normal vector to the plane at the specified point.
