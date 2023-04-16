@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Unit tests for primitives.Vector class
  *
@@ -20,8 +21,11 @@ class VectorTests {
      */
     @Test
     void testAdd() {
-        assertEquals(new Vector(-1, -2, -3), v1.add(v2), "ERROR: Vector + Vector does not work correctly");
-        assertEquals();
+        Vector v1 = new Vector(1.0, 2.0, 3.0);
+        Vector v2 = new Vector(4.0, 5.0, 6.0);
+        Vector expected = new Vector(5.0, 7.0, 9.0);
+        Vector result = v1.add(v2);
+        assertEquals(expected, result, "ERROR: Vector + Vector does not work correctly");
     }
 
     /**
@@ -29,6 +33,11 @@ class VectorTests {
      */
     @Test
     void testScale() {
+        Vector v1 = new Vector(1.0, 2.0, 3.0);
+        double k = 2.0;
+        Vector expected = new Vector(2.0, 4.0, 6.0);
+        Vector result = v1.scale(k);
+        assertEquals(expected, result);
         assertEquals(new Vector(2, 4, 6), v1.scale(2), "ERROR: Vector * Vector does not work correctly");
 
     }
