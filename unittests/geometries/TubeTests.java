@@ -4,8 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import primitives.*;
+/**
+ * Testing Tube
+ *
+ * @author Avidan and Ziv
+ */
 class TubeTests {
-
+/**
+     * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.
+     */
     @Test
     void testGetNormal() {
         //============ Equivalence Partitions Tests ==============
