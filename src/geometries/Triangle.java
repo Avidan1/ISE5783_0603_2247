@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Point;
+
 /**
  * Triangle class represents a triangle in 3D Cartesian coordinate system
  */

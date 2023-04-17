@@ -4,8 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import primitives.*;
+/**
+ * Testing Tube
+ *
+ * @author Avidan and Ziv
+ */
 class TubeTests {
-
+/**
+     * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.
+     */
     @Test
     void testGetNormal() {
         //============ Equivalence Partitions Tests ==============
@@ -19,6 +26,7 @@ class TubeTests {
         // TC03: all the point are the same
         assertEquals(tst.getNormal(new Point(0, 1, 2)), tst.getNormal(new Point(0, 1, 2)),
                 "ERROR: Normal is not the same");
+
         // =============== Boundary Values Tests ==================
         //TC05: p - p0 is orthogonal to the ray, p is on the tube in front of p0
         assertTrue(Util.isZero(tst.getNormal(new Point(0, 1, 0)).dotProduct(new Vector(0, 0, 1))),

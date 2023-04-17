@@ -47,13 +47,13 @@ public class Plane implements Geometry {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("The points must not be in the same line.");
         }
-        this.normal = p1.subtract(p2).crossProduct(p1.subtract(p3)).normalize();
+        this.normal = getNormal(p2);
         this.q0 = p2;
     }
 
     @Override
     public Vector getNormal(Point point) {
-        return this.normal;
+        return point.subtract(this.q0).crossProduct(point.subtract(this.q0).add(this.normal));
     }
 
     /**
