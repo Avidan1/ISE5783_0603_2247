@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707698d0-3abf-4c5e-96a3-ff760090c476" name="Changes" comment="add junit and some tests">
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/PlaneTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/PlaneTests.java" afterDir="false" />
+    <list default="true" id="707698d0-3abf-4c5e-96a3-ff760090c476" name="Changes" comment="implamet get normal">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +261,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681731471517</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="implamet get normal">
+      <created>1681734243302</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1681734243302</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +291,7 @@
     <MESSAGE value="Stage1 fix notes from dan" />
     <MESSAGE value="PR01" />
     <MESSAGE value="add junit and some tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add junit and some tests" />
+    <MESSAGE value="implamet get normal" />
+    <option name="LAST_COMMIT_MESSAGE" value="implamet get normal" />
   </component>
 </project>
