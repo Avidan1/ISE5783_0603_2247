@@ -23,7 +23,8 @@ public class Tube extends RadialGeometry {
     }
     @Override
     public Vector getNormal(Point point) {
-        try{
+        try{ //assume p is on the tube
+            // if p is in front of the ray
             Point O = this.axisRay.getP0()
                     .add((this.axisRay.getDir())
                             .scale(point.subtract(this.axisRay.getP0())
