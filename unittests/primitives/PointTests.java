@@ -11,8 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class PointTests {
     Vector v1 = new Vector(1, 2, 3);
-  Point p1 = new Point(1, 2, 3);
-  Point p2 = new Point(2, 4, 6);
+    Point p1 = new Point(1, 2, 3);
+    Point p2 = new Point(2, 4, 6);
+
     /**
      * Test method for {@link primitives.Point#subtract(primitives.Point)}.
      */
@@ -25,8 +26,6 @@ class PointTests {
         // =============== Boundary Values Tests ==================
         //TC11: Test that the subtract method works correctly when the point is the same
         assertThrows(IllegalArgumentException.class, () -> p1.subtract(p1), "ERROR: Point subtract from it self must throw an exception");
-
-
     }
 
     /**
@@ -35,7 +34,7 @@ class PointTests {
     @Test
     void testAdd() {
         // ============ Equivalence Partitions Tests ==============
-        assertEquals(p2,p1.add(v1), "ERROR: Point add does not work correctly");
+        assertEquals(p2, p1.add(v1), "ERROR: Point add does not work correctly");
 
         // =============== Boundary Values Tests ==================
         //There are no boundary values for this test
