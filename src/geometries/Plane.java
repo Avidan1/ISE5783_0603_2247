@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.Double3;
 import primitives.Point;
 import primitives.Vector;
 
@@ -39,12 +40,15 @@ public class Plane implements Geometry {
         if (p1.equals(p2) || p1.equals(p3) || p2.equals(p3)) {
             throw new IllegalArgumentException("The points must be different.");
         }
-        if (p1.subtract(p2).crossProduct(p1.subtract(p3)).equals(Vector.isZero)) {
+        try {
+            Vector v1 = p1.subtract(p2).crossProduct(p1.subtract(p3));
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("The points must not be in the same line.");
         }
         this.normal = p1.subtract(p2).crossProduct(p1.subtract(p3)).normalize();
         this.q0 = p2;
     }
+
     @Override
     public Vector getNormal(Point point) {
         return this.normal;
