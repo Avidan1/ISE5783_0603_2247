@@ -70,9 +70,9 @@ public class Vector extends Point {
      * @return the cross product of this vector and the given vector
      */
     public Vector crossProduct(Vector vector) {
-        return new Vector((this.xyz.d2 * vector.xyz.d3 - this.xyz.d3 * vector.xyz.d2),
-                (this.xyz.d3 * vector.xyz.d1 - this.xyz.d1 * vector.xyz.d3),
-                (this.xyz.d1 * vector.xyz.d2 - this.xyz.d2 * vector.xyz.d1));
+        return new Vector(((this.xyz.d2 * vector.xyz.d3) - (this.xyz.d3 * vector.xyz.d2)),
+                ((this.xyz.d3 * vector.xyz.d1) - (this.xyz.d1 * vector.xyz.d3)),
+                ((this.xyz.d1 * vector.xyz.d2) - (this.xyz.d2 * vector.xyz.d1)));
     }
     /**
      * Calculate the squared length of this vector.
@@ -98,6 +98,6 @@ public class Vector extends Point {
      * @return a normalized version of this vector
      */
     public Vector normalize() {
-        return new Vector(xyz.reduce(length()));
+        return new Vector(this.xyz.reduce(this.length()));
     }
 }

@@ -71,7 +71,7 @@ public class Point {
         double dx = this.xyz.d1 - point.xyz.d1;
         double dy = this.xyz.d2 - point.xyz.d2;
         double dz = this.xyz.d3 - point.xyz.d3;
-        return dx * dx + dy + dy + dz * dz;
+        return dx * dx + dy * dy + dz * dz;
     }
 
     /**

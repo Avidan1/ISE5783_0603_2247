@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 /**
  * Unit tests for primitives.Vector class
  *
@@ -21,11 +22,16 @@ class VectorTests {
      */
     @Test
     void testAdd() {
-        Vector v1 = new Vector(1.0, 2.0, 3.0);
-        Vector v2 = new Vector(4.0, 5.0, 6.0);
-        Vector expected = new Vector(5.0, 7.0, 9.0);
-        Vector result = v1.add(v2);
-        assertEquals(expected, result, "ERROR: Vector + Vector does not work correctly");
+        // ============ Equivalence Partitions Tests ==============
+
+        // TC01: Test that the add method works correctly
+        assertEquals(new Vector(-1, -2, -3), v1.add(v2), "ERROR: Vector addition does not work correctly");
+
+        //TC02: Test that the add method works correctly when the vector is the same
+        assertEquals(new Vector(2,4,6), v1.add(new Vector(-1, -2, -3)), "ERROR: Vector 0 need to throw an exception");
+
+        // =============== Boundary Values Tests ==================
+        assertThrows(IllegalArgumentException.class, () -> v1.add(v3), "ERROR: Vector addition does not work correctly");
     }
 
     /**
@@ -33,13 +39,13 @@ class VectorTests {
      */
     @Test
     void testScale() {
-        Vector v1 = new Vector(1.0, 2.0, 3.0);
-        double k = 2.0;
-        Vector expected = new Vector(2.0, 4.0, 6.0);
-        Vector result = v1.scale(k);
-        assertEquals(expected, result);
-        assertEquals(new Vector(2, 4, 6), v1.scale(2), "ERROR: Vector * Vector does not work correctly");
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Test that the scale method works correctly
+        assertEquals(new Vector(2, 4, 6), v1.scale(2), "ERROR: Vector scale does not work correctly");
 
+        // =============== Boundary Values Tests ==================
+        //TC02: Test that the scale method works correctly when the vector is the same
+        assertThrows(IllegalArgumentException.class, () -> v1.scale(0), "ERROR: Vector 0 need to throw an exception");
     }
 
     /**
@@ -56,21 +62,20 @@ class VectorTests {
      */
     @Test
     public void testCrossProduct() {
-        Vector v1 = new Vector(1, 2, 3);
+        Vector vr = v1.crossProduct(v3);
+
         // ============ Equivalence Partitions Tests ==============
-        Vector v2 = new Vector(0, 3, -2);
-        Vector vr = v1.crossProduct(v2);
-        // TC01: Test that length of cross-product is proper (orthogonal vectors taken
-        // for simplicity)
-        assertEquals(v1.length() * v2.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
+        // TC01: Test that length of cross-product is proper (orthogonal vectors take for simplicity
+        assertEquals(v1.length() * v3.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
+
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
-        assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
+        assertTrue(isZero(vr.dotProduct(v3)), "crossProduct() result is not orthogonal to 2nd operand");
+
         // =============== Boundary Values Tests ==================
         // TC11: test zero vector from cross-productof co-lined vectors
         Vector v3 = new Vector(-2, -4, -6);
-        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3),
-                "crossProduct() for parallel vectors does not throw an exception");
+        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3), "crossProduct() for parallel vectors does not throw an exception");
 
     }
 
@@ -89,7 +94,9 @@ class VectorTests {
      */
     @Test
     void testLength() {
+        // ============ Equivalence Partitions Tests ==============
         assertEquals(5, new Vector(0, 3, 4).length(), "ERROR: length() wrong value");
+        // =============== Boundary Values Tests ==================
     }
 
     /**
@@ -97,6 +104,15 @@ class VectorTests {
      */
     @Test
     void testNormalize() {
-        assertEquals(new Vector(0.26726, 0.53452, 0.80178), v1.normalize(), "ERROR: normalize() result is not a unit vector");
+        Vector v = new Vector(0, 3, 4);
+        Vector n= v.normalize();
+       // ============ Equivalence Partitions Tests ==============
+        // TC01: Test that the normalize method works correctly
+        assertEquals(new Vector(0,0.6,0.8),n,"ERROR: normalize result is not a correct vector");
+        // TC02: Test the unit length of the vector
+        assertEquals(1d,n.lengthSquared(),0.00001,"ERROR: normalized result is not a unit vector");
+        // TC02: Test that the normalize method does not change the vector
+        // =============== Boundary Values Tests ==================
+        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(n), "ERROR:should throw an exception because the vector is zero");
     }
 }
