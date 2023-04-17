@@ -23,7 +23,7 @@ public class Tube extends RadialGeometry {
     }
     @Override
     public Vector getNormal(Point point) {
-        // TODO Auto-generated method stub
-        return null;
+
+        return point.subtract(axisRay.getP0()).normalize();
     }
 }
