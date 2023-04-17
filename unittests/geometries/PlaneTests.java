@@ -6,7 +6,10 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
-
+/**
+ * Testing Plane
+ * @author Avidan and Ziv
+ */
 class PlaneTests {
     /**
      * Test method for {@link geometries.Plane#getNormal(primitives.Point)}.
