@@ -37,23 +37,13 @@ public class Plane implements Geometry {
      * @param p3 The third point on the plane.
      */
     public Plane(Point p1, Point p2, Point p3) {
-        //if the points are the same, throw an exception
-        if (p1.equals(p2) || p1.equals(p3) || p2.equals(p3)) {
-            throw new IllegalArgumentException("The points must be different.");
-        }
-        try {
-            //if the points are in the same line, throw an exception
-            Vector v1 = p1.subtract(p2).crossProduct(p1.subtract(p3));
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("The points must not be in the same line.");
-        }
-        this.normal = getNormal(p2);
-        this.q0 = p2;
+        this.q0 = p1;
+        this.normal = p1.subtract(p2).crossProduct(p1.subtract(p3)).normalize();
     }
 
     @Override
     public Vector getNormal(Point point) {
-        return point.subtract(this.q0).crossProduct(point.subtract(this.q0).add(this.normal));
+        return this.normal;
     }
 
     /**

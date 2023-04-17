@@ -3,6 +3,8 @@ package geometries;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static primitives.Util.isZero;
+
 import primitives.*;
 /**
  * Testing Cylinder

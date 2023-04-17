@@ -8,18 +8,15 @@ package primitives;
  */
 public class Point {
     final protected Double3 xyz;
+
     @Override
-    /**
-     * @return true if the given object is a point with the same coordinates as this point
-     */
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return (obj instanceof Point other) && this.xyz.equals(other.xyz);
     }
+
     @Override
-    /**
-     * @return a string representation of this point
-     */
+
     public String toString() {
         return "Point{" + xyz + "}";
     }
@@ -45,7 +42,7 @@ public class Point {
      * Calculate a new vector that is the difference between this point and the given point.
      *
      * @param point1 the point to subtract from this point
-     * @return a new vector that is the difference between this point and the given point
+     * @return subtracted vector
      */
     public Vector subtract(Point point1) {
         return new Vector(this.xyz.subtract(point1.xyz));
@@ -55,7 +52,7 @@ public class Point {
      * Calculate a new point that is the sum of this point and the given vector.
      *
      * @param vector the vector to add to this point
-     * @return a new point that is the sum of this point and the given vector
+     * @return added point
      */
     public Point add(Vector vector) {
         return new Point(this.xyz.add(vector.xyz));
@@ -65,7 +62,7 @@ public class Point {
      * Calculate a new point that is the difference between this point and the given vector.
      *
      * @param point the point to calculate the distance from
-     * @return the distance between this point and the given point by squared
+     * @return the squared distance
      */
     public double distanceSquared(Point point) {
         double dx = this.xyz.d1 - point.xyz.d1;
@@ -78,7 +75,7 @@ public class Point {
      * Calculate the distance between this point and the given point.
      *
      * @param point the point to calculate the distance from
-     * @return the distance between this point and the given point
+     * @return the distance
      */
     public double distance(Point point) {
         return Math.sqrt(distanceSquared(point));
