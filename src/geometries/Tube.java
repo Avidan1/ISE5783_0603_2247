@@ -23,9 +23,20 @@ public class Tube extends RadialGeometry {
     }
     @Override
     public Vector getNormal(Point point) {
-        Point p1=this.axisRay.getP0();
-        Vector p2=this.axisRay.getDir();
-        Point norm = p1.add(p2.scale(p2.dotProduct(point.subtract(p1))));
-        return point.subtract(norm).normalize();
+        Point p0 = this.axisRay.getP0();
+        Vector v = this.axisRay.getDir();
+        double t = v.dotProduct(point.subtract(p0));
+
+        // check if point is on the axis of the tube
+        if (t==0) {
+            return v.normalize();
+        }
+
+        // calculate the closest point on the axis to the input point
+        Point p = p0.add(v.scale(t));
+
+        // calculate and return the normal vector
+        Vector n = point.subtract(p);
+        return n.normalize();
     }
 }
