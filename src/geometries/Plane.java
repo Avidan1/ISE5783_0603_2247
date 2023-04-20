@@ -1,8 +1,10 @@
 package geometries;
 
-import primitives.Double3;
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
  * The Plane class represents a 3D plane object, defined by a point and a normal vector.
@@ -68,5 +70,10 @@ public class Plane implements Geometry {
      */
     public Point getQ0() {
         return this.q0;
+    }
+
+    @Override
+    public List<Point> findIntsersections(Ray ray) {
+        return null;
     }
 }

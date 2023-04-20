@@ -3,6 +3,9 @@ package geometries;
 import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
+
+import java.util.List;
+
 /**
  * Tube class represents a tube in 3D Cartesian coordinate system
  */
@@ -36,4 +39,14 @@ public class Tube extends RadialGeometry {
             return this.axisRay.getP0().subtract(point).normalize();
         }
     }
+
+    /**
+     * @param ray
+     * @return
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
+
 }

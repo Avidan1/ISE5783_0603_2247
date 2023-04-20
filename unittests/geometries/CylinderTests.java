@@ -3,6 +3,8 @@ package geometries;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static primitives.Util.isZero;
+
 import primitives.*;
 /**
  * Testing Cylinder
@@ -33,7 +35,7 @@ class CylinderTests {
         if(!res.equals(cylinder.axisRay.getDir()) && !res.equals(cylinder.axisRay.getDir().scale(-1)))
             fail("ERROR: Normal of top is not the same as ray");
         // =============== Boundary Values Tests ==================
-        // TC04: on the axis
+        // TC04: in the c
         res = cylinder.getNormal(new Point(0, 0, 5));
         if(!res.equals(cylinder.axisRay.getDir()) && !res.equals(cylinder.axisRay.getDir().scale(-1)))
             fail("ERROR: Normal of axis is not the same as ray");
@@ -45,5 +47,13 @@ class CylinderTests {
         res = cylinder.getNormal(new Point(0, 0, 10));
         if(!res.equals(cylinder.axisRay.getDir()) && !res.equals(cylinder.axisRay.getDir().scale(-1)))
             fail("ERROR: Normal of axis ray's head is not the same as ray");
-    }
+        // TC07: on the axis ray's tail
+        res = cylinder.getNormal(new Point(0, 0, 0));
+        if(!res.equals(cylinder.axisRay.getDir()) && !res.equals(cylinder.axisRay.getDir().scale(-1)))
+            fail("ERROR: Normal of axis ray's tail is not the same as ray");
+        // TC08: on the base ray
+        res = cylinder.getNormal(new Point(0, 1, 0));
+        if(!res.equals(cylinder.axisRay.getDir()) && !res.equals(cylinder.axisRay.getDir().scale(-1)))
+            fail("ERROR: Normal of base ray is not the same as ray");
+            }
 }
