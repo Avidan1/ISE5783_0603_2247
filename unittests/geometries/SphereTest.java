@@ -8,10 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import primitives.Util.*;
 import static primitives.Util.isZero;
 /**
- * Testing Sphere
- *
- * @author Avidan and Ziv
- */
+    * Testing Sphere
+    * @author Avidan and Ziv
+    */
 public class SphereTest {
     /**
      * Test method for {@link geometries.Sphere#getNormal(primitives.Point)}.
