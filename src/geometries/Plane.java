@@ -49,6 +49,15 @@ public class Plane implements Geometry {
     }
 
     /**
+     * @param ray
+     * @return
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
+
+    /**
      * @return The normal vector to the plane.
      */
     public Vector getNormal() {
@@ -62,8 +71,5 @@ public class Plane implements Geometry {
         return this.q0;
     }
 
-    @Override
-    public List<Point> findIntsersections(Ray ray) {
-        return null;
-    }
+
 }

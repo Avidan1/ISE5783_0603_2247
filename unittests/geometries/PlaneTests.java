@@ -48,4 +48,8 @@ class PlaneTests {
         assertThrows(IllegalArgumentException.class, () -> new Plane(new Point(1, 0, 0), new Point(1, 0, 0), new Point(1, 2, 0)), "ERROR: The constructor does not throw an exception when the points are the same");
         assertThrows(IllegalArgumentException.class, () -> new Plane(new Point(0, 2, 0), new Point(1, 0, 0), new Point(1, 0, 0)), "ERROR: The constructor does not throw an exception when the points are the same");
     }
+
+    @Test
+    void testFindIntersections() {
+    }
 }
