@@ -52,4 +52,8 @@ public class Ray {
     public Vector getDir() {
         return this.dir;
     }
+
+    public Point getPoint(double t) {
+        return this.p0.xyz.add(this.dir.scale(t); // TODO make sure this is correct
+    }
 }
