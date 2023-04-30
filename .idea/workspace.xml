@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707698d0-3abf-4c5e-96a3-ff760090c476" name="Changes" comment="marge">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17__2023_16_02__Changes_.xml" beforeDir="false" />
+    <list default="true" id="707698d0-3abf-4c5e-96a3-ff760090c476" name="Changes" comment="implanmnt findIntsersections to SphereTest.java and in Plane.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/PlaneTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/PlaneTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +203,9 @@
       <workItem from="1681655731498" duration="3260000" />
       <workItem from="1681659287660" duration="8621000" />
       <workItem from="1681677848167" duration="627000" />
-      <workItem from="1682431557458" duration="3333000" />
+      <workItem from="1682431557458" duration="4355000" />
+      <workItem from="1682538032159" duration="2376000" />
+      <workItem from="1682604011992" duration="7291000" />
     </task>
     <task id="LOCAL-00001" summary="process in stage1">
       <created>1679339226037</created>
@@ -286,7 +284,28 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682024175898</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎-00012" summary="add tests to findIntsersections to SphereTest.java">
+      <created>1682435334914</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL‎-00012" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682435334914</updated>
+    </task>
+    <task id="LOCAL‎-00013" summary="implanmnt findIntsersections to SphereTest.java">
+      <created>1682541357649</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL‎-00013" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682541357650</updated>
+    </task>
+    <task id="LOCAL‎-00014" summary="implanmnt findIntsersections to SphereTest.java and in Plane.java">
+      <created>1682857782744</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL‎-00014" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682857782744</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +329,10 @@
     <MESSAGE value="PR01" />
     <MESSAGE value="add junit and some tests" />
     <MESSAGE value="marge" />
-    <option name="LAST_COMMIT_MESSAGE" value="marge" />
+    <MESSAGE value="add tests to findIntsersections to SphereTest.java" />
+    <MESSAGE value="implanmnt findIntsersections to SphereTest.java" />
+    <MESSAGE value="implanmnt findIntsersections to SphereTest.java and in Plane.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="implanmnt findIntsersections to SphereTest.java and in Plane.java" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
