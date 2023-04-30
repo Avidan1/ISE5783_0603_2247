@@ -2,7 +2,9 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Vector;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,10 +21,27 @@ public class Triangle extends Polygon {
     public Triangle(Point v1, Point v2, Point v3) {
         super(v1, v2, v3);
     }
+
     @Override
     public List<Point> findIntsersections(Ray ray) {
-        double v1 = ray.getP0().subtract(vertices.get(0)).dotProduct(normal);
+        Vector v1 = ((Point) vertices.toArray()[0]).subtract(ray.getP0());
+        Vector v2 = ((Point) vertices.toArray()[1]).subtract(ray.getP0());
+        Vector v3 = ((Point) vertices.toArray()[2]).subtract(ray.getP0());
 
-        return null;
+        Vector n1 = v1.crossProduct(v2);
+        Vector n2 = v1.crossProduct(v2);
+        Vector n3 = v1.crossProduct(v2);
+
+        if (n1.dotProduct(ray.getDir()) < 0) {
+            if (n2.dotProduct(ray.getDir()) > 0 || n3.dotProduct(ray.getDir()) > 0)
+                return null;
+        }
+        if (n1.dotProduct(ray.getDir()) > 0) {
+            if (n2.dotProduct(ray.getDir()) < 0 || n3.dotProduct(ray.getDir()) < 0)
+                return null;
+        }
+
+        return plane.findIntersections(ray);
     }
 }
+
