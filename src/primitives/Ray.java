@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.isZero;
+
 /**
  * The Ray class represents a ray in a three-dimensional space.
  */
@@ -12,16 +14,18 @@ public class Ray {
      * The direction of the ray.
      */
     private final Vector dir;
+
     /**
      * Constructs a new Ray object with the specified starting point and direction.
      *
-     * @param p0 The starting point of the ray.
+     * @param p0  The starting point of the ray.
      * @param dir The direction of the ray.
      */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalize();
     }
+
     /**
      * @return A string representation of the ray.
      */
@@ -32,6 +36,7 @@ public class Ray {
                 ", dir=" + this.dir +
                 '}';
     }
+
     @Override
     /**
      * @return True if the two rays are equal, false otherwise.
@@ -40,12 +45,14 @@ public class Ray {
         if (this == obj) return true;
         return (obj instanceof Ray other) && this.p0.equals(other.p0) && this.dir.equals(other.dir);
     }
+
     /**
      * @return The starting point of the ray.
      */
     public Point getP0() {
         return this.p0;
     }
+
     /**
      * @return The direction of the ray.
      */
@@ -53,7 +60,14 @@ public class Ray {
         return this.dir;
     }
 
+    /**
+     * @param t The length of the direction vector.
+     * @return The point on the ray at the specified length.
+     */
     public Point getPoint(double t) {
-        return this.p0.xyz.add(this.dir.scale(t); // TODO make sure this is correct
+        if (isZero(t)) {
+            throw new IllegalArgumentException("t cannot be 0 or the length of the direction vector");
+        }
+        return this.p0.add(this.dir.scale(t));
     }
 }

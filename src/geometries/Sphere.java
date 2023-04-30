@@ -1,13 +1,11 @@
 package geometries;
 
-import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
 import java.util.List;
 
-import static java.awt.geom.CubicCurve2D.iszero;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -44,7 +42,7 @@ public class Sphere extends RadialGeometry {
         Vector v = ray.getDir();
 
         if (p0.equals(center)) {//if the point is on the center of the sphere
-            return List.of(p0.add(v.scale(radius)));
+            return List.of(ray.getPoint(radius));
         }
 
         Vector u = center.subtract(p0);
@@ -65,17 +63,18 @@ public class Sphere extends RadialGeometry {
         double t2 = alignZero(tm - th);
 
         if (t1 >= 0 && t2 >= 0) {//if t1 and t2 are negative or zero the didnt hit the sphere
-            Point point1 = p0.add(v.scale(t1));
-            Point point2 = p0.add(v.scale(t2));
+            Point point1 = ray.getPoint(t1);
+            Point point2 = ray.getPoint(t2);
             return List.of(point1, point2);
         }
         if (t1 > 0) {//if  only t1 is positive the ray hit the sphere in one point
-            Point point1 = p0.add(v.scale(t1));
+            Point point1 = ray.getPoint((t1));
             return List.of(point1);
         }
         if (t2 > 0) {//if  only t2 is positive the ray hit the sphere in one point
-            Point point2 = p0.add(v.scale(t2));
+            Point point2 = ray.getPoint((t2));
             return List.of(point2);
         }
         return null;
     }
+}
