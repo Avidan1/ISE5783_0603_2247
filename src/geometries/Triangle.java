@@ -21,7 +21,8 @@ public class Triangle extends Polygon {
     }
     @Override
     public List<Point> findIntsersections(Ray ray) {
+        double v1 = ray.getP0().subtract(vertices.get(0)).dotProduct(normal);
+
         return null;
     }
-    double
 }
