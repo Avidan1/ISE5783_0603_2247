@@ -5,12 +5,12 @@ import primitives.Ray;
 
 import java.util.LinkedList;
 import java.util.List;
+
 /**
  * Intersectable interface represents a geometry in 3D Cartesian coordinate system
  */
-public class Geometries implements Intersectable
-{
-     List<Intersectable> _intersectables;
+public class Geometries implements Intersectable {
+    List<Intersectable> _intersectables;
 
     public void Geometries() {
         _intersectables = new LinkedList<Intersectable>();
@@ -27,15 +27,16 @@ public class Geometries implements Intersectable
         }
     }
 
-    public List<Point> findIntsersections(Ray ray){
+    public List<Point> findIntsersections(Ray ray) {
         List<Point> result = new LinkedList<>();
-        for (var geometry: _intersectables){
+        for (var geometry : _intersectables) {
             List<Point> temp = geometry.findIntsersections(ray);
-            if (temp != null){
+            if (temp != null) {
                 result.addAll(temp);
+            }
         }
         return result;
-    }
+
     }
 
 }
