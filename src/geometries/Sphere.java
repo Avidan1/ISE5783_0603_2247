@@ -31,46 +31,51 @@ public class Sphere extends RadialGeometry {
         super(radius);
         this.center = center;
     }
+
     @Override
     public Vector getNormal(Point point) {
         //calculate the normal vector to the sphere
-        return  point.subtract(center).normalize();
+        return point.subtract(center).normalize();
     }
+
     @Override
     public List<Point> findIntsersections(Ray ray) {
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
 
-        Vector n = getNormal(p0);
-        // if the point is on the center of the sphere
-        if (center.equals(p0)) {
-            return null;
+        if (p0.equals(center)) {//if the point is on the center of the sphere
+            return List.of(p0.add(v.scale(radius)));
         }
-        // vector from the center of the sphere to the point p0
-        Vector p0_q0 = center.subtract(p0);
-        // numerator of the quadratic equation
-        double nP0Q0 = alignZero(n.dotProduct(p0_q0));
-        // if the point is on the plane of the sphere
-        if (isZero(nP0Q0)) {
-            return null;
-        }
-        //demominator of the quadratic equation
-        double nv = alignZero(n.dotProduct(v));
 
-        // if the ray is parallel to the plane of the sphere
-        if (isZero(nv)) {
+        Vector u = center.subtract(p0);
+
+        double tm = alignZero(u.dotProduct(v));
+        double dSquared = isZero(tm) ? u.lengthSquared() : u.lengthSquared() - tm * tm;
+        double d = alignZero(Math.sqrt(dSquared));
+        if (alignZero(d - radius) >= 0) {//if the distance between the ray and the center of the sphere is bigger than the radius
+            return null; // no intersections the ray is above the sphere
+        }
+        double thSquared = alignZero(radius * radius - dSquared);
+        if (thSquared <= 0) {
             return null;
         }
 
-        double t = alignZero(nP0Q0 / nv);
+        double th = Math.sqrt(thSquared);
+        double t1 = alignZero(tm - th);
+        double t2 = alignZero(tm - th);
 
-        // if the ray is in the opposite direction of the plane of the sphere
-         if (t <= 0) {
-            return null;
+        if (t1 >= 0 && t2 >= 0) {//if t1 and t2 are negative or zero the didnt hit the sphere
+            Point point1 = p0.add(v.scale(t1));
+            Point point2 = p0.add(v.scale(t2));
+            return List.of(point1, point2);
         }
-
-         Point point = ray.getPoint(t);
-
-         return List.of(point);
+        if (t1 > 0) {//if  only t1 is positive the ray hit the sphere in one point
+            Point point1 = p0.add(v.scale(t1));
+            return List.of(point1);
+        }
+        if (t2 > 0) {//if  only t2 is positive the ray hit the sphere in one point
+            Point point2 = p0.add(v.scale(t2));
+            return List.of(point2);
+        }
+        return null;
     }
-}
