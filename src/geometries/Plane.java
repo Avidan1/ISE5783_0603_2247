@@ -51,47 +51,28 @@ public class Plane implements Geometry {
         return this.normal;
     }
 
-    /**
-     * @param ray
-     * @return
-     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
-
         Vector n = getNormal(p0);
-        // if the point is on point q0
-        if (this.q0.equals(p0)) {
-            return null;
-        }
-        // vector from the center of the sphere to the point p0
-        Vector p0_q0 = this.q0.subtract(p0);
-        // numerator of the quadratic equation
-        double nP0Q0 = alignZero(n.dotProduct(p0_q0));
-        // if the point is on the plane of the sphere
-        if (isZero(nP0Q0)) {
-            return null;
-        }
-        //demominator of the quadratic equation
+
+        // If the point is on point q0 or the ray is parallel to the plane of the sphere, return null
         double nv = alignZero(n.dotProduct(v));
-
-        // if the ray is parallel to the plane of the sphere
-        if (isZero(nv)) {
+        if (nv == 0 || this.q0.equals(p0)) {
             return null;
         }
 
+        // Calculate intersection point
+        Vector p0_q0 = this.q0.subtract(p0);
+        double nP0Q0 = alignZero(n.dotProduct(p0_q0));
         double t = alignZero(nP0Q0 / nv);
-
-        // if the ray is in the opposite direction of the plane
         if (t <= 0) {
             return null;
         }
-
         Point point = ray.getPoint(t);
 
         return List.of(point);
-
     }
 
     /**

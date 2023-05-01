@@ -24,9 +24,9 @@ public class Triangle extends Polygon {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Vector v1 = ((Point) vertices.toArray()[0]).subtract(ray.getP0());
-        Vector v2 = ((Point) vertices.toArray()[1]).subtract(ray.getP0());
-        Vector v3 = ((Point) vertices.toArray()[2]).subtract(ray.getP0());
+        Vector v1 = ((Point) this.vertices.toArray()[0]).subtract(ray.getP0());
+        Vector v2 = ((Point) this.vertices.toArray()[1]).subtract(ray.getP0());
+        Vector v3 = ((Point) this.vertices.toArray()[2]).subtract(ray.getP0());
 
         Vector n1 = v1.crossProduct(v2);
         Vector n2 = v1.crossProduct(v2);
@@ -36,12 +36,13 @@ public class Triangle extends Polygon {
             if (n2.dotProduct(ray.getDir()) > 0 || n3.dotProduct(ray.getDir()) > 0)
                 return null;
         }
+
         if (n1.dotProduct(ray.getDir()) > 0) {
             if (n2.dotProduct(ray.getDir()) < 0 || n3.dotProduct(ray.getDir()) < 0)
                 return null;
         }
 
-        return plane.findIntersections(ray);
+        return this.plane.findIntersections(ray);
     }
 }
 

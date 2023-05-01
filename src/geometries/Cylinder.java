@@ -30,7 +30,7 @@ public class Cylinder extends Tube {
 
     @Override
     public Vector getNormal(Point p) {
-        //check if p is on the base (p - p0).length <= radius
+    /*    //check if p is on the base (p - p0).length <= radius
         //this is true because we assumed that the point p is on the origin
         if (p.equals(this.axisRay.getP0()) || p.subtract(this.axisRay.getP0()).length() <= this.radius)
             return this.axisRay.getDir().scale(-1);
@@ -43,7 +43,8 @@ public class Cylinder extends Tube {
                 .add((this.axisRay.getDir())
                         .scale(p.subtract(this.axisRay.getP0())
                                 .dotProduct(this.axisRay.getDir())));
-        return p.subtract(O).normalize();
+        return p.subtract(O).normalize();*/
+        return null;
     }
 
     @Override
