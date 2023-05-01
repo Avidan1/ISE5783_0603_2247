@@ -5,7 +5,6 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

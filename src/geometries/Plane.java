@@ -67,12 +67,7 @@ public class Plane implements Geometry {
         Vector p0_q0 = this.q0.subtract(p0);
         double nP0Q0 = alignZero(n.dotProduct(p0_q0));
         double t = alignZero(nP0Q0 / nv);
-        if (t <= 0) {
-            return null;
-        }
-        Point point = ray.getPoint(t);
-
-        return List.of(point);
+        return t <= 0 ? null : List.of(ray.getPoint(t));
     }
 
     /**
@@ -88,11 +83,4 @@ public class Plane implements Geometry {
     public Point getQ0() {
         return this.q0;
     }
-
-
-    /**
-     * @param ray
-     * @return
-     */
-
 }

@@ -30,17 +30,7 @@ public class Tube extends RadialGeometry {
 
     @Override
     public Vector getNormal(Point point) {
-        Point p0 = this.axisRay.getP0();
-        Vector v = this.axisRay.getDir();
-        if (point.equals(p0))
-            return point.subtract(p0).normalize();
-        Vector p_p0 = point.subtract(this.axisRay.getP0());
-        if (p_p0.crossProduct(v).length() == 0)
-            throw new IllegalArgumentException("point cant be on the ray");
-        double t = p_p0.dotProduct(this.axisRay.getDir());
-        if (isZero(t))
-            // point is in-front of p0
-            return point.subtract(p0).normalize();
+        double t = point.subtract(this.axisRay.getP0()).dotProduct(this.axisRay.getDir());
         Point o = axisRay.getPoint(t);
         return point.subtract(o).normalize();
     }

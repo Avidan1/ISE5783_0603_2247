@@ -26,9 +26,6 @@ public class Ray {
         this.dir = dir.normalize();
     }
 
-    /**
-     * @return A string representation of the ray.
-     */
     @Override
     public String toString() {
         return "Ray{" +
@@ -38,9 +35,6 @@ public class Ray {
     }
 
     @Override
-    /**
-     * @return True if the two rays are equal, false otherwise.
-     */
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return (obj instanceof Ray other) && this.p0.equals(other.p0) && this.dir.equals(other.dir);
@@ -54,6 +48,7 @@ public class Ray {
     }
 
     /**
+     * Getter for the direction of the ray
      * @return The direction of the ray.
      */
     public Vector getDir() {
@@ -61,13 +56,11 @@ public class Ray {
     }
 
     /**
-     * @param t The length of the direction vector.
-     * @return The point on the ray at the specified length.
+     * Calculates the point at a given distance from the ray head
+     * @param t The distance
+     * @return The calculated point
      */
     public Point getPoint(double t) {
-        if (isZero(t)) {
-            throw new IllegalArgumentException("t cannot be 0 or the length of the direction vector");
-        }
-        return this.p0.add(this.dir.scale(t));
+        return isZero(t) ? p0 : this.p0.add(this.dir.scale(t));
     }
 }

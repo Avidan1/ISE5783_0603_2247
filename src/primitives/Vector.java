@@ -60,7 +60,7 @@ public class Vector extends Point {
      * Calculate the dot product of this vector and the given vector.
      *
      * @param vector the vector to calculate the dot product with
-     * @return the dot product's Saclar
+     * @return the dot product's Scalar
      */
     public double dotProduct(Vector vector) {
         return (this.xyz.d1 * vector.xyz.d1)

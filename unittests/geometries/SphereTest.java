@@ -42,9 +42,9 @@ public class SphereTest {
      */
     @Test
     public void testFindIntersections() {
+
         Sphere sphere = new Sphere(new Point(1, 0, 0), 1);
         // ============ Equivalence Partitions Tests ==============
-
         // TC01: Ray's line is outside the sphere (0 points)
         assertNull(sphere.findIntersections(new Ray(new Point(-1, 0, 0), new Vector(1, 1, 0))),
                 "Ray's line out of sphere");
