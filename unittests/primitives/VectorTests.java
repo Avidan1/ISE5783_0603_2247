@@ -88,7 +88,7 @@ class VectorTests {
     @Test
     void testLengthSquared() {
         // ============ Equivalence Partitions Tests ==============
-        assertEquals(14d, v1.lengthSquared(),0.0001, "ERROR: lengthSquared() wrong value");
+        assertEquals(14d, v1.lengthSquared(), 0.0001, "ERROR: lengthSquared() wrong value");
         // =============== Boundary Values Tests ==================
         //there is no boundary values for this method
     }
@@ -99,7 +99,7 @@ class VectorTests {
     @Test
     void testLength() {
         // ============ Equivalence Partitions Tests ==============
-        assertEquals(Math.sqrt(14), v1.length(),0.0001, "ERROR: length() wrong value");
+        assertEquals(Math.sqrt(14), v1.length(), 0.0001, "ERROR: length() wrong value");
         // =============== Boundary Values Tests ==================
         //there is no boundary values for this method
     }

@@ -79,6 +79,7 @@ public class Double3 {
     public int hashCode() {
         return (int) Math.round(d1 + d2 + d3);
     }
+
     /**
      * @return the string representation of the Double3 based object
      */
@@ -86,6 +87,7 @@ public class Double3 {
     public String toString() {
         return "(" + d1 + "," + d2 + "," + d3 + ")";
     }
+
     /**
      * Calculate two floating point triads into a new triad where each couple of numbers
      * is summarized
@@ -96,6 +98,7 @@ public class Double3 {
     public Double3 add(Double3 rhs) {
         return new Double3(d1 + rhs.d1, d2 + rhs.d2, d3 + rhs.d3);
     }
+
     /**
      * Calculate two floating point triads into a new triad where each couple of
      * numbers is subtracted
@@ -106,6 +109,7 @@ public class Double3 {
     public Double3 subtract(Double3 rhs) {
         return new Double3(d1 - rhs.d1, d2 - rhs.d2, d3 - rhs.d3);
     }
+
     /**
      * Calculate (multiply) floating point triad by a number into a new triad where
      * each
@@ -117,6 +121,7 @@ public class Double3 {
     public Double3 scale(double rhs) {
         return new Double3(d1 * rhs, d2 * rhs, d3 * rhs);
     }
+
     /**
      * Calculate floating point triad by a number into a new triad where each
      * number is divided by the number
@@ -127,6 +132,7 @@ public class Double3 {
     public Double3 reduce(double rhs) {
         return new Double3(d1 / rhs, d2 / rhs, d3 / rhs);
     }
+
     /**
      * Calculate two floating point triads into a new triad where each couple of
      * numbers is multiplied
@@ -137,6 +143,7 @@ public class Double3 {
     public Double3 product(Double3 rhs) {
         return new Double3(d1 * rhs.d1, d2 * rhs.d2, d3 * rhs.d3);
     }
+
     /**
      * Checks whether all the numbers are lower than a test number
      *
@@ -146,6 +153,7 @@ public class Double3 {
     public boolean lowerThan(double k) {
         return d1 < k && d2 < k && d3 < k;
     }
+
     /**
      * Checks whether all the numbers are lower than three numbers in another triad
      *

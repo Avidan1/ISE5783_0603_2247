@@ -20,6 +20,7 @@ public class Point {
     public String toString() {
         return "Point{" + xyz + "}";
     }
+
     /**
      * Constructs a new Point object with the specified coordinates.
      *
@@ -28,6 +29,7 @@ public class Point {
     Point(Double3 xyz) {
         this.xyz = xyz;
     }
+
     /**
      * Constructs a new Point object with the specified coordinates.
      *
@@ -38,6 +40,7 @@ public class Point {
     public Point(double x, double y, double z) {
         this.xyz = new Double3(x, y, z);
     }
+
     /**
      * Calculate a new vector that is the difference between this point and the given point.
      *
