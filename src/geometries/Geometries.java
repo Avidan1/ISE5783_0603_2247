@@ -14,14 +14,12 @@ import java.util.List;
  * @author Avidan and Ziv
  */
 public class Geometries implements Intersectable {
-    private final List<Intersectable> intersectables;
+    private final List<Intersectable> intersectables = new LinkedList<Intersectable>();
 
     /**
      * constructor without parameters, creates a new empty list of geometries
      */
-    public Geometries() {
-        this.intersectables = new LinkedList<Intersectable>();
-    }
+    public Geometries() { }
 
     /**
      * constructor with parameters, creates a new list of geometries
@@ -29,8 +27,7 @@ public class Geometries implements Intersectable {
      * @param geometries array of geometries
      */
     public Geometries(Intersectable... geometries) {
-        this.intersectables = new LinkedList<>();
-        this.intersectables.addAll(Arrays.asList(geometries));
+        this.intersectables.addAll(List.of(geometries));
     }
 
     /**
@@ -39,7 +36,7 @@ public class Geometries implements Intersectable {
      * @param geometries array of geometries
      */
     public void add(Intersectable... geometries) {
-        this.intersectables.addAll(Arrays.asList(geometries));
+        this.intersectables.addAll(List.of(geometries));
     }
 
     /**

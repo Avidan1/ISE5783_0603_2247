@@ -46,22 +46,19 @@ public class Sphere extends RadialGeometry {
         Vector dir_vector = ray.getDir();
         Vector p0_o = this.center.subtract(point);
         double t_m = alignZero(dir_vector.dotProduct(p0_o));
-        double d = alignZero(Math.sqrt(p0_o.dotProduct(p0_o) - t_m * t_m));
+        double d2 = alignZero(p0_o.dotProduct(p0_o) - t_m * t_m);
         // if the ray starts outside the sphere and goes away from it
-        if (d >= this.radius)
+        if (alignZero(d2 - this.radius2) >= 0)
             return null;
-        double t_h = alignZero(Math.sqrt(this.radius * this.radius - d * d));
-        double t_1 = alignZero(t_m + t_h);
-        double t_2 = alignZero(t_m - t_h);
+        double t_h = alignZero(Math.sqrt(this.radius2 - d2));
 
-        if (t_1 <= 0 && t_2 <= 0)
-            return null;
-        if (t_1 > 0 && t_2 <= 0)
-            return List.of(ray.getPoint(t_1));
-        if (t_1 <= 0 && t_2 > 0)
-            return List.of(ray.getPoint(t_2));
-        if (t_1 > 0 && t_2 > 0)
-            return List.of(ray.getPoint(t_1), ray.getPoint(t_2));
-        return null;
+        double t_2 = alignZero(t_m + t_h);
+        // if the father point is before the ray head - there are not intersections
+        if (t_2 <= 0) return null;
+
+        double t_1 = alignZero(t_m - t_h);
+        return t_1 <= 0 //
+                ? List.of(ray.getPoint(t_2)) //
+                : List.of(ray.getPoint(t_1), ray.getPoint(t_2));
     }
 }
