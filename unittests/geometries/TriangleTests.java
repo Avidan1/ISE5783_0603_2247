@@ -31,8 +31,9 @@ class TriangleTests {
         // ensure the normal length is 1
         assertEquals(1, triangle.getNormal(p1).length(), 0.0000001, "ERROR: Bad normal!=1");
         assertEquals(0, triangle.getNormal(p1).dotProduct(p1.subtract(p2)), 0.0000001, "ERROR: The normal is not orthogonal to p1-p2");
-        assertEquals(0, triangle.getNormal(p1).dotProduct(p2.subtract(p3)), 0.0000001,"ERROR: The normal is not orthogonal to p1-p2");
+        assertEquals(0, triangle.getNormal(p1).dotProduct(p2.subtract(p3)), 0.0000001, "ERROR: The normal is not orthogonal to p1-p2");
     }
+
     /**
      * Test method for {@link geometries.Triangle#findIntersections(Ray)}.
      */

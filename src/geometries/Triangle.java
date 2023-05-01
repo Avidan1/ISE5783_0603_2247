@@ -4,6 +4,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,24 +25,39 @@ public class Triangle extends Polygon {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Vector v1 = ((Point) vertices.toArray()[0]).subtract(ray.getP0());
-        Vector v2 = ((Point) vertices.toArray()[1]).subtract(ray.getP0());
-        Vector v3 = ((Point) vertices.toArray()[2]).subtract(ray.getP0());
-
-        Vector n1 = v1.crossProduct(v2);
-        Vector n2 = v1.crossProduct(v2);
-        Vector n3 = v1.crossProduct(v2);
-
-        if (n1.dotProduct(ray.getDir()) < 0) {
-            if (n2.dotProduct(ray.getDir()) > 0 || n3.dotProduct(ray.getDir()) > 0)
-                return null;
-        }
-        if (n1.dotProduct(ray.getDir()) > 0) {
-            if (n2.dotProduct(ray.getDir()) < 0 || n3.dotProduct(ray.getDir()) < 0)
-                return null;
+        // Check if the ray intersects the plane of the triangle.
+        List<Point> points = plane.findIntersections(ray);
+        if (points == null) {
+            return null;
         }
 
-        return plane.findIntersections(ray);
+        // Create vectors from the intersection point to the vertices
+        // and check if the intersection point is inside the triangle.
+        ArrayList<Vector> vectors = new ArrayList<>();
+        for (Point vertex : vertices) {
+            try {
+                Vector v = vertices.get((vertices.indexOf(vertex) + 1) % vertices.size()).subtract(vertex);
+                Vector u = vertex.subtract(points.get(0));
+                vectors.add(v.crossProduct(u));
+            } catch (IllegalArgumentException e) {
+                return null;
+            }
+        }
+        // Check if all the vectors are in the same direction.
+        // If not, the point is outside the triangle, so return null.
+        Vector triangleNormal = plane.getNormal();
+        int countNegOrPos = 0;
+        for (Vector vector : vectors) {
+            if (triangleNormal.dotProduct(vector) > 0) {
+                countNegOrPos++;
+            }
+        }
+        if (countNegOrPos == vertices.size() || countNegOrPos == 0) {
+            return points;
+        } else {
+            return null;
+        }
     }
+
 }
 

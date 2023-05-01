@@ -22,6 +22,7 @@ public class Geometries implements Intersectable {
     public Geometries() {
         this.intersectables = new LinkedList<Intersectable>();
     }
+
     /**
      * constructor with parameters, creates a new list of geometries
      *
@@ -31,6 +32,7 @@ public class Geometries implements Intersectable {
         this.intersectables = new LinkedList<>();
         this.intersectables.addAll(Arrays.asList(geometries));
     }
+
     /**
      * This method adds the geometries array to the list
      *
@@ -39,6 +41,7 @@ public class Geometries implements Intersectable {
     public void add(Intersectable... geometries) {
         this.intersectables.addAll(Arrays.asList(geometries));
     }
+
     /**
      * This method finds all the intersections of the ray with the geometries in the list
      *
