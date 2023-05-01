@@ -6,6 +6,8 @@ import primitives.Ray;
 
 import java.util.List;
 
+import static primitives.Util.isZero;
+
 /**
  * Tube class represents a tube in 3D Cartesian coordinate system
  */
@@ -28,19 +30,17 @@ public class Tube extends RadialGeometry {
     public Vector getNormal(Point point) {
         Point p0 = this.axisRay.getP0();
         Vector v = this.axisRay.getDir();
-        double t = v.dotProduct(point.subtract(p0));
-
-        // check if point is on the axis of the tube
-        if (t==0) {
-            return v.normalize();
-        }
-
-        // calculate the closest point on the axis to the input point
-        Point p = p0.add(v.scale(t));
-
-        // calculate and return the normal vector
-        Vector n = point.subtract(p);
-        return n.normalize();
+        if(point.equals(p0))
+            return point.subtract(p0).normalize();
+        Vector p_p0 = point.subtract(this.axisRay.getP0());
+        if(p_p0.crossProduct(v).length() == 0)
+            throw new IllegalArgumentException("point cant be on the ray");
+        double t = p_p0.dotProduct(this.axisRay.getDir());
+        if(isZero(t))
+            // point is in-front of p0
+            return point.subtract(p0).normalize();
+        Point o = axisRay.getPoint(t);
+        return point.subtract(o).normalize();
     }
 
     /**

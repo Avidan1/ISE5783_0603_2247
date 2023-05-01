@@ -38,43 +38,37 @@ public class Sphere extends RadialGeometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        Point p0 = ray.getP0();
-        Vector v = ray.getDir();
 
-        if (p0.equals(center)) {//if the point is on the center of the sphere
-            return List.of(ray.getPoint(radius));
+        if (ray.getP0().equals(this.center)) {
+            return List.of(this.center.add(ray.getDir().scale(this.radius)));
         }
+        Point point = ray.getP0();
+        Vector dir_vector = ray.getDir();
+        Vector p0_o = this.center.subtract(point);
+        double t_m = alignZero(dir_vector.dotProduct(p0_o));
+        double d = alignZero(Math.sqrt(p0_o.dotProduct(p0_o) - t_m * t_m));
 
-        Vector u = center.subtract(p0);
-
-        double tm = alignZero(u.dotProduct(v));
-        double dSquared = isZero(tm) ? u.lengthSquared() : u.lengthSquared() - tm * tm;
-        double d = alignZero(Math.sqrt(dSquared));
-        if (alignZero(d - radius) >= 0) {//if the distance between the ray and the center of the sphere is bigger than the radius
-            return null; // no intersections the ray is above the sphere
-        }
-        double thSquared = alignZero(radius * radius - dSquared);
-        if (thSquared <= 0) {
+        // if the ray starts outside the sphere and goes away from it
+        if (d >= this.radius)
             return null;
-        }
 
-        double th = Math.sqrt(thSquared);
-        double t1 = alignZero(tm - th);
-        double t2 = alignZero(tm - th);
+        double t_h = alignZero(Math.sqrt(this.radius * this.radius - d * d));
+        double t_1 = alignZero(t_m + t_h);
+        double t_2 = alignZero(t_m - t_h);
 
-        if (t1 >= 0 && t2 >= 0) {//if t1 and t2 are negative or zero the didnt hit the sphere
-            Point point1 = ray.getPoint(t1);
-            Point point2 = ray.getPoint(t2);
-            return List.of(point1, point2);
-        }
-        if (t1 > 0) {//if  only t1 is positive the ray hit the sphere in one point
-            Point point1 = ray.getPoint((t1));
-            return List.of(point1);
-        }
-        if (t2 > 0) {//if  only t2 is positive the ray hit the sphere in one point
-            Point point2 = ray.getPoint((t2));
-            return List.of(point2);
-        }
+        if (t_1 <= 0 && t_2 <= 0)
+            return null;
+
+        if (t_1 > 0 && t_2 <= 0)
+            return List.of(ray.getPoint(t_1));
+
+        if (t_1 <= 0 && t_2 > 0)
+            return List.of(ray.getPoint(t_2));
+
+        if (t_1 > 0 && t_2 > 0)
+            return List.of(ray.getPoint(t_1), ray.getPoint(t_2));
+
         return null;
+
     }
 }

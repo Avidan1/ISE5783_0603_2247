@@ -62,11 +62,11 @@ public class Plane implements Geometry {
 
         Vector n = getNormal(p0);
         // if the point is on point q0
-        if (q0.equals(p0)) {
+        if (this.q0.equals(p0)) {
             return null;
         }
         // vector from the center of the sphere to the point p0
-        Vector p0_q0 = q0.subtract(p0);
+        Vector p0_q0 = this.q0.subtract(p0);
         // numerator of the quadratic equation
         double nP0Q0 = alignZero(n.dotProduct(p0_q0));
         // if the point is on the plane of the sphere
