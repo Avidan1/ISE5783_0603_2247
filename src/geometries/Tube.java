@@ -52,12 +52,4 @@ public class Tube extends RadialGeometry {
         return null;
     }
 
-    /**
-     * @param ray
-     * @return
-     */
-    @Override
-    public List<Point> findIntsersections(Ray ray) {
-        return null;
-    }
 }

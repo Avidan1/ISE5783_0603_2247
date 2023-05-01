@@ -23,7 +23,7 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public List<Point> findIntsersections(Ray ray) {
+    public List<Point> findIntersections(Ray ray) {
         Vector v1 = ((Point) vertices.toArray()[0]).subtract(ray.getP0());
         Vector v2 = ((Point) vertices.toArray()[1]).subtract(ray.getP0());
         Vector v3 = ((Point) vertices.toArray()[2]).subtract(ray.getP0());

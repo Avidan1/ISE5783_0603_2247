@@ -27,10 +27,10 @@ public class Geometries implements Intersectable {
         }
     }
 
-    public List<Point> findIntsersections(Ray ray) {
+    public List<Point> findIntersections(Ray ray) {
         List<Point> result = new LinkedList<>();
         for (var geometry : _intersectables) {
-            List<Point> temp = geometry.findIntsersections(ray);
+            List<Point> temp = geometry.findIntersections(ray);
             if (temp != null) {
                 result.addAll(temp);
             }
