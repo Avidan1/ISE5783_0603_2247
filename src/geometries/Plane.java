@@ -64,13 +64,19 @@ public class Plane implements Geometry {
         }
 
         // Calculate intersection point
-        Vector p0_q0 = this.q0.subtract(p0);
+        Vector p0_q0 = this.q0.subtract(p0); // todo pascale case
         double nP0Q0 = alignZero(n.dotProduct(p0_q0));
         double t = alignZero(nP0Q0 / nv);
-        return t <= 0 ? null : List.of(ray.getPoint(t));
+        if (t <= 0) {
+            return null;
+        }
+        Point point = ray.getPoint(t);
+
+        return List.of(point);
     }
 
     /**
+     * returns the normal vector to the plane.
      * @return The normal vector to the plane.
      */
     public Vector getNormal() {
@@ -78,9 +84,13 @@ public class Plane implements Geometry {
     }
 
     /**
+     * returns the point on the plane.
      * @return The point on the plane.
      */
     public Point getQ0() {
         return this.q0;
     }
+
+
+
 }
