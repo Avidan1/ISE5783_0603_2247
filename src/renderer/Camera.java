@@ -5,12 +5,33 @@ import primitives.*;
  * Camera class represents a camera in 3D Cartesian coordinate system
  */
 public class Camera {
+    /**
+     * The position of the camera.
+     */
     private Point p0;
+    /**
+     * The up vector of the camera.
+     */
     private Vector vUp;
+    /**
+     * The to vector of the camera.
+     */
     private Vector vTo;
+    /**
+     * The right vector of the camera.
+     */
     private Vector vRight;
+    /**
+     * The width of the view plane.
+     */
     private double width;
+    /**
+     * The height of the view plane.
+     */
     private double height;
+    /**
+     * The distance of the camera from the view plane.
+     */
     private double distance;
 
     /**
