@@ -25,7 +25,7 @@ public class Sphere extends RadialGeometry {
      * @param center the center point of the sphere
      * @param radius the radius of the sphere
      */
-    Sphere(Point center, double radius) {
+    public Sphere(Point center, double radius) {
         super(radius);
         this.center = center;
     }
@@ -37,7 +37,7 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    public List<Point> findIntersections(Ray ray) {//TODO FIX SYNTAX
         // if the ray starts at the center of the sphere
         if (ray.getP0().equals(this.center)) {
             return List.of(this.center.add(ray.getDir().scale(this.radius)));

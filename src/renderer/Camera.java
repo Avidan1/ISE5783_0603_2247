@@ -51,7 +51,7 @@ public class Camera {
     }
 
     /**
-     * Set the distance of the camera from the view plane.
+     * Set the size of the view plane.
      *
      * @param width
      * @param height
