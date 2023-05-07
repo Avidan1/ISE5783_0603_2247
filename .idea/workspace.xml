@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0b8feb9-4bd9-428c-95e7-2e7d78c9c8f9" name="Changes" comment="add java doc to Camera.java">
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+    <list default="true" id="a0b8feb9-4bd9-428c-95e7-2e7d78c9c8f9" name="Changes" comment="add IntegrationTest tests to Sphere">
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +149,7 @@
       <workItem from="1682954839217" duration="144000" />
       <workItem from="1683136896700" duration="48000" />
       <workItem from="1683136969453" duration="585000" />
-      <workItem from="1683460327122" duration="5882000" />
+      <workItem from="1683460327122" duration="6190000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>
@@ -203,7 +200,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683137550857</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="add IntegrationTest tests to Sphere">
+      <created>1683467095358</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683467095358</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +230,7 @@
     <MESSAGE value="add Camera and CameraTest" />
     <MESSAGE value="add todo" />
     <MESSAGE value="add java doc to Camera.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="add java doc to Camera.java" />
+    <MESSAGE value="add IntegrationTest tests to Sphere" />
+    <option name="LAST_COMMIT_MESSAGE" value="add IntegrationTest tests to Sphere" />
   </component>
 </project>

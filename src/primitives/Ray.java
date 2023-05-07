@@ -6,7 +6,6 @@ import static primitives.Util.isZero;
  * The Ray class represents a ray in a three-dimensional space.
  */
 public class Ray {
-    // todo add description
     /**
      * The starting point of the ray.
      */
@@ -18,7 +17,6 @@ public class Ray {
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
-     *
      * @param p0  The starting point of the ray.
      * @param dir The direction of the ray.
      */
@@ -27,9 +25,6 @@ public class Ray {
         this.dir = dir.normalize();
     }
 
-    /**
-     * @return A string representation of the ray.
-     */
     @Override
     public String toString() {
         return "Ray{" +
@@ -46,6 +41,7 @@ public class Ray {
     }
 
     /**
+     * Getter for the starting point of the ray
      * @return The starting point of the ray.
      */
     public Point getP0() {

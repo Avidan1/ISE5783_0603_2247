@@ -64,8 +64,8 @@ public class Plane implements Geometry {
         }
 
         // Calculate intersection point
-        Vector p0_q0 = this.q0.subtract(p0); // todo pascale case
-        double nP0Q0 = alignZero(n.dotProduct(p0_q0));
+        Vector p0Q0 = this.q0.subtract(p0);
+        double nP0Q0 = alignZero(n.dotProduct(p0Q0));
         double t = alignZero(nP0Q0 / nv);
         if (t <= 0) {
             return null;
