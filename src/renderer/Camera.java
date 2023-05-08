@@ -1,8 +1,11 @@
 package renderer;
 import primitives.*;
 
+import static primitives.Util.isZero;
+
 /*
  * Camera class represents a camera in 3D Cartesian coordinate system
+ * @ author Avidan and Ziv
  */
 public class Camera {
     /**
@@ -45,7 +48,7 @@ public class Camera {
         this.p0 = p0;
         this.vTo = vTo.normalize();
         this.vUp = vUp.normalize();
-        if (vUp.dotProduct(vTo) != 0)
+        if (!isZero(vUp.dotProduct(vTo)))
             throw new IllegalArgumentException("vUp and vTo must be orthogonal");
         this.vRight = vTo.crossProduct(vUp).normalize();
     }
@@ -53,9 +56,9 @@ public class Camera {
     /**
      * Set the size of the view plane.
      *
-     * @param width
-     * @param height
-     * @return itself
+     * @param width of the view plane
+     * @param height of the view plane
+     * @return updated Camera itself
      */
     public Camera setVPSize(double width, double height) {
 
@@ -66,8 +69,8 @@ public class Camera {
 
     /**
      *  set the distance of the camera from the view plane.
-     * @param distance
-     * @return itself
+     * @param distance from the camera to the view plane
+     * @return updated Camera itself
      */
     public Camera setVPDistance(double distance) {
         this.distance = distance;
