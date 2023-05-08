@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.Geometry;
 import geometries.Sphere;
 import org.junit.jupiter.api.Test;
 import primitives.*;
@@ -15,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class IntegrationTest {
     Camera camera = new Camera(new Point(0, 0, 0), new Vector(0, 1, 0), new Vector(0, 0, -1));
 
-    int rayIntersectionLoop(Sphere sphere, Camera camera) {
+    int rayIntersectionLoop(Geometry geometry, Camera camera) {
         int width = 3;
         int height = 3;
         int count = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                count = count + sphere.findIntersections(camera.constructRay(width, height, i, j)).size();
+                count = count + geometry.findIntersections(camera.constructRay(width, height, i, j)).size();
             }
         }
         return count;
@@ -55,16 +56,17 @@ public class IntegrationTest {
 
     }
 
+    // testing the integration of camera and plane
+    @Test
+    void planeIntegrationTest() {
+
+    }
+
+
     // testing the integration of camera and triangle
     @Test
     void triangleIntegrationTest() {
         //
-
-    }
-
-    // testing the integration of camera and plane
-    @Test
-    void planeIntegrationTest() {
 
     }
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="Ray test">
+    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="test sphere">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" afterDir="false" />
     </list>
@@ -155,7 +155,7 @@
       <workItem from="1683136896700" duration="48000" />
       <workItem from="1683136969453" duration="585000" />
       <workItem from="1683460327122" duration="5882000" />
-      <workItem from="1683531178897" duration="1125000" />
+      <workItem from="1683531178897" duration="3212000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>
@@ -213,7 +213,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683531629577</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="test sphere">
+      <created>1683532338972</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683532338972</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +244,7 @@
     <MESSAGE value="add todo" />
     <MESSAGE value="add java doc to Camera.java" />
     <MESSAGE value="Ray test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ray test" />
+    <MESSAGE value="test sphere" />
+    <option name="LAST_COMMIT_MESSAGE" value="test sphere" />
   </component>
 </project>
