@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.Plane;
 import geometries.Sphere;
 import org.junit.jupiter.api.Test;
 import primitives.*;
@@ -51,6 +52,14 @@ public class IntegrationTest {
 // testing the integration of camera and plane
     @Test
     void planeIntegrationTest() {
+    //TC01 9 intersection points parallel to the view plane
+        Plane plane = new Plane(new Point(0, 0, -3), new Vector(0, 0, -1));
+        Camera camera = new Camera(new Point(0, 0, 0), new Vector(0, 1, 0), new Vector(0, 0, -1));
+        camera.setVPSize(3d, 3d);
+        camera.setDistance(1);
+        assertEquals(9, plane.findIntersections(camera.constructRay(3, 3, 0, 0)).size(), "wrong number of intersections");
+    //TC02 9 intersection points
+
 
     }
 }
