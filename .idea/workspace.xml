@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0b8feb9-4bd9-428c-95e7-2e7d78c9c8f9" name="Changes" comment="add IntegrationTest tests to Sphere">
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/unittests/primitives/RayTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -55,10 +57,11 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="primitives" />
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CameraTest">
+  <component name="RunManager" selected="JUnit.RayTests.testGetPoint">
     <configuration name="All in ISE5783_0603_2247" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <option name="PACKAGE_NAME" value="" />
@@ -97,6 +100,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RayTests.testGetPoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_0603_2247" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="primitives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="primitives" />
+      <option name="MAIN_CLASS_NAME" value="primitives.RayTests" />
+      <option name="METHOD_NAME" value="testGetPoint" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TriangleTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <extension name="coverage">
@@ -112,34 +131,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="geometries in ISE5783_0603_2247" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_0603_2247" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RayTests.testGetPoint" />
         <item itemvalue="JUnit.CameraTest" />
         <item itemvalue="JUnit.All in ISE5783_0603_2247" />
         <item itemvalue="JUnit.PolygonTests" />
         <item itemvalue="JUnit.TriangleTests" />
-        <item itemvalue="JUnit.geometries in ISE5783_0603_2247" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a0b8feb9-4bd9-428c-95e7-2e7d78c9c8f9" name="Changes" comment="" />
+      <changelist id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="" />
       <created>1682923766044</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -149,7 +154,8 @@
       <workItem from="1682954839217" duration="144000" />
       <workItem from="1683136896700" duration="48000" />
       <workItem from="1683136969453" duration="585000" />
-      <workItem from="1683460327122" duration="6190000" />
+      <workItem from="1683460327122" duration="5882000" />
+      <workItem from="1683531178897" duration="167000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>
@@ -200,14 +206,7 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683137550857</updated>
     </task>
-    <task id="LOCAL‎-00008" summary="add IntegrationTest tests to Sphere">
-      <created>1683467095358</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL‎-00008" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1683467095358</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +229,6 @@
     <MESSAGE value="add Camera and CameraTest" />
     <MESSAGE value="add todo" />
     <MESSAGE value="add java doc to Camera.java" />
-    <MESSAGE value="add IntegrationTest tests to Sphere" />
-    <option name="LAST_COMMIT_MESSAGE" value="add IntegrationTest tests to Sphere" />
+    <option name="LAST_COMMIT_MESSAGE" value="add java doc to Camera.java" />
   </component>
 </project>
