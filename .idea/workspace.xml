@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="test sphere">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="construct ray">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/CameraTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/CameraTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +67,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CameraTest.testConstructRay">
+  <component name="RunManager" selected="JUnit.IntegrationTest.planeIntegrationTest">
     <configuration name="CameraTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <extension name="coverage">
@@ -85,7 +83,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CameraTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <extension name="coverage">
         <pattern>
@@ -94,13 +92,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.CameraTest" />
+      <option name="MAIN_CLASS_NAME" value="renderer.IntegrationTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CameraTest.testConstructRay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegrationTest.planeIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <extension name="coverage">
         <pattern>
@@ -109,29 +107,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.CameraTest" />
-      <option name="METHOD_NAME" value="testConstructRay" />
+      <option name="MAIN_CLASS_NAME" value="renderer.IntegrationTest" />
+      <option name="METHOD_NAME" value="planeIntegrationTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_0603_2247" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="renderer in ISE5783_0603_2247" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegrationTest.sphereIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <extension name="coverage">
         <pattern>
@@ -140,18 +123,36 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="renderer.IntegrationTest" />
+      <option name="METHOD_NAME" value="sphereIntegrationTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntegrationTest.triangleIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_0603_2247" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.IntegrationTest" />
+      <option name="METHOD_NAME" value="triangleIntegrationTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CameraTest.testConstructRay" />
+        <item itemvalue="JUnit.IntegrationTest.planeIntegrationTest" />
+        <item itemvalue="JUnit.IntegrationTest.triangleIntegrationTest" />
+        <item itemvalue="JUnit.IntegrationTest.sphereIntegrationTest" />
         <item itemvalue="JUnit.CameraTest" />
-        <item itemvalue="JUnit.CameraTest (1)" />
-        <item itemvalue="JUnit.VectorTests" />
-        <item itemvalue="JUnit.renderer in ISE5783_0603_2247" />
+        <item itemvalue="JUnit.IntegrationTest" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +170,7 @@
       <workItem from="1683136896700" duration="48000" />
       <workItem from="1683136969453" duration="585000" />
       <workItem from="1683460327122" duration="5882000" />
-      <workItem from="1683531178897" duration="8040000" />
+      <workItem from="1683531178897" duration="10108000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>
@@ -241,7 +242,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683540578504</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎-00011" summary="construct ray">
+      <created>1683547206906</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL‎-00011" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683547206906</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +274,7 @@
     <MESSAGE value="add java doc to Camera.java" />
     <MESSAGE value="Ray test" />
     <MESSAGE value="test sphere" />
-    <option name="LAST_COMMIT_MESSAGE" value="test sphere" />
+    <MESSAGE value="construct ray" />
+    <option name="LAST_COMMIT_MESSAGE" value="construct ray" />
   </component>
 </project>

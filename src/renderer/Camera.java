@@ -41,10 +41,10 @@ public class Camera {
      * @param vUp     the up vector of the camera
      * @param vTo     the to vector of the camera
      */
-    public Camera(Point p0, Vector vUp, Vector vTo) {
+    public Camera(Point p0, Vector vTo, Vector vUp) {
         this.p0 = p0;
-        this.vUp = vUp.normalize();
         this.vTo = vTo.normalize();
+        this.vUp = vUp.normalize();
         if (vUp.dotProduct(vTo) != 0)
             throw new IllegalArgumentException("vUp and vTo must be orthogonal");
         this.vRight = vTo.crossProduct(vUp).normalize();
@@ -90,10 +90,10 @@ public class Camera {
         double jX = (j - (nX - 1d) / 2) * rX;
         Point pIJ = this.p0.add(this.vTo.scale(this.distance));
 
-        if (yI != 0) pIJ = pIJ.add(this.vUp.scale(yI));
         if (jX != 0) pIJ = pIJ.add(this.vRight.scale(jX));
-        return new Ray(this.p0, pIJ.subtract(this.p0));
+        if (yI != 0) pIJ = pIJ.add(this.vUp.scale(yI));
 
+        return new Ray(this.p0, pIJ.subtract(this.p0));
     }
 
 }
