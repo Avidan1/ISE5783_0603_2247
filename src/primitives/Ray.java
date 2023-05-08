@@ -34,7 +34,6 @@ public class Ray {
     }
 
     @Override
-
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return (obj instanceof Ray other) && this.p0.equals(other.p0) && this.dir.equals(other.dir);
@@ -64,5 +63,4 @@ public class Ray {
     public Point getPoint(double t) {
         return isZero(t) ? p0 : this.p0.add(this.dir.scale(t));
     }
-    // todo add tests
 }
