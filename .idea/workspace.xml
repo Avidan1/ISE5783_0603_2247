@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/unittests/primitives/RayTests.java" afterDir="false" />
+    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="Ray test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -155,7 +155,7 @@
       <workItem from="1683136896700" duration="48000" />
       <workItem from="1683136969453" duration="585000" />
       <workItem from="1683460327122" duration="5882000" />
-      <workItem from="1683531178897" duration="167000" />
+      <workItem from="1683531178897" duration="1125000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>
@@ -206,7 +206,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683137550857</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="Ray test">
+      <created>1683531629577</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683531629577</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +236,7 @@
     <MESSAGE value="add Camera and CameraTest" />
     <MESSAGE value="add todo" />
     <MESSAGE value="add java doc to Camera.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="add java doc to Camera.java" />
+    <MESSAGE value="Ray test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ray test" />
   </component>
 </project>
