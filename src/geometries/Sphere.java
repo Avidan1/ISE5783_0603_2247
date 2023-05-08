@@ -7,7 +7,7 @@ import primitives.Vector;
 import java.util.List;
 
 import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+
 
 /**
  * The Sphere class represents a sphere in a 3D Cartesian coordinate system.
@@ -44,21 +44,21 @@ public class Sphere extends RadialGeometry {
         }
         Point point = ray.getP0();
         Vector dir_vector = ray.getDir();
-        Vector p0_o = this.center.subtract(point);
-        double t_m = alignZero(dir_vector.dotProduct(p0_o));
-        double d2 = alignZero(p0_o.dotProduct(p0_o) - t_m * t_m);
+        Vector p0O = this.center.subtract(point);
+        double tM = alignZero(dir_vector.dotProduct(p0O));
+        double d2 = alignZero(p0O.dotProduct(p0O) - tM * tM);
         // if the ray starts outside the sphere and goes away from it
         if (alignZero(d2 - this.radius2) >= 0)
             return null;
-        double t_h = alignZero(Math.sqrt(this.radius2 - d2));
+        double tH = alignZero(Math.sqrt(this.radius2 - d2));
 
-        double t_2 = alignZero(t_m + t_h);
+        double t2 = alignZero(tM + tH);
         // if the father point is before the ray head - there are not intersections
-        if (t_2 <= 0) return null;
+        if (t2 <= 0) return null;
 
-        double t_1 = alignZero(t_m - t_h);
-        return t_1 <= 0 //
-                ? List.of(ray.getPoint(t_2)) //
-                : List.of(ray.getPoint(t_1), ray.getPoint(t_2));
+        double t1 = alignZero(tM - tH);
+        return t1 <= 0 //
+                ? List.of(ray.getPoint(t2)) //
+                : List.of(ray.getPoint(t1), ray.getPoint(t2));
     }
 }
