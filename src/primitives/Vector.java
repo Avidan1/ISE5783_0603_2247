@@ -28,9 +28,6 @@ public class Vector extends Point {
             throw new IllegalArgumentException();
     }
 
-    /**
-     * @return a string representation of this vector
-     */
     @Override
     public String toString() {
         return "Vector{" + this.xyz + "}";

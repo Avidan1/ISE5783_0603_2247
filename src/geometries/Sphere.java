@@ -37,15 +37,15 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {//TODO FIX SYNTAX
+    public List<Point> findIntersections(Ray ray) {
         // if the ray starts at the center of the sphere
         if (ray.getP0().equals(this.center)) {
             return List.of(this.center.add(ray.getDir().scale(this.radius)));
         }
         Point point = ray.getP0();
-        Vector dir_vector = ray.getDir();
+        Vector dirVector = ray.getDir();
         Vector p0O = this.center.subtract(point);
-        double tM = alignZero(dir_vector.dotProduct(p0O));
+        double tM = alignZero(dirVector.dotProduct(p0O));
         double d2 = alignZero(p0O.dotProduct(p0O) - tM * tM);
         // if the ray starts outside the sphere and goes away from it
         if (alignZero(d2 - this.radius2) >= 0)

@@ -84,6 +84,9 @@ public class Point {
         return Math.sqrt(distanceSquared(point));
     }
 
+    /**
+     * @return the x coordinate of the point
+     */
     public double getX() {
         return this.xyz.d1;
     }
