@@ -3,14 +3,12 @@ package geometries;
 import primitives.Point;
 import primitives.Ray;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * This class represents a list of geometries
  * that implements the Intersectable interface
- *
  * @author Avidan and Ziv
  */
 public class Geometries implements Intersectable {
