@@ -1,8 +1,10 @@
 package renderer;
 import primitives.*;
 
-/*
+/**
  * Camera class represents a camera in 3D Cartesian coordinate system
+ *
+ * @author Avidan and Ziv
  */
 public class Camera {
     /**
