@@ -35,7 +35,7 @@ public class IntegrationTest {
     @Test
     void sphereIntegrationTest() {
         camera.setVPSize(3d, 3d);
-        camera.setDistance(1);
+        camera.setVPDistance(1);
         Sphere sphere = new Sphere(new Point(0, 0, -3), 1);
         //TC01: 2 intersection points
         assertEquals(2, rayIntersectionCount(sphere, camera), "wrong number of intersections");
@@ -43,7 +43,7 @@ public class IntegrationTest {
         Sphere sphere18 = new Sphere(new Point(0, 0, -2.5), 2.5);
         Camera camera18 = new Camera(new Point(0, 0, 0.5), new Vector(0, 1, 0), new Vector(0, 0, -1));
         camera18.setVPSize(3d, 3d);
-        camera18.setDistance(1);
+        camera18.setVPDistance(1);
         assertEquals(18, rayIntersectionCount(sphere18, camera18), "wrong number of intersections");
         //TC03: 10 intersection points
         Sphere sphere10 = new Sphere(new Point(0, 0, -2), 2);
@@ -60,7 +60,7 @@ public class IntegrationTest {
     // testing the integration of camera and triangle
     @Test
     void triangleIntegrationTest() {
-        Camera camera = new Camera(zeroPoint, new Vector(0, 0, -1), new Vector(0, -1, 0)).setDistance(1).setVPSize(3, 3);
+        Camera camera = new Camera(zeroPoint, new Vector(0, 0, -1), new Vector(0, -1, 0)).setVPDistance(1).setVPSize(3, 3);
         //TC01: 1 intersection point
         assertEquals(1, rayIntersectionCount(new Triangle(new Point(0, 1, -2), new Point(1, -1, -2), new Point(-1, -1, -2)), camera), "wrong number of intersections");
 
@@ -76,11 +76,13 @@ public class IntegrationTest {
         //TC01 9 intersection points parallel to the view plane
         Camera camera = new Camera(zeroPoint, new Vector(0, 1, 0), new Vector(0, 0, -1));
         camera.setVPSize(3d, 3d);
-        camera.setDistance(1);
+        camera.setVPDistance(1);
         assertEquals(9, rayIntersectionCount(new Plane(new Point(0, 0, -1), new Vector(0, 0, 2)), camera), "wrong number of intersections");
         //TC02 9 intersection points not parallel to the view plane
         assertEquals(9, rayIntersectionCount(new Plane(new Point(0, 0, -1), new Vector(0, 2, 4)), camera), "wrong number of intersections");
         //TC03 6 intersection points not parallel to the view plane
         assertEquals(6, rayIntersectionCount(new Plane(new Point(0, 0, -1), new Vector(0, 2, 1)), camera), "wrong number of intersections");
+        //TC04 0 intersection points not parallel to the view plane
+        assertEquals(0, rayIntersectionCount(new Plane(new Point(0, 0, -1), new Vector(0, 2, 0.5)), camera), "wrong number of intersections");
     }
 }

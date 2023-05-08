@@ -69,7 +69,7 @@ public class Camera {
      * @param distance
      * @return itself
      */
-    public Camera setDistance(double distance) {
+    public Camera setVPDistance(double distance) {
         this.distance = distance;
         return this;
     }
@@ -83,7 +83,17 @@ public class Camera {
      * @return the ray through the pixel
      */
     public Ray constructRay (int nX , int nY, int j, int i){
-        return null;
+        double rY = this.height / nY;
+        double rX = this.width / nX;
+
+        double yI = -(i - (nY - 1d) / 2) * rY;
+        double jX = (j - (nX - 1d) / 2) * rX;
+        Point pIJ = this.p0.add(this.vTo.scale(this.distance));
+
+        if (yI != 0) pIJ = pIJ.add(this.vUp.scale(yI));
+        if (jX != 0) pIJ = pIJ.add(this.vRight.scale(jX));
+        return new Ray(this.p0, pIJ.subtract(this.p0));
+
     }
 
 }
