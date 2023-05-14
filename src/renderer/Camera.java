@@ -111,6 +111,7 @@ public class Camera {
      */
     public Camera setRayTracer(RayTracerBase tracer) {
         this.tracer = tracer;
+        return this;
     }
 
     /**
