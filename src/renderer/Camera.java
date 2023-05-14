@@ -94,12 +94,24 @@ public class Camera {
         return this;
     }
 
-    public void setImageWriter(ImageWriter imageWriter) {
+    /**
+     * Set the image writer of the camera.
+     *
+     * @param imageWriter the image writer of the camera
+     */
+    public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
+        return this;
     }
 
-    public void setRayTracer(RayTracerBase tracer) {
+    /**
+     * Set the ray tracer of the camera.
+     *
+     * @param tracer the ray tracer of the camera
+     */
+    public Camera setRayTracer(RayTracerBase tracer) {
         this.tracer = tracer;
+        return this;
     }
 
     /**
