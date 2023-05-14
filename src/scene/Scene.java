@@ -1,7 +1,6 @@
 package scene;
 import geometries.Geometries;
 import lighting.AmbientLight;
-import primitives.Color;
 
 public class Scene {
     //todo add javadoc?
