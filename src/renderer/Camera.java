@@ -148,7 +148,7 @@ public class Camera {
             throw new UnsupportedOperationException("MissingResourcesException");
         for (int i = 0; i < this.imageWriter.getNy(); i++) {
             for (int j = 0; j < this.imageWriter.getNx(); j++) {
-               this.imageWriter.writePixel(j, i, this.tracer.traceRay(this.constructRay(this.imageWriter.getNx(), this.imageWriter.getNy(), j, i)))
+               this.imageWriter.writePixel(j, i, this.tracer.traceRay(this.constructRay(this.imageWriter.getNx(), this.imageWriter.getNy(), j, i)));
             }
         }
     }
