@@ -3,7 +3,6 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-# todo add image to gitignore
 
 ### Eclipse ###
 .apt_generated
@@ -29,3 +28,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/images/
