@@ -7,6 +7,7 @@ package primitives;
  * @author Ziv Farjun and Avidan Maatuk
  */
 public class Point {
+    public static final Point ZERO = new Point(0,0,0);
     final protected Double3 xyz;
 
     @Override
