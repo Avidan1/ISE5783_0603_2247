@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="fix syntax and add javadoc and fix RayTests" />
+    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="fix syntax and add javadoc and fix RayTests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/ImageWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/ImageWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,6 +175,7 @@
       <workItem from="1684062725528" duration="1971000" />
       <workItem from="1684066656260" duration="5078000" />
       <workItem from="1684080775642" duration="606000" />
+      <workItem from="1684082160187" duration="735000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>

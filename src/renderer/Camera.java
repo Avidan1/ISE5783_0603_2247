@@ -134,7 +134,11 @@ public class Camera {
     public void renderImage() {
         if (this.tracer == null || this.imageWriter == null || this.width == 0 || this.height == 0 || this.distance == 0)
             throw new UnsupportedOperationException("MissingResourcesException");
-        throw new UnsupportedOperationException("Not Implemented Yet");
+        for (int i = 0; i < this.imageWriter.getNy(); i++) {
+            for (int j = 0; j < this.imageWriter.getNx(); j++) {
+               this.imageWriter.writePixel(j, i, this.tracer.traceRay(this.constructRay(this.imageWriter.getNx(), this.imageWriter.getNy(), j, i)))
+            }
+        }
     }
 
     /**
@@ -155,5 +159,14 @@ public class Camera {
                     this.imageWriter.writePixel(j, i, color);
             }
         }
+    }
+
+    public void writeToImage() {
+        if (imageWriter == null) throw new UnsupportedOperationException("MissingResourcesException");
+        this.imageWriter.writeToImage();
+    }
+
+    private Color castRay(int nX, int nY, int i, int j) {
+        return this.tracer.traceRay(this.constructRay(nX, nY, i, j));
     }
 }
