@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="fix syntax and add javadoc and fix RayTests">
+    <list default="true" id="9f42eef1-d211-4b86-892f-02184f35be00" name="Changes" comment="FINAL STAGE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RenderTests">
+  <component name="RunManager" selected="JUnit.All in ISE5783_0603_2247">
     <configuration name="All in ISE5783_0603_2247" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <option name="PACKAGE_NAME" value="" />
@@ -146,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in ISE5783_0603_2247" />
         <item itemvalue="JUnit.RenderTests" />
         <item itemvalue="JUnit.RenderTests.basicRenderTwoColorTest" />
         <item itemvalue="JUnit.RenderTests.basicRenderXml" />
         <item itemvalue="JUnit.renderer in ISE5783_0603_2247" />
-        <item itemvalue="JUnit.All in ISE5783_0603_2247" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +172,7 @@
       <workItem from="1684066656260" duration="5078000" />
       <workItem from="1684080775642" duration="606000" />
       <workItem from="1684150913759" duration="949000" />
-      <workItem from="1684151881851" duration="1387000" />
+      <workItem from="1684151881851" duration="1507000" />
     </task>
     <task id="LOCAL‎-00001" summary="RIGHT SPELLING">
       <created>1682923914964</created>
@@ -317,7 +314,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1684083179437</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL‎-00021" summary="FINAL STAGE">
+      <created>1684153311349</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL‎-00021" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1684153311349</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +350,7 @@
     <MESSAGE value="fix syntax and add javadoc" />
     <MESSAGE value="a lot process in stage 4 &#10;add a todo" />
     <MESSAGE value="fix syntax and add javadoc and fix RayTests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix syntax and add javadoc and fix RayTests" />
+    <MESSAGE value="FINAL STAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="FINAL STAGE" />
   </component>
 </project>
