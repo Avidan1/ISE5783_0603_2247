@@ -6,6 +6,7 @@ import scene.Scene;
 
 /**
  * Abstract class for ray tracing
+ * @author Avidan and Ziv
  */
 public abstract class RayTracerBase {
     // scene to render
@@ -24,7 +25,7 @@ public abstract class RayTracerBase {
      * Abstract function to trace ray
      *
      * @param ray
-     * @return color
+     * @return color of the ray
      */
     abstract public Color traceRay(Ray ray);
 

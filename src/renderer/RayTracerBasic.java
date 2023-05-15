@@ -5,6 +5,12 @@ import primitives.Point;
 import primitives.Ray;
 import scene.Scene;
 
+/**
+ * Basic ray tracer class extends RayTracerBase
+ * implements RayTracerBase
+ *
+ * @author Avidan and Ziv
+ */
 public class RayTracerBasic extends RayTracerBase {
 
     /**
@@ -15,16 +21,12 @@ public class RayTracerBasic extends RayTracerBase {
      */
     public RayTracerBasic(Scene scene) {
         super(scene);
-        try { // todo is this try-catch necessary or just throw exception?
-            throw new Exception("RayTracerBasic");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        //throw new UnsupportedOperationException("RayTracerBasic is not implemented yet");
     }
 
     @Override
     public Color traceRay(Ray ray) {
-        return this.calcColor(ray.findClosestPoint(this.scene.geometries.findIntersections(ray)));
+        return this.scene.geometries.findIntersections(ray) == null ? this.scene.background : this.calcColor(ray.findClosestPoint(this.scene.geometries.findIntersections(ray)));
     }
 
     /**

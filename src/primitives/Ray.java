@@ -66,6 +66,11 @@ public class Ray {
         return isZero(t) ? p0 : this.p0.add(this.dir.scale(t));
     }
 
+    /**
+     * Finds the closest point to the ray head from a given list of points
+     * @param points The list of points
+     * @return The closest point
+     */
     public Point findClosestPoint (List<Point> points) {
         Point result = null;
         double minDistance = Double.POSITIVE_INFINITY;
@@ -77,6 +82,5 @@ public class Ray {
             }
         }
         return result;
-
     }
 }

@@ -150,7 +150,7 @@ public class Camera {
         int nY = this.imageWriter.getNy();
         for (int i = 0; i < nY; i++) {
             for (int j = 0; j < nX; j++) {
-               this.imageWriter.writePixel(j, i, this.tracer.traceRay(this.constructRay(nX, nX, j, i)));
+                this.imageWriter.writePixel(j, i, castRay(nX, nY, i, j));
             }
         }
     }
@@ -175,11 +175,23 @@ public class Camera {
         }
     }
 
+    /**
+     * Throws UnsupportedOperationException if imageWriter object is null.
+     */
     public void writeToImage() {
         if (imageWriter == null) throw new UnsupportedOperationException("MissingResourcesException");
         this.imageWriter.writeToImage();
     }
 
+    /**
+     * Throws UnsupportedOperationException if imageWriter object is null.
+     *
+     * @param nX number of pixels in X axis
+     * @param nY number of pixels in Y axis
+     * @param i  pixel number in X axis
+     * @param j  pixel number in Y axis
+     * @return the color of the pixel
+     */
     private Color castRay(int nX, int nY, int i, int j) {
         return this.tracer.traceRay(this.constructRay(nX, nY, i, j));
     }
