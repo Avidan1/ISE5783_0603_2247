@@ -30,7 +30,6 @@ class RayTests {
     /**
      * Test method for {@link primitives.Ray#findClosestPoint(List)}.
      */
-    // todo check if its correct
     @Test
     void testFindClosestPoint() {
         // ============ Equivalence Partitions Tests ==============

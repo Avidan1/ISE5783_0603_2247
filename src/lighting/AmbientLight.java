@@ -12,8 +12,13 @@ import primitives.Color;
  */
 
 public class AmbientLight {
-    //    private Color intensity;
-    private Color intensity; //todo final?
+    /**
+     * The intensity of the ambient light
+     */
+    private Color intensity;
+    /**
+     * Constant AmbientLight with no intensity
+     */
     public static AmbientLight NONE = new AmbientLight(Color.BLACK, Double3.ZERO);
 
     /**

@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Avidan and Ziv
  */
 class PointTests {
-    //todo check if distance test is working
     Vector v1 = new Vector(1, 2, 3);
     Point p1 = new Point(1, 2, 3);
     Point p2 = new Point(2, 4, 6);

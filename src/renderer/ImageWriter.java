@@ -19,13 +19,31 @@ import javax.imageio.*;
  * @author Dan
  */
 public class ImageWriter {
-    private int nX;
-    private int nY;
 
+    /**
+     * View Plane X axis resolution
+     */
+    private int nX;
+    /**
+     * View Plane Y axis resolution
+     */
+    private int nY;
+    /**
+     * Image file path
+     */
     private static final String FOLDER_PATH = System.getProperty("user.dir") + "/images";
 
+    /**
+     * Image file
+     */
     private BufferedImage image;
+    /**
+     * Image file name
+     */
     private String imageName;
+    /**
+     * Logger instance
+     */
 
     private Logger logger = Logger.getLogger("ImageWriter");
 

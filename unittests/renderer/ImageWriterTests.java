@@ -8,7 +8,9 @@ testing the image writer class
  */
 class ImageWriterTests {
 
-
+    /**
+     * Test method for {@link renderer.ImageWriter#writeToImage()}.
+     */
     @Test
     void testWriteToImage() {
         ImageWriter imageWriter = new ImageWriter("test", 800, 500); //create file to the image

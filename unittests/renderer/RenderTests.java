@@ -16,6 +16,9 @@ public class RenderTests {
 
     /** Produce a scene with basic 3D model and render it into a png image with a
      * grid */
+    /**
+     * Test method for {@link renderer.ImageWriter#writeToImage()}. Produce a scene
+     */
     @Test
     public void basicRenderTwoColorTest() {
         Scene scene = new Scene("Test scene")//

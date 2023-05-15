@@ -6,6 +6,7 @@ import scene.Scene;
 
 /**
  * Abstract class for ray tracing
+ *
  * @author Avidan and Ziv
  */
 public abstract class RayTracerBase {
@@ -13,7 +14,7 @@ public abstract class RayTracerBase {
     protected Scene scene;
 
     /**
-     * ctor
+     * ctor for RayTracerBase from scene
      *
      * @param scene
      */
