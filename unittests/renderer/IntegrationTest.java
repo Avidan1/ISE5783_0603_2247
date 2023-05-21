@@ -1,11 +1,12 @@
 package renderer;
 
-import geometries.Plane;
 import geometries.Geometry;
+import geometries.Plane;
 import geometries.Sphere;
 import geometries.Triangle;
 import org.junit.jupiter.api.Test;
-import primitives.*;
+import primitives.Point;
+import primitives.Vector;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  **/
 public class IntegrationTest {
     // use the same camera for faw tests
-    Camera camera = new Camera(new Point(0, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0)).setVPSize(3d, 3d).setVPDistance(1);
+    final Camera camera = new Camera(new Point(0, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0)).setVPSize(3d, 3d).setVPDistance(1);
 
     /**
      * *  calculate the number of intersections between the camera and the geometries
@@ -63,8 +64,7 @@ public class IntegrationTest {
 
     /**
      * Test method for {@link renderer.Camera#constructRay(int, int, int, int)}.
-     *  testing the integration of camera and triangle
-     *
+     * testing the integration of camera and triangle
      */
     @Test
     void triangleIntegrationTest() {
@@ -74,10 +74,10 @@ public class IntegrationTest {
         assertEquals(2, rayIntersectionCount(new Triangle(new Point(1, -1, -2), new Point(-1, -1, -2), new Point(0, 20, -2)), camera), "wrong number of intersections");
 
     }
+
     /**
      * Test method for {@link renderer.Camera#constructRay(int, int, int, int)}.
-     *  testing the integration of camera and plane
-     *
+     * testing the integration of camera and plane
      */
     @Test
     void planeIntegrationTest() {

@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for primitives.Vector class
@@ -13,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author Avidan and Ziv
  */
 class VectorTests {
-    Vector v1 = new Vector(1, 2, 3);
-    Vector v2 = new Vector(-2, -4, -6);
-    Vector v3 = new Vector(0, 3, -2);
+    final Vector v1 = new Vector(1, 2, 3);
+    final Vector v2 = new Vector(-2, -4, -6);
+    final Vector v3 = new Vector(0, 3, -2);
 
     /**
      * Test method for {@link primitives.Vector#add(primitives.Vector)}.

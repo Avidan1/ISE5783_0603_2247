@@ -1,26 +1,31 @@
 package renderer;
 
-import static java.awt.Color.YELLOW;
-
-import org.junit.jupiter.api.Test;
-
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
-import primitives.*;
+import org.junit.jupiter.api.Test;
+import primitives.Color;
+import primitives.Double3;
+import primitives.Point;
+import primitives.Vector;
 import scene.Scene;
 
-/** Test rendering a basic image
- * @author Dan */
+import static java.awt.Color.YELLOW;
+
+/**
+ * Test rendering a basic image
+ *
+ * @author Dan
+ */
 public class RenderTests {
 
-    /** Produce a scene with basic 3D model and render it into a png image with a
-     * grid */
     /**
      * Test method for {@link renderer.ImageWriter#writeToImage()}. Produce a scene
      */
     @Test
     public void basicRenderTwoColorTest() {
+        // Produce a scene with basic 3D model and render it into a png image with a
+        // grid
         Scene scene = new Scene("Test scene")//
                 .setAmbientLight(new AmbientLight(new Color(255, 191, 191), //
                         new Double3(1, 1, 1))) //

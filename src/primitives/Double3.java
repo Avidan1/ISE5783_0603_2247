@@ -73,9 +73,6 @@ public class Double3 {
     }
 
     @Override
-    /**
-     * @return the hash code of the Double3 based object
-     */
     public int hashCode() {
         return (int) Math.round(d1 + d2 + d3);
     }

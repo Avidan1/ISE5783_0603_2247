@@ -1,4 +1,5 @@
 package scene;
+
 import geometries.Geometries;
 import lighting.AmbientLight;
 import primitives.Color;
@@ -7,7 +8,7 @@ public class Scene {
     /**
      * The name of the scene
      */
-    public String name;
+    public final String name;
     /**
      * The background color of the scene
      */
@@ -23,7 +24,8 @@ public class Scene {
 
     /**
      * Constructor for scene
-     * @param name
+     *
+     * @param name the name of the scene
      */
     public Scene(String name) {
         this.name = name;
@@ -31,27 +33,32 @@ public class Scene {
 
     /**
      * Setter for background color
-     * @param background
-     * @return this
+     *
+     * @param background the background color intensity
+     * @return the scene object itself
      */
     public Scene setBackground(Color background) {
         this.background = background;
         return this;
     }
+
     /**
      * Setter for ambient light
-     * @param ambientLight
-     * @return this
+     *
+     * @param ambientLight the ambient light  for the scene
+     * @return the scene object itself
      */
 
     public Scene setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
         return this;
     }
+
     /**
      * Setter for geometries
-     * @param geometries
-     * @return this
+     *
+     * @param geometries the 3D model of the scene
+     * @return the scene object itself
      */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;

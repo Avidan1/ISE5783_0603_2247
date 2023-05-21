@@ -2,9 +2,11 @@ package renderer;
 
 import org.junit.jupiter.api.Test;
 import primitives.Color;
+
 /**
-testing the image writer class
- @ author ziv and avidan
+ * testing the image writer class
+ *
+ * @author Ziv and Avidan
  */
 class ImageWriterTests {
 
@@ -13,19 +15,18 @@ class ImageWriterTests {
      */
     @Test
     void testWriteToImage() {
-        ImageWriter imageWriter = new ImageWriter("test", 800, 500); //create file to the image
-        for (int i=0; i<800; i++) {
-            for (int j = 0; j < 500; j++) {
-                if (i % 50 == 0 || j % 50 == 0)
-                    imageWriter.writePixel(i, j, new Color(0, 0, 255));
-                else
-                    imageWriter.writePixel(i, j, new Color(0, 255, 0));
-            }
-        }
-            imageWriter.writeToImage();
-    }
+        final int width = 800;
+        final int height = 500;
+        final Color blue = new Color(java.awt.Color.BLUE);
+        final Color green = new Color(java.awt.Color.GREEN);
 
-    @Test
-    void testWritePixel() {
+        // create file for the image
+        ImageWriter imageWriter = new ImageWriter("test", width, height);
+
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                imageWriter.writePixel(i, j, i % 50 == 0 || j % 50 == 0 ? blue : green);
+
+        imageWriter.writeToImage();
     }
 }

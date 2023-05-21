@@ -19,6 +19,7 @@ public class Ray {
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
+     *
      * @param p0  The starting point of the ray.
      * @param dir The direction of the ray.
      */
@@ -43,6 +44,7 @@ public class Ray {
 
     /**
      * Getter for the starting point of the ray
+     *
      * @return The starting point of the ray.
      */
     public Point getP0() {
@@ -51,6 +53,7 @@ public class Ray {
 
     /**
      * Getter for the direction of the ray
+     *
      * @return The direction of the ray.
      */
     public Vector getDir() {
@@ -59,6 +62,7 @@ public class Ray {
 
     /**
      * Calculates the point at a given distance from the ray head
+     *
      * @param t The distance
      * @return The calculated point
      */
@@ -68,10 +72,11 @@ public class Ray {
 
     /**
      * Finds the closest point to the ray head from a given list of points
+     *
      * @param points The list of points
      * @return The closest point
      */
-    public Point findClosestPoint (List<Point> points) {
+    public Point findClosestPoint(List<Point> points) {
         Point result = null;
         double minDistance = Double.POSITIVE_INFINITY;
         for (Point point : points) {

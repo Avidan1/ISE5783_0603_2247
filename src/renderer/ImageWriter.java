@@ -2,13 +2,12 @@ package renderer;
 
 import primitives.Color;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.imageio.*;
 
 /**
  * Image writer class combines accumulation of pixel color matrix and finally
@@ -23,11 +22,11 @@ public class ImageWriter {
     /**
      * View Plane X axis resolution
      */
-    private int nX;
+    private final int nX;
     /**
      * View Plane Y axis resolution
      */
-    private int nY;
+    private final int nY;
     /**
      * Image file path
      */
@@ -36,16 +35,16 @@ public class ImageWriter {
     /**
      * Image file
      */
-    private BufferedImage image;
+    private final BufferedImage image;
     /**
      * Image file name
      */
-    private String imageName;
+    private final String imageName;
     /**
      * Logger instance
      */
 
-    private Logger logger = Logger.getLogger("ImageWriter");
+    private final Logger logger = Logger.getLogger("ImageWriter");
 
     // ***************** Constructors ********************** //
 

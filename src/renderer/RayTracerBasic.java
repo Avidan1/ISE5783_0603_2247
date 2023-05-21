@@ -14,25 +14,23 @@ import scene.Scene;
 public class RayTracerBasic extends RayTracerBase {
 
     /**
-     * ctor for RayTracerBasic
-     * use super to call RayTracerBase ctor
-     *
-     * @param scene
+     * ctor for basic implementation of the ray tracer
+     * @param scene the scene to trace
      */
     public RayTracerBasic(Scene scene) {
         super(scene);
-        //throw new UnsupportedOperationException("RayTracerBasic is not implemented yet");
     }
 
     @Override
     public Color traceRay(Ray ray) {
-        return this.scene.geometries.findIntersections(ray) == null ? this.scene.background : this.calcColor(ray.findClosestPoint(this.scene.geometries.findIntersections(ray)));
+        return this.scene.geometries.findIntersections(ray) == null ? this.scene.background
+                : this.calcColor(ray.findClosestPoint(this.scene.geometries.findIntersections(ray)));
     }
 
     /**
      * Computes the color of the intersection point using the Phong reflection model.
      *
-     * @param point
+     * @param point intersection point on the surface of geometry to calculate its color
      * @return color
      */
     private Color calcColor(Point point) {

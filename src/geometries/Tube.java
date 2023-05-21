@@ -1,12 +1,10 @@
 package geometries;
 
 import primitives.Point;
-import primitives.Vector;
 import primitives.Ray;
+import primitives.Vector;
 
 import java.util.List;
-
-import static primitives.Util.isZero;
 
 /**
  * Tube class represents a tube in 3D Cartesian coordinate system

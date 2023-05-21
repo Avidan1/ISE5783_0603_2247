@@ -7,7 +7,6 @@ import primitives.Vector;
 import java.util.List;
 
 import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
 
 /**
  * The Plane class represents a 3D plane object, defined by a point and a normal vector.
@@ -77,6 +76,7 @@ public class Plane implements Geometry {
 
     /**
      * returns the normal vector to the plane.
+     *
      * @return The normal vector to the plane.
      */
     public Vector getNormal() {
@@ -85,12 +85,12 @@ public class Plane implements Geometry {
 
     /**
      * returns the point on the plane.
+     *
      * @return The point on the plane.
      */
     public Point getQ0() {
         return this.q0;
     }
-
 
 
 }

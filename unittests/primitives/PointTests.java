@@ -2,7 +2,8 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for primitives.Point class
@@ -10,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Avidan and Ziv
  */
 class PointTests {
-    Vector v1 = new Vector(1, 2, 3);
-    Point p1 = new Point(1, 2, 3);
-    Point p2 = new Point(2, 4, 6);
+    final Vector v1 = new Vector(1, 2, 3);
+    final Point p1 = new Point(1, 2, 3);
+    final Point p2 = new Point(2, 4, 6);
 
     /**
      * Test method for {@link primitives.Point#subtract(primitives.Point)}.

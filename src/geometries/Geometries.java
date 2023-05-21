@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * This class represents a list of geometries
  * that implements the Intersectable interface
+ *
  * @author Avidan and Ziv
  */
 public class Geometries implements Intersectable {
@@ -17,7 +18,8 @@ public class Geometries implements Intersectable {
     /**
      * constructor without parameters, creates a new empty list of geometries
      */
-    public Geometries() { }
+    public Geometries() {
+    }
 
     /**
      * constructor with parameters, creates a new list of geometries

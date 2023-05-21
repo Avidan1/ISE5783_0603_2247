@@ -1,12 +1,14 @@
 package renderer;
 
-import primitives.*;
+import primitives.Color;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
 
 import static primitives.Util.isZero;
 
 /**
  * Camera class represents a camera in 3D Cartesian coordinate system
- *
  * @ author Avidan and Ziv
  */
 public class Camera {
@@ -16,19 +18,19 @@ public class Camera {
     /**
      * The position of the camera.
      */
-    private Point p0;
+    private final Point p0;
     /**
      * The up vector of the camera.
      */
-    private Vector vUp;
+    private final Vector vUp;
     /**
      * The to vector of the camera.
      */
-    private Vector vTo;
+    private final Vector vTo;
     /**
      * The right vector of the camera.
      */
-    private Vector vRight;
+    private final Vector vRight;
     /**
      * The width of the view plane.
      */
@@ -150,7 +152,7 @@ public class Camera {
         int nY = this.imageWriter.getNy();
         for (int i = 0; i < nY; i++) {
             for (int j = 0; j < nX; j++) {
-                this.imageWriter.writePixel(j, i, castRay(nX, nY, i, j));
+                this.imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
             }
         }
     }
@@ -188,11 +190,11 @@ public class Camera {
      *
      * @param nX number of pixels in X axis
      * @param nY number of pixels in Y axis
-     * @param i  pixel number in X axis
-     * @param j  pixel number in Y axis
+     * @param j  pixel number in X axis
+     * @param i  pixel number in Y axis
      * @return the color of the pixel
      */
-    private Color castRay(int nX, int nY, int i, int j) {
-        return this.tracer.traceRay(this.constructRay(nX, nY, i, j));
+    private Color castRay(int nX, int nY, int j, int i) {
+        return this.tracer.traceRay(this.constructRay(nX, nY, j, i));
     }
 }

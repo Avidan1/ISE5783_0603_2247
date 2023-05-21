@@ -1,16 +1,13 @@
 package geometries;
 
 import org.junit.jupiter.api.Test;
-import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static primitives.Util.*;
-
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
 /**

@@ -1,8 +1,7 @@
 package geometries;
 
-import primitives.*;
-
-import java.util.List;
+import primitives.Point;
+import primitives.Vector;
 
 /**
  * Geometry interface represents a geometry in 3D Cartesian coordinate system
