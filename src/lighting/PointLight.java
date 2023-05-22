@@ -45,17 +45,29 @@ public class PointLight extends Light implements LightSource {
     }
 
     //=============setters================
-
+    /**
+     * setter for kC
+     * @param kC
+     * @return the object itself with the updated kC
+     */
     public PointLight setkC(double kC) {
         this.kC = kC;
         return this;
     }
-
+    /**
+     * setter for kL
+     * @param kL
+     * @return the object itself with the updated kL
+     */
     public PointLight setkL(double kL) {
         this.kL = kL;
         return this;
     }
-
+    /**
+     * setter for kQ
+     * @param kQ
+     * @return the object itself with the updated kQ
+     */
     public PointLight setkQ(double kQ) {
         this.kQ = kQ;
         return this;
