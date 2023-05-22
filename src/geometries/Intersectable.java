@@ -53,8 +53,15 @@ public abstract class Intersectable {
      */
     public abstract List<Point> findIntersections(Ray ray);
 
-    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<Point> intersections = findIntersections(ray);
+        if (intersections == null) return null;
+        List<GeoPoint> result = new java.util.ArrayList<>(intersections.size());
+        for (Point p : intersections)
+            result.add(new GeoPoint(this, p));
+        return result;
+    }
     public  List<GeoPoint> findGeoIntersections(Ray ray){
         return findGeoIntersectionsHelper(ray);
-    };
+    }
 }
