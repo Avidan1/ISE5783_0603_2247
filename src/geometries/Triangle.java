@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,33 +25,28 @@ public class Triangle extends Polygon {
         // Check if the ray intersects the plane of the triangle.
         List<GeoPoint> points = plane.findGeoIntersectionsHelper(ray);
         if (points == null)  return null;
+        Vector v1 = vertices.get(0).subtract(ray.getP0());
+        Vector v2 = vertices.get(1).subtract(ray.getP0());
+        Vector v3 = vertices.get(2).subtract(ray.getP0());
 
-        // Create vectors from the intersection point to the vertices
-        // and check if the intersection point is inside the triangle.
-        List<Vector> vectors = new LinkedList<>();
-        for (Point vertex : vertices) {
-            try {
-                Vector v = vertices.get((vertices.indexOf(vertex) + 1) % vertices.size()).subtract(vertex);
-                Vector u = vertex.subtract(points.get(0).point);
-                vectors.add(v.crossProduct(u));
-            } catch (IllegalArgumentException e) {
-                return null;
-            }
-        }
-        // Check if all the vectors are in the same direction.
-        // If not, the point is outside the triangle, so return null.
-        Vector triangleNormal = plane.getNormal();
-        int countNegOrPos = 0;
-        for (Vector vector : vectors)
-            if (triangleNormal.dotProduct(vector) > 0)
-                countNegOrPos++;
+        Vector n1 = v1.crossProduct(v2);
+        Vector n2 = v2.crossProduct(v3);
+        Vector n3 = v3.crossProduct(v1);
 
-        if (countNegOrPos == vertices.size() || countNegOrPos == 0) {
-            points.get(0).geometry = this;
-            return points;
-        } else {
-            return null;
+        double dotProduct1 = n1.dotProduct(ray.getDir());
+        double dotProduct2 = n2.dotProduct(ray.getDir());
+        double dotProduct3 = n3.dotProduct(ray.getDir());
+
+        if (Util.isZero(dotProduct1) || Util.isZero(dotProduct2) || Util.isZero(dotProduct3)) {
+            return null; // The point is on edge's continuation.
         }
+
+        if ((dotProduct1 < 0 && (dotProduct2 > 0 || dotProduct3 > 0))
+                || (dotProduct1 > 0 && (dotProduct2 < 0 || dotProduct3 < 0))) {
+            return null; // Ray direction positivity check.
+        }
+
+        return List.of(new GeoPoint(this,points.get(0).point));
     }
 }
 
