@@ -13,7 +13,7 @@ public class PointLight extends Light implements LightSource {
     /**
      * Point of the light source direction
      */
-    private Point position;
+    private final Point position;
 
 
     /**

@@ -1,6 +1,5 @@
 package geometries;
 
-import primitives.Point;
 import primitives.Ray;
 
 import java.util.LinkedList;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Avidan and Ziv
  */
 public class Geometries extends Intersectable {
-    private final List<Intersectable> intersectables = new LinkedList<Intersectable>();
+    private final List<Intersectable> intersectables = new LinkedList<>();
 
     /**
      * constructor without parameters, creates a new empty list of geometries

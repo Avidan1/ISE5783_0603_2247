@@ -21,6 +21,7 @@ public abstract class Intersectable {
          * point on the geometry
          */
         public Point point;
+
         /**
          * constructor
          *
@@ -31,11 +32,13 @@ public abstract class Intersectable {
             this.geometry = geometry;
             this.point = point;
         }
+
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
             return (obj instanceof GeoPoint) && geometry.equals(((GeoPoint) obj).geometry) && point.equals(((GeoPoint) obj).point);
         }
+
         @Override
         public String toString() {
             return "GeoPoint{" + "geometry=" + geometry + ", point=" + point + '}';
@@ -60,13 +63,14 @@ public abstract class Intersectable {
      * @return a list of the intersection points
      */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+
     /**
      * calculate the intersection points of the geometry with the specified ray
      *
      * @param ray to intersect with
      * @return a list of the intersection points
      */
-    public final List<GeoPoint> findGeoIntersections(Ray ray){
+    public final List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersectionsHelper(ray);
     }
 }

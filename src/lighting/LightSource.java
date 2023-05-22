@@ -13,11 +13,11 @@ public interface LightSource {
      *
      * @return light intensity value
      */
-    public Color getIntensity(Point p);
+    Color getIntensity(Point p);
     /**
      * Getter for light direction
      *
      * @return light direction value
      */
-    public Vector getL(Point p);
+    Vector getL(Point p);
 }
