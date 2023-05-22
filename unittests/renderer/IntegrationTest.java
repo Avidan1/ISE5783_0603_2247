@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * *  testing the integration of camera and geometries
+ *
  * @ author ziv and avidan
  **/
 public class IntegrationTest {

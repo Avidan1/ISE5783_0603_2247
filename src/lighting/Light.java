@@ -4,6 +4,7 @@ import primitives.Color;
 
 /**
  * This class will serve all light sources
+ *
  * @author Avidan and Ziv
  */
 public class Light {

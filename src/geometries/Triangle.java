@@ -1,8 +1,10 @@
 package geometries;
 
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Util;
+import primitives.Vector;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,10 +23,10 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {// TODO: 22/05/2023
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         // Check if the ray intersects the plane of the triangle.
         List<GeoPoint> points = plane.findGeoIntersectionsHelper(ray);
-        if (points == null)  return null;
+        if (points == null) return null;
         Vector v1 = vertices.get(0).subtract(ray.getP0());
         Vector v2 = vertices.get(1).subtract(ray.getP0());
         Vector v3 = vertices.get(2).subtract(ray.getP0());
@@ -46,7 +48,7 @@ public class Triangle extends Polygon {
             return null; // Ray direction positivity check.
         }
 
-        return List.of(new GeoPoint(this,points.get(0).point));
+        return List.of(new GeoPoint(this, points.get(0).point));
     }
 }
 
