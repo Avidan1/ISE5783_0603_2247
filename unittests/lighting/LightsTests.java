@@ -114,7 +114,9 @@ public class LightsTests {
                 .renderImage(); //
         camera1.writeToImage(); //
     }
-
+    /**
+     * Produce a picture of a sphere lighted by a spotlight and a point light and a directional light
+     */
     @Test
     public void sphere3lights() {
         scene1.geometries.add(sphere);
