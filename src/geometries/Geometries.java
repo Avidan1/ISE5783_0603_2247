@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Avidan and Ziv
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
     private final List<Intersectable> intersectables = new LinkedList<Intersectable>();
 
     /**
@@ -39,12 +39,7 @@ public class Geometries implements Intersectable {
         this.intersectables.addAll(List.of(geometries));
     }
 
-    /**
-     * This method finds all the intersections of the ray with the geometries in the list
-     *
-     * @param ray to check if intersect with the geometries and where
-     * @return list of all the intersections points
-     */
+    @Override
     public List<Point> findIntersections(Ray ray) {
         List<Point> intersections = null;
         for (Intersectable geometry : this.intersectables) {

@@ -11,7 +11,7 @@ import static primitives.Util.alignZero;
 /**
  * The Plane class represents a 3D plane object, defined by a point and a normal vector.
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     /**
      * The point on the plane.
      */
