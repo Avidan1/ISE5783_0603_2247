@@ -1,3 +1,5 @@
+package renderer;
+
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
@@ -6,9 +8,7 @@ import primitives.Color;
 import primitives.Double3;
 import primitives.Point;
 import primitives.Vector;
-import renderer.Camera;
-import renderer.ImageWriter;
-import renderer.RayTracerBasic;
+
 import scene.Scene;
 
 import static java.awt.Color.*;
@@ -86,8 +86,7 @@ public class RenderTests {
         camera.printGrid(100, new Color(WHITE));
         camera.writeToImage();
     }
-
-    /*  *//** Test for XML based scene - for bonus *//*
+    /*
     @Test
     public void basicRenderXml() {
         Scene  scene  = new Scene("XML Test scene");
