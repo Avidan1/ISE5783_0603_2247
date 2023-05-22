@@ -91,11 +91,11 @@ public class ImageWriter {
      */
     public void writeToImage() {
         try {
-            File file = new File(this.FOLDER_PATH + '/' + this.imageName + ".png");
+            File file = new File(FOLDER_PATH + '/' + this.imageName + ".png");
             ImageIO.write(this.image, "png", file);
         } catch (IOException e) {
             this.logger.log(Level.SEVERE, "I/O error", e);
-            throw new IllegalStateException("I/O error - may be missing directory " + this.FOLDER_PATH, e);
+            throw new IllegalStateException("I/O error - may be missing directory " + FOLDER_PATH, e);
         }
     }
 
