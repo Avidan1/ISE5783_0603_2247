@@ -6,7 +6,12 @@ import primitives.Vector;
 
 import static primitives.Util.alignZero;
 
-
+/**
+ * This class will serve all spotlight sources
+ * It extends the abstract class PointLight and implements the LightSource interface.
+ * The position of the light source is defined by a point in space.
+ * @author Avidan and Ziv
+ */
 public class SpotLight extends PointLight {
     /**
      * The direction of the light

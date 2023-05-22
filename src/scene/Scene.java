@@ -8,6 +8,10 @@ import primitives.Color;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This class will serve all scenes
+ * @auther Avidan and Ziv
+ */
 public class Scene {
     //===========fields================
     /**

@@ -101,7 +101,7 @@ public class Camera {
      * Set the image writer of the camera.
      *
      * @param imageWriter the image writer of the camera
-     * return updated Camera object
+     * @return updated Camera object
      */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;

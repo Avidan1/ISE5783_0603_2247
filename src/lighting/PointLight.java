@@ -11,7 +11,7 @@ import primitives.Vector;
  * The intensity of the light is specified by its color.
  * The light attenuation factors (kC, kL, kQ) can be set to control the light's intensity decay with distance.
  *
- * @author Avidan & Ziv
+ * @author Avidan and Ziv
  */
 public class PointLight extends Light implements LightSource {
     /**
