@@ -1,10 +1,9 @@
 package renderer;
 
-import lighting.LightSource;
 import primitives.*;
+import lighting.LightSource;
 import scene.Scene;
-
-import static geometries.Intersectable.GeoPoint;
+import geometries.Intersectable.GeoPoint;
 import static primitives.Util.alignZero;
 
 /**
@@ -17,7 +16,6 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * ctor for basic implementation of the ray tracer
-     *
      * @param scene the scene to trace
      */
     public RayTracerBasic(Scene scene) {
@@ -26,8 +24,9 @@ public class RayTracerBasic extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray ray) {
-        return this.scene.geometries.findIntersections(ray) == null ? this.scene.background
-                : this.calcColor(ray.findClosestPoint(this.scene.geometries.findIntersections(ray)));
+        var intersections = scene.geometries.findGeoIntersections(ray);
+        return intersections == null ? this.scene.background
+                : this.calcColor(ray.findClosestGeoPoint(intersections));
     }
 
     /**
@@ -36,8 +35,8 @@ public class RayTracerBasic extends RayTracerBase {
      * @param point intersection point on the surface of geometry to calculate its color
      * @return the color of the intersection point
      */
-    private Color calcColor(Point point) {
-        return this.scene.ambientLight.getIntensity();
+    private Color calcColor(GeoPoint point) {
+        return this.scene.ambientLight.getIntensity().add(point.geometry.getEmission());
     }
 
     /**

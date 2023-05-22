@@ -2,11 +2,14 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 
 import java.util.List;
 
 import static primitives.Util.alignZero;
+import geometries.Intersectable.GeoPoint;
+
 
 /**
  * The Plane class represents a 3D plane object, defined by a point and a normal vector.
@@ -51,7 +54,7 @@ public class Plane extends Geometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
         Vector n = getNormal(p0);
@@ -71,7 +74,7 @@ public class Plane extends Geometry {
         }
         Point point = ray.getPoint(t);
 
-        return List.of(point);
+        return List.of(new GeoPoint(this, point));
     }
 
     /**
