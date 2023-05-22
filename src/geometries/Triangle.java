@@ -4,7 +4,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,13 +26,11 @@ public class Triangle extends Polygon {
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {// TODO: 22/05/2023
         // Check if the ray intersects the plane of the triangle.
         List<GeoPoint> points = plane.findGeoIntersectionsHelper(ray);
-        if (points == null) {
-            return null;
-        }
+        if (points == null)  return null;
 
         // Create vectors from the intersection point to the vertices
         // and check if the intersection point is inside the triangle.
-        ArrayList<Vector> vectors = new ArrayList<>();
+        List<Vector> vectors = new LinkedList<>();
         for (Point vertex : vertices) {
             try {
                 Vector v = vertices.get((vertices.indexOf(vertex) + 1) % vertices.size()).subtract(vertex);
@@ -46,12 +44,12 @@ public class Triangle extends Polygon {
         // If not, the point is outside the triangle, so return null.
         Vector triangleNormal = plane.getNormal();
         int countNegOrPos = 0;
-        for (Vector vector : vectors) {
-            if (triangleNormal.dotProduct(vector) > 0) {
+        for (Vector vector : vectors)
+            if (triangleNormal.dotProduct(vector) > 0)
                 countNegOrPos++;
-            }
-        }
+
         if (countNegOrPos == vertices.size() || countNegOrPos == 0) {
+            points.get(0).geometry = this;
             return points;
         } else {
             return null;

@@ -4,27 +4,29 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+import static primitives.Util.alignZero;
+
 
 public class SpotLight extends PointLight{
     /**
      * The direction of the light
      */
-    private Vector direction;
+    private final Vector direction;
     /**
      * Constructor to initialize PointLight based object with its color and intensity
      *
-     * @param Intensity light intensity value
+     * @param intensity light intensity value
      * @param position  light position
      */
-    public SpotLight(Color Intensity, Point position) {
-        super(Intensity, position);
+    public SpotLight(Color intensity, Point position, Vector direction) {
+        super(intensity, position);
         this.direction = direction.normalize();
     }
 
     @Override
     public Color getIntensity(Point p) {
-        double nominator = Math.max(0, direction.dotProduct(getL(p)));
-        return super.getIntensity(p).scale(nominator);
+        double lDirection = alignZero(getL(p).dotProduct(direction));
+        return lDirection <= 0 ? Color.BLACK : super.getIntensity(p).scale(lDirection);
     }
 
     @Override

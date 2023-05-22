@@ -22,16 +22,16 @@ public class DirectionalLight extends Light implements LightSource {
      */
     protected DirectionalLight(Color Intensity, Vector direction) {
         super(Intensity);
-        this.direction = direction;
+        this.direction = direction.normalize();
     }
 
     @Override
     public Color getIntensity(Point p) {
-        return this.getIntensity();
+        return this.intensity;
     }
 
     @Override
     public Vector getL(Point p) {
-        return this.direction.normalize();
+        return this.direction;
     }
 }

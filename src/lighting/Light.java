@@ -10,7 +10,7 @@ public class Light {
     /**
      * Light intensity
      */
-    private final Color intensity;
+    protected final Color intensity;
 
     /**
      * Constructor to initialize light intensity

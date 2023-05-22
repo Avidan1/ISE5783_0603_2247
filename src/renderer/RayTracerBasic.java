@@ -26,17 +26,8 @@ public class RayTracerBasic extends RayTracerBase {
     public Color traceRay(Ray ray) {
         var intersections = scene.geometries.findGeoIntersections(ray);
         return intersections == null ? this.scene.background
-                : this.calcColor(ray.findClosestGeoPoint(intersections));
-    }
-
-    /**
-     * Computes the color of the intersection point using the Phong reflection model.
-     *
-     * @param point intersection point on the surface of geometry to calculate its color
-     * @return the color of the intersection point
-     */
-    private Color calcColor(GeoPoint point) {
-        return this.scene.ambientLight.getIntensity().add(point.geometry.getEmission());
+                : this.calcColor(ray.findClosestGeoPoint(intersections), ray);
+        // if there are no intersections return the background color;
     }
 
     /**
@@ -84,7 +75,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @return The resulting diffusive effect.
      */
     private Double3 calcDiffusive(Material mat, double nl) {
-        return mat.kD.scale(Math.abs(nl));
+        return mat.kD.scale(nl < 0 ? -nl : nl);
     }
 
     /**
@@ -100,7 +91,9 @@ public class RayTracerBasic extends RayTracerBase {
      */
 
     private Double3 calcSpecular(Material material, Vector n, Vector l, double nl, Vector v) {
-        Vector r = l.subtract(n.scale(l.dotProduct(n)).scale(2)).normalize();
-        return material.kS.scale(Math.pow(Math.max(0, v.dotProduct(r) * (-1)), material.nShininess));
+        Vector r = l.subtract(n.scale(nl).scale(2)).normalize();
+        double vr = alignZero(v.dotProduct(r));
+        if (vr >= 0) return Double3.ZERO ; // view from direction opposite to r vector
+        return material.kS.scale(Math.pow(-vr, material.nShininess));
     }
 }

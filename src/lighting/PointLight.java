@@ -6,9 +6,10 @@ import primitives.Vector;
 
 /**
  * This class will present a point light source
+ *
  * @author ziv and aviden
  */
-public class PointLight extends Light implements LightSource{
+public class PointLight extends Light implements LightSource {
     /**
      * Point of the light source direction
      */
@@ -18,24 +19,24 @@ public class PointLight extends Light implements LightSource{
     /**
      * Constant PointLight with no intensity
      */
-    private double kC =1, kL=0, kQ=0;
+    private double kC = 1, kL = 0, kQ = 0;
 
     /**
      * Constructor to initialize PointLight based object with its color and intensity
      *
      * @param Intensity light intensity value
-     * @param position light position
+     * @param position  light position
      */
-    protected PointLight(Color Intensity,Point position ) {
+    protected PointLight(Color Intensity, Point position) {
         super(Intensity);
         this.position = position;
     }
 
     @Override
     public Color getIntensity(Point p) {
-        double distance = position.distance(p);
-        double denominator = this.kC + this.kL*distance + this.kQ*distance*distance;
-        return getIntensity().reduce(denominator);
+        double distanceSquared = position.distanceSquared(p);
+        double denominator = this.kC + this.kL * Math.sqrt(distanceSquared) + this.kQ * distanceSquared;
+        return this.intensity.reduce(denominator);
     }
 
     @Override
