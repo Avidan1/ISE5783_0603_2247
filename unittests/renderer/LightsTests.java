@@ -12,8 +12,11 @@ import renderer.*;
 import scene.Scene;
 
 */
-/** Test rendering a basic image
- * @author Dan *//*
+/**
+ * Test rendering a basic image
+ *
+ * @author Dan  Produce a picture of a sphere lighted by a directional light  Produce a picture of a sphere lighted by a point light  Produce a picture of a sphere lighted by a spotlight  Produce a picture of two triangles lighted by a directional light  Produce a picture of two triangles lighted by a point light  Produce a picture of two triangles lighted by a spotlight  Produce a picture of a sphere lighted by a narrow spotlight  Produce a picture of two triangles lighted by a narrow spotlight
+ *//*
 
 public class LightsTests {
     private final Scene          scene1                  = new Scene("Test scene");

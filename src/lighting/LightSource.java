@@ -1,7 +1,9 @@
 package lighting;
+
 import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
+
 /**
  * This interface will serve all light sources
  *
@@ -14,6 +16,7 @@ public interface LightSource {
      * @return light intensity value
      */
     Color getIntensity(Point p);
+
     /**
      * Getter for light direction
      *

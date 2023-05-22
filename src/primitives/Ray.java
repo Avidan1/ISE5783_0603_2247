@@ -1,12 +1,10 @@
 package primitives;
 
+import geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 
 import static primitives.Util.isZero;
-
-import geometries.Intersectable.GeoPoint;
-
-import javax.print.DocFlavor;
 
 /**
  * The Ray class represents a ray in a three-dimensional space.
@@ -78,8 +76,8 @@ public class Ray {
      * @return The closest point
      */
     public Point findClosestPoint(List<Point> points) {
-        return points == null|| points.isEmpty() ? null
-                : findClosestGeoPoint(points.stream().map(p-> new GeoPoint(null, p)).toList()).point;
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
     }
 
 

@@ -10,11 +10,14 @@ import scene.Scene;
  * @author Avidan and Ziv
  */
 public abstract class RayTracerBase {
-    /** scene to render */
+    /**
+     * scene to render
+     */
     protected final Scene scene;
 
     /**
      * Initialize ray tracer
+     *
      * @param scene scene to trace
      */
     public RayTracerBase(Scene scene) {
@@ -23,6 +26,7 @@ public abstract class RayTracerBase {
 
     /**
      * Traces the scene with a ray to calculate its color
+     *
      * @param ray to trace through the scene
      * @return color of the ray
      */

@@ -7,11 +7,12 @@ import primitives.Vector;
 import static primitives.Util.alignZero;
 
 
-public class SpotLight extends PointLight{
+public class SpotLight extends PointLight {
     /**
      * The direction of the light
      */
     private final Vector direction;
+
     /**
      * Constructor to initialize PointLight based object with its color and intensity
      *

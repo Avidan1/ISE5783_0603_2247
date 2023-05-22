@@ -114,13 +114,14 @@ public class LightsTests {
                 .renderImage(); //
         camera1.writeToImage(); //
     }
+
     /**
      * Produce a picture of a sphere lighted by a spotlight and a point light and a directional light
      */
     @Test
     public void sphere3lights() {
         scene1.geometries.add(sphere);
-        scene1.lights.add(new SpotLight(sphereLightColor, new Point(40,90,100), new Vector(-60, 1, -8))
+        scene1.lights.add(new SpotLight(sphereLightColor, new Point(40, 90, 100), new Vector(-60, 1, -8))
                 .setkL(0.001).setkQ(0.0001));
         scene1.lights.add(new PointLight(sphereLightColor, sphereLightPosition));
         scene1.lights.add(new DirectionalLight(sphereLightColor, new Vector(1, 1, -0.5)));
@@ -177,6 +178,7 @@ public class LightsTests {
                 .renderImage(); //
         camera2.writeToImage(); //
     }
+
     /**
      * Produce a picture of a sphere lighted by a point light and a spotlight and a directional light
      */

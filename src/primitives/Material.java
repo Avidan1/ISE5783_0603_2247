@@ -27,6 +27,7 @@ public class Material {
         this.kD = kD;
         return this;
     }
+
     /**
      * sets the diffuse coefficient of the material.
      *
@@ -48,6 +49,7 @@ public class Material {
         this.kS = kS;
         return this;
     }
+
     /**
      * Sets the specular coefficient of the material.
      *
@@ -55,9 +57,10 @@ public class Material {
      * @return This Material object with the updated specular coefficient
      */
     public Material setkS(double kS) {
-        this.kS =new Double3(kS);
+        this.kS = new Double3(kS);
         return this;
     }
+
     /**
      * Sets the shininess coefficient of the material.
      *

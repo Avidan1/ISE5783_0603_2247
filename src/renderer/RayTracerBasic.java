@@ -1,9 +1,10 @@
 package renderer;
 
-import primitives.*;
-import lighting.LightSource;
-import scene.Scene;
 import geometries.Intersectable.GeoPoint;
+import lighting.LightSource;
+import primitives.*;
+import scene.Scene;
+
 import static primitives.Util.alignZero;
 
 /**
@@ -16,6 +17,7 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * ctor for basic implementation of the ray tracer
+     *
      * @param scene the scene to trace
      */
     public RayTracerBasic(Scene scene) {
@@ -93,7 +95,7 @@ public class RayTracerBasic extends RayTracerBase {
     private Double3 calcSpecular(Material material, Vector n, Vector l, double nl, Vector v) {
         Vector r = l.subtract(n.scale(nl).scale(2)).normalize();
         double vr = alignZero(v.dotProduct(r));
-        if (vr >= 0) return Double3.ZERO ; // view from direction opposite to r vector
+        if (vr >= 0) return Double3.ZERO; // view from direction opposite to r vector
         return material.kS.scale(Math.pow(-vr, material.nShininess));
     }
 }
