@@ -46,11 +46,4 @@ public class Cylinder extends Tube {
         return p.subtract(O).normalize();*/
         return null;
     }
-
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

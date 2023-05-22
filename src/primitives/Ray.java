@@ -4,6 +4,10 @@ import java.util.List;
 
 import static primitives.Util.isZero;
 
+import geometries.Intersectable.GeoPoint;
+
+import javax.print.DocFlavor;
+
 /**
  * The Ray class represents a ray in a three-dimensional space.
  */
@@ -30,10 +34,7 @@ public class Ray {
 
     @Override
     public String toString() {
-        return "Ray{" +
-                "p0=" + this.p0 +
-                ", dir=" + this.dir +
-                '}';
+        return "Ray{" + "p0=" + this.p0 + ", dir=" + this.dir + '}';
     }
 
     @Override
@@ -77,10 +78,22 @@ public class Ray {
      * @return The closest point
      */
     public Point findClosestPoint(List<Point> points) {
-        Point result = null;
+        return points == null|| points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p-> new GeoPoint(null, p)).toList()).point;
+    }
+
+
+    /**
+     * Finds the closest point to the ray head from a given list of points
+     *
+     * @param points The list of GeoPoints
+     * @return The closest point
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> points) {
+        GeoPoint result = null;
         double minDistance = Double.POSITIVE_INFINITY;
-        for (Point point : points) {
-            double distance = point.distance(this.p0);
+        for (GeoPoint point : points) {
+            double distance = point.point.distance(this.p0);
             if (distance < minDistance) {
                 minDistance = distance;
                 result = point;

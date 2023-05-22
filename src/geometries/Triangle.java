@@ -23,9 +23,9 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {// TODO: 22/05/2023
         // Check if the ray intersects the plane of the triangle.
-        List<Point> points = plane.findIntersections(ray);
+        List<GeoPoint> points = plane.findGeoIntersectionsHelper(ray);
         if (points == null) {
             return null;
         }
@@ -36,7 +36,7 @@ public class Triangle extends Polygon {
         for (Point vertex : vertices) {
             try {
                 Vector v = vertices.get((vertices.indexOf(vertex) + 1) % vertices.size()).subtract(vertex);
-                Vector u = vertex.subtract(points.get(0));
+                Vector u = vertex.subtract(points.get(0).point);
                 vectors.add(v.crossProduct(u));
             } catch (IllegalArgumentException e) {
                 return null;
