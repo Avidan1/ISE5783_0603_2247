@@ -143,7 +143,6 @@ public class Camera {
     /**
      * Throws UnsupportedOperationException if any of the required resources are missing
      * (rayTracerBase, imageWriter, width, height, distance).
-     * not implemented yet
      */
     public void renderImage() {
         if (this.tracer == null || this.imageWriter == null || this.width == 0 || this.height == 0 || this.distance == 0)
