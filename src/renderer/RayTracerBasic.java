@@ -55,7 +55,7 @@ public class RayTracerBasic extends RayTracerBase {
         double nv = alignZero(n.dotProduct(v));
         if (nv == 0) return color;
         Material mat = gp.geometry.getMaterial();
-        for (LightSource lightSource : scene.lights) {
+        for (LightSource lightSource : this.scene.lights) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
