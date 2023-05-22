@@ -33,11 +33,11 @@ public class Sphere extends RadialGeometry {
     @Override
     public Vector getNormal(Point point) {
         //calculate the normal vector to the sphere
-        return point.subtract(center).normalize();
+        return point.subtract(this.center).normalize();
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {//TODO
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         // if the ray starts at the center of the sphere
         if (ray.getP0().equals(this.center)) {
             return List.of(new GeoPoint(this, this.center.add(ray.getDir().scale(this.radius))));

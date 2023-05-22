@@ -18,7 +18,7 @@ public interface LightSource {
     Color getIntensity(Point p);
 
     /**
-     * Getter for light direction
+     * calcaulate for light direction
      *
      * @return light direction value
      */

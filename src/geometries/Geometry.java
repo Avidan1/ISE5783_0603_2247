@@ -30,7 +30,7 @@ public abstract class Geometry extends Intersectable {
      * @return The material of the geometry.
      */
     public Material getMaterial() {
-        return material;
+        return this.material;
     }
 
     /**

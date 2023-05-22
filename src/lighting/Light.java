@@ -19,7 +19,7 @@ public class Light {
      * @param Intensity light intensity value
      */
     protected Light(Color Intensity) {
-        intensity = Intensity;
+        this.intensity = Intensity;
     }
 
     /**
@@ -28,6 +28,6 @@ public class Light {
      * @return light intensity value
      */
     public Color getIntensity() {
-        return intensity;
+        return this.intensity;
     }
 }
