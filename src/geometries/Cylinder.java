@@ -4,8 +4,6 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import java.util.List;
-
 /**
  * The Cylinder class represents a 3D cylinder object that extends a tube, with a defined height.
  */
