@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * *  testing the integration of camera and geometries
  *
- * @ author ziv and avidan
+ * @author Ziv and Avidan
  **/
 public class IntegrationTest {
     // use the same camera for faw tests

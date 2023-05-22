@@ -7,7 +7,14 @@ package primitives;
  * @author Ziv Farjun and Avidan Maatuk
  */
 public class Point {
+    /**
+     * The point (0,0,0).
+     */
     public static final Point ZERO = new Point(0, 0, 0);
+
+    /**
+     * The coordinates of the point.
+     */
     final protected Double3 xyz;
 
     @Override
@@ -86,6 +93,7 @@ public class Point {
     }
 
     /**
+     * Getter for the x coordinate of the point.
      * @return the x coordinate of the point
      */
     public double getX() {

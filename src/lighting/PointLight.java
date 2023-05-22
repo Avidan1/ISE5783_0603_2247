@@ -5,33 +5,42 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * This class will present a point light source
+ * This class represents a point light source.
+ * It extends the abstract class Light and implements the LightSource interface.
+ * The position of the light source is defined by a point in space.
+ * The intensity of the light is specified by its color.
+ * The light attenuation factors (kC, kL, kQ) can be set to control the light's intensity decay with distance.
  *
- * @author ziv and aviden
+ * @authorAvidan & Ziv
  */
 public class PointLight extends Light implements LightSource {
     /**
-     * Point of the light source direction
+     * The position of the light source.
      */
     private final Point position;
 
-
     /**
-     * Constant PointLight with no intensity
+     * The constant factors for light attenuation (default values: kC = 1, kL = 0, kQ = 0).
      */
     private double kC = 1, kL = 0, kQ = 0;
 
     /**
-     * Constructor to initialize PointLight based object with its color and intensity
+     * Constructs a PointLight object with the specified intensity and position.
      *
-     * @param Intensity light intensity value
-     * @param position  light position
+     * @param intensity The light intensity as a Color object.
+     * @param position  The position of the light source as a Point object.
      */
-    protected PointLight(Color Intensity, Point position) {
-        super(Intensity);
+    protected PointLight(Color intensity, Point position) {
+        super(intensity);
         this.position = position;
     }
 
+    /**
+     * Retrieves the intensity of the light at a given point.
+     *
+     * @param p The point at which to calculate the intensity.
+     * @return The intensity of the light as a Color object.
+     */
     @Override
     public Color getIntensity(Point p) {
         double distanceSquared = this.position.distanceSquared(p);
@@ -39,36 +48,48 @@ public class PointLight extends Light implements LightSource {
         return this.intensity.reduce(denominator);
     }
 
+    /**
+     * Retrieves the normalized direction vector from the light source to a given point.
+     *
+     * @param p The point from which to calculate the direction vector.
+     * @return The direction vector as a Vector object.
+     */
     @Override
     public Vector getL(Point p) {
         return p.subtract(this.position).normalize();
     }
 
     //=============setters================
+
     /**
-     * setter for kC
-     * @param kC
-     * @return the object itself with the updated kC
+     * Sets the constant factor kC for light attenuation.
+     *
+     * @param kC The value of kC to be set.
+     * @return The updated PointLight object.
      */
-    public PointLight setkC(double kC) {
+    public PointLight setKc(double kC) {
         this.kC = kC;
         return this;
     }
+
     /**
-     * setter for kL
-     * @param kL
-     * @return the object itself with the updated kL
+     * Sets the linear factor kL for light attenuation.
+     *
+     * @param kL The value of kL to be set.
+     * @return The updated PointLight object.
      */
-    public PointLight setkL(double kL) {
+    public PointLight setKl(double kL) {
         this.kL = kL;
         return this;
     }
+
     /**
-     * setter for kQ
-     * @param kQ
-     * @return the object itself with the updated kQ
+     * Sets the quadratic factor kQ for light attenuation.
+     *
+     * @param kQ The value of kQ to be set.
+     * @return The updated PointLight object.
      */
-    public PointLight setkQ(double kQ) {
+    public PointLight setKq(double kQ) {
         this.kQ = kQ;
         return this;
     }

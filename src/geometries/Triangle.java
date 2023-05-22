@@ -2,8 +2,9 @@ package geometries;
 
 import primitives.*;
 
-import java.util.LinkedList;
 import java.util.List;
+
+import static primitives.Util.alignZero;
 
 /**
  * Triangle class represents a triangle in 3D Cartesian coordinate system
@@ -25,28 +26,24 @@ public class Triangle extends Polygon {
         // Check if the ray intersects the plane of the triangle.
         List<GeoPoint> points = this.plane.findGeoIntersectionsHelper(ray);
         if (points == null)  return null;
+
         Vector v1 = this.vertices.get(0).subtract(ray.getP0());
         Vector v2 = this.vertices.get(1).subtract(ray.getP0());
-        Vector v3 = this.vertices.get(2).subtract(ray.getP0());
-
         Vector n1 = v1.crossProduct(v2);
+        double dotProduct1 = alignZero(n1.dotProduct(ray.getDir()));
+        if (dotProduct1 == 0) return null;
+
+        Vector v3 = this.vertices.get(2).subtract(ray.getP0());
         Vector n2 = v2.crossProduct(v3);
+        double dotProduct2 = alignZero(n2.dotProduct(ray.getDir()));
+        if (dotProduct2 * dotProduct1 <= 0) return null;
+
         Vector n3 = v3.crossProduct(v1);
-
-        double dotProduct1 = n1.dotProduct(ray.getDir());
-        double dotProduct2 = n2.dotProduct(ray.getDir());
         double dotProduct3 = n3.dotProduct(ray.getDir());
+        if (dotProduct3 * dotProduct1 <= 0) return null;
 
-        if (Util.isZero(dotProduct1) || Util.isZero(dotProduct2) || Util.isZero(dotProduct3)) {
-            return null; // The point is on edge's continuation.
-        }
-
-        if ((dotProduct1 < 0 && (dotProduct2 > 0 || dotProduct3 > 0))
-                || (dotProduct1 > 0 && (dotProduct2 < 0 || dotProduct3 < 0))) {
-            return null; // Ray direction positivity check.
-        }
-
-        return List.of(new GeoPoint(this,points.get(0).point));
+        points.get(0).geometry = this;
+        return points;
     }
 }
 

@@ -16,10 +16,10 @@ public class Light {
     /**
      * Constructor to initialize light intensity
      *
-     * @param Intensity light intensity value
+     * @param intensity light intensity value
      */
-    protected Light(Color Intensity) {
-        this.intensity = Intensity;
+    protected Light(Color intensity) {
+        this.intensity = intensity;
     }
 
     /**

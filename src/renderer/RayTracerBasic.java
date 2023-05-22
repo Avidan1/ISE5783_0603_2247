@@ -50,7 +50,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @param ray the ray that intersected the geometry
      * @return The resulting color after calculating the local effects.
      */
-    private Color calcLocalEffects(GeoPoint gp, Ray ray) {
+    private Color calcLocalEffects(GeoPoint gp, Ray ray) {//TODO: Understand the code !
         Color color = gp.geometry.getEmission();
         Vector v = ray.getDir();
         Vector n = gp.geometry.getNormal(gp.point);

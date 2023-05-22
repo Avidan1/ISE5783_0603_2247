@@ -10,7 +10,7 @@ import static primitives.Util.isZero;
 /**
  * Camera class represents a camera in 3D Cartesian coordinate system
  *
- * @ author Avidan and Ziv
+ * @author Avidan and Ziv
  */
 public class Camera {
 
@@ -101,6 +101,7 @@ public class Camera {
      * Set the image writer of the camera.
      *
      * @param imageWriter the image writer of the camera
+     * return updated Camera object
      */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
@@ -111,6 +112,7 @@ public class Camera {
      * Set the ray tracer of the camera.
      *
      * @param tracer the ray tracer of the camera
+     * @return updated Camera object
      */
     public Camera setRayTracer(RayTracerBase tracer) {
         this.tracer = tracer;

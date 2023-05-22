@@ -80,6 +80,8 @@ public class Scene {
 
     /**
      * Setter for lights
+     * @param lights list of lights for the scene
+     * @return The scene object itself
      */
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;

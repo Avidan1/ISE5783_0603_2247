@@ -18,6 +18,7 @@ public class SpotLight extends PointLight {
      *
      * @param intensity light intensity value
      * @param position  light position
+     * @param direction light direction
      */
     public SpotLight(Color intensity, Point position, Vector direction) {
         super(intensity, position);
