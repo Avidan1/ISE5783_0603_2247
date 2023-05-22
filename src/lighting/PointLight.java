@@ -34,14 +34,14 @@ public class PointLight extends Light implements LightSource {
 
     @Override
     public Color getIntensity(Point p) {
-        double distanceSquared = position.distanceSquared(p);
+        double distanceSquared = this.position.distanceSquared(p);
         double denominator = this.kC + this.kL * Math.sqrt(distanceSquared) + this.kQ * distanceSquared;
         return this.intensity.reduce(denominator);
     }
 
     @Override
     public Vector getL(Point p) {
-        return p.subtract(position).normalize();
+        return p.subtract(this.position).normalize();
     }
 
     //=============setters================

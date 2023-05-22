@@ -39,9 +39,9 @@ public class Geometries extends Intersectable {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {// TODO: 22/05/2023
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         List<GeoPoint> intersections = null;
-        for (Intersectable geometry : intersectables) {
+        for (Intersectable geometry : this.intersectables) {
             var geoIntersections = geometry.findGeoIntersections(ray);
             if (geoIntersections != null) {
                 if (intersections == null)
