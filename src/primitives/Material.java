@@ -7,17 +7,16 @@ public class Material {
     /**
      * The diffuse coefficient of the material.
      */
-    public Double3 kD = Double3.ZERO;
+    public  Double3 kD = Double3.ZERO;
     /**
      * The coefficient transparency of the material.
      */
-    Double3 kT = Double3.ZERO;
-
+    public Double3 kT = Double3.ZERO;
 
     /**
      * The coefficient reflection of the material.
      */
-    Double3 kR = Double3.ZERO;
+    public Double3 kR = Double3.ZERO;
 
     /**
      * The specular coefficient of the material.
