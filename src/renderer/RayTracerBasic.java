@@ -27,25 +27,6 @@ public class RayTracerBasic extends RayTracerBase {
 
 
     /**
-     * checks if the point is shaded
-     *
-     * @param gp the point to check
-     * @param l  the light source
-     * @param n  the normal
-     * @param nl the dot product of the normal and the light source
-     * @return true if the point is unshaded
-     */
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl) {
-        Vector lightDirection = l.scale(-1); // from point to light source
-        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
-        Point point = gp.point.add(epsVector);
-        Ray lightRay = new Ray(point, lightDirection);
-        var intersections = scene.geometries.findGeoIntersections(lightRay);
-        return intersections == null;
-
-    }
-
-    /**
      * ctor for basic implementation of the ray tracer
      *
      * @param scene the scene to trace
@@ -54,6 +35,16 @@ public class RayTracerBasic extends RayTracerBase {
         super(scene);
     }
 
+    /**
+     * checks if the point is shaded
+     *
+     * @param gp the point to check
+     * @param l  the light source
+     * @param n  the normal
+     * @param nl the dot product of the normal and the light source
+     * @param lightSource the light source
+     * @return true if the point is unshaded
+     */
     private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource lightSource) {
         Vector lightDirection = l.scale(-1); // from point to light source
         Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
