@@ -76,7 +76,8 @@ public class LightsTests {
         scene1.geometries.add(sphere);
         scene1.lights.add(new DirectionalLight(sphereLightColor, new Vector(1, 1, -0.5)));
 
-        ImageWriter imageWriter = new ImageWriter("lightSphereDirectional", 500, 500);
+        ImageWriter imageWriter = new ImageWriter("lightSphereDirectional", //
+                500, 500);
         camera1.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene1))
                 .renderImage();
@@ -121,10 +122,10 @@ public class LightsTests {
     @Test
     public void sphere3lights() {
         scene1.geometries.add(sphere);
-        scene1.lights.add(new SpotLight(new Color(800,0,800), new Point(-50, 50, 25), new Vector(1, -1, -0.5))
+        scene1.lights.add(new SpotLight(new Color(800, 0, 800), new Point(-50, 50, 25), new Vector(1, -1, -0.5))
                 .setKl(0.001).setKq(0.0001));
         scene1.lights.add(new PointLight(sphereLightColor, sphereLightPosition));
-        scene1.lights.add(new DirectionalLight(new Color(0,0,1000), new Vector(-1, -1, -0.5)));
+        scene1.lights.add(new DirectionalLight(new Color(0, 0, 1000), new Vector(-1, -1, -0.5)));
 
         ImageWriter imageWriter = new ImageWriter("sphere3lights", 500, 500);
         camera1.setImageWriter(imageWriter) //
@@ -196,6 +197,7 @@ public class LightsTests {
                 .renderImage();
         camera2.writeToImage(); //
     }
+
 //    /**
 //     * Produce a picture of a sphere lighted by a narrow spotlight
 //     */

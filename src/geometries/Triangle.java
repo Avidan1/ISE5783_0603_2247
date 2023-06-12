@@ -1,6 +1,8 @@
 package geometries;
 
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
 
 import java.util.List;
 
@@ -22,28 +24,29 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public final List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<Point> intersections = super.plane.findIntersections(ray);
         // Check if the ray intersects the plane of the triangle.
-        List<GeoPoint> points = this.plane.findGeoIntersectionsHelper(ray);
-        if (points == null)  return null;
-
+        if (intersections == null)
+            return null;
+        Point p = intersections.get(0);
+        // Check if the ray intersects the triangle.
         Vector v1 = this.vertices.get(0).subtract(ray.getP0());
         Vector v2 = this.vertices.get(1).subtract(ray.getP0());
-        Vector n1 = v1.crossProduct(v2);
+        Vector n1 = v1.crossProduct(v2).normalize();
         double dotProduct1 = alignZero(n1.dotProduct(ray.getDir()));
         if (dotProduct1 == 0) return null;
 
         Vector v3 = this.vertices.get(2).subtract(ray.getP0());
-        Vector n2 = v2.crossProduct(v3);
+        Vector n2 = v2.crossProduct(v3).normalize();
         double dotProduct2 = alignZero(n2.dotProduct(ray.getDir()));
         if (dotProduct2 * dotProduct1 <= 0) return null;
 
-        Vector n3 = v3.crossProduct(v1);
+        Vector n3 = v3.crossProduct(v1).normalize();
         double dotProduct3 = n3.dotProduct(ray.getDir());
         if (dotProduct3 * dotProduct1 <= 0) return null;
 
-        points.get(0).geometry = this;
-        return points;
+        return List.of(new GeoPoint(this, p));
     }
 }
 

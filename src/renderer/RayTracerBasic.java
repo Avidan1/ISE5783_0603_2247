@@ -5,6 +5,8 @@ import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 
+import java.util.List;
+
 import static primitives.Util.alignZero;
 
 /**
@@ -15,6 +17,14 @@ import static primitives.Util.alignZero;
  */
 public class RayTracerBasic extends RayTracerBase {
 
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final Double3 MIN_CALC_COLOR_K = new Double3(0.001);
+
+    /**
+     * The delta for the shadow rays movement from the axis
+     */
+    private static final double DELTA = 0.1;
+
     /**
      * ctor for basic implementation of the ray tracer
      *
@@ -22,6 +32,21 @@ public class RayTracerBasic extends RayTracerBase {
      */
     public RayTracerBasic(Scene scene) {
         super(scene);
+    }
+
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource lightSource) {
+        Vector lightDirection = l.scale(-1); // from point to light source
+        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
+        Point point = gp.point.add(epsVector);
+        Ray lightRay = new Ray(point, lightDirection);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        if (intersections == null) return true;
+        for (GeoPoint pointIntersect : intersections) {
+            double ray = lightSource.getDistance(pointIntersect.point) - lightSource.getDistance(point);
+            if (ray <= 0) return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -61,9 +86,11 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                Color iL = lightSource.getIntensity(gp.point);
-                color = color.add(iL.scale(calcDiffusive(mat, nl)),
-                        iL.scale(calcSpecular(mat, n, l, nl, v)));
+                if (unshaded(gp, l, n, nl, this.scene.lights.get(0))) {
+                    Color iL = lightSource.getIntensity(gp.point);
+                    color = color.add(iL.scale(calcDiffusive(mat, nl)),
+                            iL.scale(calcSpecular(mat, n, l, nl, v)));
+                }
             }
         }
         return color;
