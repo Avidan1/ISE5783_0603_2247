@@ -56,7 +56,6 @@ public class RayTracerBasic extends RayTracerBase {
             double ray = lightSource.getDistance(pointIntersect.point) - lightSource.getDistance(point);
             if (ray <= 0) return false;
         }
-
         return true;
     }
 
