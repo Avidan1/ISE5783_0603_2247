@@ -11,6 +11,10 @@ import static primitives.Util.isZero;
  */
 public class Ray {
     /**
+     * The delta for the shadow rays movement from the axis
+     */
+    private static final double DELTA = 0.1;
+    /**
      * The starting point of the ray.
      */
     private final Point p0;
@@ -28,6 +32,18 @@ public class Ray {
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalize();
+    }
+    /**
+     * Constructs a new Ray object with the specified starting point and direction.
+     *
+     * @param p0  The starting point of the ray.
+     * @param dir The direction of the ray.
+     * @param normal   The normal vector.
+     */
+    public Ray(Point p0, Vector dir, Vector normal) {
+        double delta = dir.dotProduct(normal) >= 0 ? DELTA : -DELTA;
+        this.p0 = p0.add(normal.scale(delta));
+        this.dir = dir;
     }
 
     @Override
