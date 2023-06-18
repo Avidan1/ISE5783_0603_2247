@@ -36,27 +36,32 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
-     * checks if the point is shaded
+     * calculate the transparency of the point by the light source
      *
-     * @param gp the point to check
-     * @param l  the light source
-     * @param n  the normal
-     * @param nl the dot product of the normal and the light source
+     * @param gp          the point to check
+     * @param l           the light source
+     * @param n           the normal
+     * @param nl          the dot product of the normal and the light source
      * @param lightSource the light source
-     * @return true if the point is unshaded
+     * @return the transparency of the point
      */
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource lightSource) {
+    private Double3 transparency(GeoPoint gp, Vector l, Vector n, double nl, LightSource lightSource) {
         Vector lightDirection = l.scale(-1); // from point to light source
-        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
-        Point point = gp.point.add(epsVector);
-        Ray lightRay = new Ray(point, lightDirection);
+//        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
+//        Point point = gp.point.add(epsVector);
+        Ray lightRay = new Ray(gp.point, lightDirection/*,n*/);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-        if (intersections == null) return true;
+        if (intersections == null) return Double3.ONE;
+        Double3 ktr = Double3.ONE;
         for (GeoPoint pointIntersect : intersections) {
-            double ray = lightSource.getDistance(pointIntersect.point) - lightSource.getDistance(point);
-            if (ray <= 0) return false;
+            if (alignZero(pointIntersect.point.distance(gp.point) - lightSource.getDistance(gp.point)) <= 0) {
+                ktr = ktr.product(pointIntersect.geometry.getMaterial().kT);
+                if (ktr.equals(Double3.ZERO)) return Double3.ZERO;
+            }
+//            double ray = lightSource.getDistance(pointIntersect.point) - lightSource.getDistance(point);
+//            if (ray <= 0) return false;
         }
-        return true;
+        return ktr;
     }
 
     @Override
@@ -74,8 +79,8 @@ public class RayTracerBasic extends RayTracerBase {
      * @param ray          the ray that intersected the geometry
      * @return the color of the intersection point
      */
-    private Color calcColor(GeoPoint intersection, Ray ray) {
-        return this.scene.ambientLight.getIntensity().add(calcLocalEffects(intersection, ray));
+    private Color calcColor(GeoPoint intersection, Ray ray, Double3 k) {
+        return this.scene.ambientLight.getIntensity().add(calcLocalEffects(intersection, ray, k));
     }
 
     /**
@@ -85,7 +90,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @param ray the ray that intersected the geometry
      * @return The resulting color after calculating the local effects.
      */
-    private Color calcLocalEffects(GeoPoint gp, Ray ray) {//TODO: Understand the code !
+    private Color calcLocalEffects(GeoPoint gp, Ray ray, Double3 k) {//TODO: Understand the code !
         Color color = gp.geometry.getEmission();
         Vector v = ray.getDir();
         Vector n = gp.geometry.getNormal(gp.point);
@@ -96,8 +101,9 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                if (unshaded(gp, l, n, nl, this.scene.lights.get(0))) {
-                    Color iL = lightSource.getIntensity(gp.point);
+                Double3 ktr = transparency(gp, l, n, nl, lightSource);
+                if (ktr.product(k).lowerThan(MIN_CALC_COLOR_K)){
+                    Color iL = lightSource.getIntensity(gp.point).scale(ktr);
                     color = color.add(iL.scale(calcDiffusive(mat, nl)),
                             iL.scale(calcSpecular(mat, n, l, nl, v)));
                 }

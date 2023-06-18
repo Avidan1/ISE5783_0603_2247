@@ -9,6 +9,7 @@ package primitives;
  * @author Dan Zilberstein
  */
 public class Color {
+    public static final Color WHITE = new Color(255, 255, 255);
     /**
      * The internal fields maintain RGB components as double numbers from 0 to
      * whatever...

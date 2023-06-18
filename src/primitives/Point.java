@@ -94,9 +94,28 @@ public class Point {
 
     /**
      * Getter for the x coordinate of the point.
+     *
      * @return the x coordinate of the point
      */
     public double getX() {
         return this.xyz.d1;
+    }
+
+    /**
+     * Getter for the y coordinate of the point.
+     *
+     * @return the y coordinate of the point
+     */
+    public double getY() {
+        return this.xyz.d2;
+    }
+
+    /**
+     * Getter for the z coordinate of the point.
+     *
+     * @return the z coordinate of the point
+     */
+    public double getZ() {
+        return this.xyz.d3;
     }
 }
