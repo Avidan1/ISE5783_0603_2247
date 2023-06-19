@@ -1,9 +1,7 @@
 package primitives;
 
 import geometries.Intersectable.GeoPoint;
-
 import java.util.List;
-
 import static primitives.Util.isZero;
 
 /**
@@ -33,12 +31,13 @@ public class Ray {
         this.p0 = p0;
         this.dir = dir.normalize();
     }
+
     /**
      * Constructs a new Ray object with the specified starting point and direction.
      *
-     * @param p0  The starting point of the ray.
-     * @param dir The direction of the ray.
-     * @param normal   The normal vector.
+     * @param p0     The starting point of the ray.
+     * @param dir    The direction of the ray - must be normalized.
+     * @param normal The normal vector - must be normalized.
      */
     public Ray(Point p0, Vector dir, Vector normal) {
         double delta = dir.dotProduct(normal) >= 0 ? DELTA : -DELTA;
@@ -95,7 +94,6 @@ public class Ray {
         return points == null || points.isEmpty() ? null
                 : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
     }
-
 
     /**
      * Finds the closest point to the ray head from a given list of points

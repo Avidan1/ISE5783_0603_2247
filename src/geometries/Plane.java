@@ -59,20 +59,14 @@ public class Plane extends Geometry {
 
         // If the point is on point q0 or the ray is parallel to the plane of the sphere, return null
         double nv = alignZero(n.dotProduct(v));
-        if (nv == 0 || this.q0.equals(p0)) {
+        if (nv == 0 || this.q0.equals(p0))
             return null;
-        }
 
         // Calculate intersection point
         Vector p0Q0 = this.q0.subtract(p0);
         double nP0Q0 = alignZero(n.dotProduct(p0Q0));
         double t = alignZero(nP0Q0 / nv);
-        if (t <= 0) {
-            return null;
-        }
-        Point point = ray.getPoint(t);
-
-        return List.of(new GeoPoint(this, point));
+        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 
     /**
