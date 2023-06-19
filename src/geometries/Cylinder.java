@@ -13,7 +13,6 @@ public class Cylinder extends Tube {
      * The height of the cylinder.
      */
     private final double height;
-
     /**
      * Constructs a new Cylinder object with the specified axis ray, radius, and height.
      *
@@ -24,6 +23,7 @@ public class Cylinder extends Tube {
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
         this.height = height;
+
     }
 
     @Override
