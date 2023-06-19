@@ -83,11 +83,6 @@ public class OurImage {
 
 
         /**
-         * Create a Star of David using dots and triangles
-         */
-
-
-        /**
          * Produce a picture of complex shapes with many geometries and light sources
          */
         @Test
