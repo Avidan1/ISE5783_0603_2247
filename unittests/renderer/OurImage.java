@@ -1,6 +1,7 @@
 package renderer;
 
 import geometries.Geometry;
+import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
@@ -79,7 +80,6 @@ public class OurImage {
                 .setMaterial(material);
 
         private final Geometry triangle3 = new Triangle(vertices[0], vertices[2], vertices[3]).setMaterial(new Material().setKd(0.4).setKs(0.4).setNShininess(100));
-
 
 
 

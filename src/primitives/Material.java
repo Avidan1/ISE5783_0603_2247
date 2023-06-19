@@ -2,6 +2,7 @@ package primitives;
 
 /**
  * This class will present a material of a geometry
+ * @author Avidan and Ziv
  */
 public class Material {
     /**
