@@ -4,6 +4,7 @@ import geometries.Intersectable;
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
+import lighting.DirectionalLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
 import primitives.Color;
@@ -117,5 +118,63 @@ public class ShadowTests {
                 .renderImage() //
                 .writeToImage();
     }
+//    @Test
+//    public void starOfDavid3D() {
+//        scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+//
+//        // Create the triangles for the Star of David
+//        Triangle triangle1 = (Triangle) new Triangle(new Point(-50, -86.602540378443864, -100), new Point(50, -86.602540378443864, -100), new Point(0, 0, -100))
+//                .setEmission(new Color(WHITE))
+//                .setMaterial(new Material().setKs(0.8).setNShininess(60));
+//        Triangle triangle2 = (Triangle) new Triangle(new Point(-50, 86.602540378443864, -100), new Point(50, 86.602540378443864, -100), new Point(0, 0, -100))
+//                .setEmission(new Color(WHITE))
+//                .setMaterial(new Material().setKs(0.8).setNShininess(60));
+//        Triangle triangle3 = (Triangle) new Triangle(new Point(-50, -86.602540378443864, -100), new Point(50, -86.602540378443864, -100), new Point(0, 0, -100))
+//                .setEmission(new Color(WHITE))
+//                .setMaterial(new Material().setKs(0.8).setNShininess(60));
+//        Triangle triangle4 = (Triangle) new Triangle(new Point(-50, 86.602540378443864, -100), new Point(50, 86.602540378443864, -100), new Point(0, 0, -100))
+//                .setEmission(new Color(WHITE))
+//                .setMaterial(new Material().setKs(0.8).setNShininess(60));
+//
+//        scene.geometries.add(sphere, triangle1, triangle2, triangle3, triangle4);
+//        scene.lights.add(
+//                 new SpotLight(new Color(700, 400, 400), new Point(40, 40, 115), new Vector(-1, -1, -4))
+//                        .setKl(4E-4).setKq(2E-5));
+//        scene.lights.add(new DirectionalLight(new Color(500, 300, 0), new Vector(1, 1, -1)));
+//
+//
+//        ;
+//
+//        camera.setImageWriter(new ImageWriter("starOfDavid3D", 600, 600))
+//                .renderImage()
+//                .writeToImage();
+//    }
 
+    @Test
+    public void starOfDavid3D() {
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+
+        // Create the triangles for the Star of David
+        Triangle triangle1 = (Triangle) new Triangle(
+                new Point(-50, -86.602540378443864, -100),
+                new Point(50, -86.602540378443864, -100),
+                new Point(0, 0, -100)
+        ).setEmission(new Color(WHITE)).setMaterial(new Material().setKs(0.8).setNShininess(60));
+
+        Triangle triangle2 = (Triangle) new Triangle(
+                new Point(-50, 86.602540378443864, -100),
+                new Point(50, 86.602540378443864, -100),
+                new Point(0, 0, -100)
+        ).setEmission(new Color(WHITE)).setMaterial(new Material().setKs(0.8).setNShininess(60));
+
+        scene.geometries.add(sphere, triangle1, triangle2);
+        scene.lights.add(
+                new SpotLight(new Color(700, 400, 400), new Point(40, 40, 115), new Vector(-1, -1, -4))
+                        .setKl(4E-4).setKq(2E-5)
+        );
+
+        camera.setImageWriter(new ImageWriter("starOfDavid3D", 600, 600))
+                .renderImage()
+                .writeToImage();
+    }
 }
