@@ -111,9 +111,11 @@ public class OurImage {
                 .setEmission(new Color(0, 0, 100)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(70).setKt(0.7));
         Geometry sphere1 = new Sphere(new Point(15, 20, -40), 10d)
                 .setEmission(new Color(0, 100, 100)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(70).setKr(0.8));
-        Geometry tube = new Tube(new Ray(new Point(0, 10, -20), new Vector(0, 1, 0)), 5d)
-                .setEmission(new Color(0, 0, 100)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(70).setKt(0.7));
-        scene1.geometries.add(plane, sphere, sphere1);
+        Geometry sphere2 = new Sphere(new Point(-35, 50, -100), 10d)
+                .setEmission(new Color(100, 0, 100)).setMaterial(new Material().setKd(0.4).setKs(0.8).setNShininess(70).setKt(0.8));
+        Geometry triangle = new Triangle(new Point(-40, 0, -50), new Point(-30, 0, -50), new Point(0, 30, -50))
+                .setEmission(new Color(20, 80, 100)).setMaterial(new Material().setKd(0.2).setKs(0.7).setNShininess(70));
+        scene1.geometries.add(plane, sphere, sphere1, sphere2, triangle);
         scene1.lights.add(new DirectionalLight(Color.WHITE, new Vector(0, 0, -1)));
         scene1.lights.add(new DirectionalLight(new Color(255,0,130), new Vector(1, -1, -1)));
 
