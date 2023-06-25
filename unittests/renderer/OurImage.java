@@ -104,8 +104,8 @@ public class OurImage {
         Color pyramidColor=new Color(0, 30, 150);
         Material pyramidMaterial=new Material().setKd(0.5).setKs(0.5).setNShininess(100);
         Scene scene1 = new Scene("Test scene");
-        Camera camera = new Camera(new Point(0, 35, 40),
-                new Vector(0, -20, -20), new Vector(0, 20, -20))
+        Camera camera = new Camera(new Point(25, 50, 50),
+                new Vector(0, -1, -1), new Vector(0, 1, -1))
                 .setVPSize(2500, 2500).setVPDistance(1000);
         Geometry plane = new Plane(new Point(0, 0, 0), new Vector(0, 1, 0))
                 .setEmission(new Color(50, 50, 50)).setMaterial(new Material().setKd(0.5).setKs(0.5).setKr(0.5).setNShininess(70));
@@ -119,6 +119,12 @@ public class OurImage {
                 .setEmission(new Color(0, 255, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.9));
         Geometry sphere5 = new Sphere(new Point(38, 7, -50), 7d)
                 .setEmission(new Color(255, 0, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
+        Geometry sphereInSphere1 = new Sphere(new Point(55, 20, 0), 20d)
+                .setEmission(new Color(0, 0, 100)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(40).setKt(0.5));
+        Geometry sphereInSphere2 = new Sphere(new Point(56, 20, 0), 15d)
+                .setEmission(new Color(0, 100, 0)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(40).setKt(0.5));
+        Geometry sphereInSphere3 = new Sphere(new Point(57, 20, 0), 10d)
+                .setEmission(new Color(100, 0, 0)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(40).setKr(0.5));
         Geometry sphere11 = new Sphere(new Point(-50, 15, -300), 15d)
                 .setEmission(new Color(180, 0, 0)).setMaterial(new Material().setKd(0.4).setKs(0.8).setNShininess(70).setKt(0.8));
         Geometry sphere22 = new Sphere(new Point(-22, 13, -300), 13d)
@@ -137,9 +143,9 @@ public class OurImage {
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
 
 
-        scene1.geometries.add(plane, sphere1, sphere2, sphere3, sphere4, sphere5,sphere11, sphere22, sphere33, sphere44, sphere55, triangleP1, triangleP2, triangleP3);
+        scene1.geometries.add(plane, sphere1, sphere2, sphere3, sphere4, sphere5,sphereInSphere1,sphereInSphere3,sphereInSphere2,sphere11, sphere22, sphere33, sphere44, sphere55, triangleP1, triangleP2, triangleP3);
         scene1.lights.add(new DirectionalLight(Color.WHITE, new Vector(10, -15, -15)));
-        //  scene1.lights.add(new DirectionalLight(new Color(0, 15, 15), new Vector(0, -15, -15)));
+        //scene1.lights.add(new DirectionalLight(new Color(0, 15, 15), new Vector(0, -15, -15)));
 
 
         ImageWriter imageWriter = new ImageWriter("ourImage2", 1000, 1000);
