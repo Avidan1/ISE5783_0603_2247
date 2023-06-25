@@ -104,7 +104,7 @@ public class OurImage {
         Color pyramidColor=new Color(0, 30, 150);
         Material pyramidMaterial=new Material().setKd(0.5).setKs(0.5).setNShininess(100);
         Scene scene1 = new Scene("Test scene");
-        Camera camera = new Camera(new Point(0, 40, 40),
+        Camera camera = new Camera(new Point(0, 35, 40),
                 new Vector(0, -20, -20), new Vector(0, 20, -20))
                 .setVPSize(2500, 2500).setVPDistance(1000);
         Geometry plane = new Plane(new Point(0, 0, 0), new Vector(0, 1, 0))
@@ -116,7 +116,7 @@ public class OurImage {
         Geometry sphere3 = new Sphere(new Point(2, 11, -50), 11d)
                 .setEmission(new Color(0, 0, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
         Geometry sphere4 = new Sphere(new Point(22, 9, -50), 9d)
-                .setEmission(new Color(0, 255, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
+                .setEmission(new Color(0, 255, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.9));
         Geometry sphere5 = new Sphere(new Point(38, 7, -50), 7d)
                 .setEmission(new Color(255, 0, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
         Geometry sphere11 = new Sphere(new Point(-50, 15, -300), 15d)
@@ -129,12 +129,13 @@ public class OurImage {
                 .setEmission(new Color(0, 255, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
         Geometry sphere55 = new Sphere(new Point(38, 7, -300), 7d)
                 .setEmission(new Color(255, 0, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
-        Geometry triangleP1 = new Triangle(new Point(-17.89, 10, -16.97), new Point(0, 0, 0), new Point(-4.41, 0, -17.68))
+        Geometry triangleP1 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(0, 0, 0 + 45), new Point(-4.41, 0, -17.68 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
-        Geometry triangleP2 = new Triangle(new Point(-17.89, 10, -16.97), new Point(-4.41, 0, -17.68), new Point(7.68, 0, 5.59))
+        Geometry triangleP2 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(-4.41, 0, -17.68 + 45), new Point(7.68, 0, 5.59 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
-        Geometry triangleP3 = new Triangle(new Point(-17.89, 10, -16.97), new Point(7.68, 0, 5.59), new Point(-27.68, 0, -5.59))
+        Geometry triangleP3 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(7.68, 0, 5.59 + 45), new Point(-27.68, 0, -5.59 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
+
 
         scene1.geometries.add(plane, sphere1, sphere2, sphere3, sphere4, sphere5,sphere11, sphere22, sphere33, sphere44, sphere55, triangleP1, triangleP2, triangleP3);
         scene1.lights.add(new DirectionalLight(Color.WHITE, new Vector(10, -15, -15)));
