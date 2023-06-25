@@ -100,7 +100,7 @@ public class OurImage {
     }
 
     @Test
-    public void ourImage2() {
+    public void ourImageFinalPic() {
         Color pyramidColor=new Color(0, 30, 150);
         Material pyramidMaterial=new Material().setKd(0.5).setKs(0.5).setNShininess(100);
         Scene scene1 = new Scene("Test scene");
@@ -147,7 +147,7 @@ public class OurImage {
         //scene1.lights.add(new DirectionalLight(new Color(0, 15, 15), new Vector(0, -15, -15)));
 
 
-        ImageWriter imageWriter = new ImageWriter("ourImage2", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("ourImageFinalPic", 1000, 1000);
         camera.setImageWriter(imageWriter).setRayTracer(new RayTracerBasic(scene1));
         camera.renderImage();
         camera.writeToImage();
