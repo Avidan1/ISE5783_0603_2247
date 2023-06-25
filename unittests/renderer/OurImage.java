@@ -142,7 +142,6 @@ public class OurImage {
         Geometry triangleP3 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(7.68, 0, 5.59 + 45), new Point(-27.68, 0, -5.59 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
 
-
         scene1.geometries.add(plane, sphere1, sphere2, sphere3, sphere4, sphere5,sphereInSphere1,sphereInSphere3,sphereInSphere2,sphere11, sphere22, sphere33, sphere44, sphere55, triangleP1, triangleP2, triangleP3);
         scene1.lights.add(new DirectionalLight(Color.WHITE, new Vector(10, -15, -15)));
         //scene1.lights.add(new DirectionalLight(new Color(0, 15, 15), new Vector(0, -15, -15)));
