@@ -5,6 +5,9 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 /**
@@ -52,6 +55,18 @@ public class Camera {
      * The ray tracer of the camera.
      */
     private RayTracerBase tracer;
+    /**
+     * The number of rays for depth of field effects.
+     */
+    private int numRays;
+    /**
+     * The aperture size for depth of field effects.
+     */
+    private double aperture;
+    /**
+     * The focal length for depth of field effects.
+     */
+    private double focalLength;
 
     //=================== Constructors ===================
 
@@ -70,7 +85,8 @@ public class Camera {
             throw new IllegalArgumentException("vUp and vTo must be orthogonal");
         this.vRight = vTo.crossProduct(vUp).normalize();
     }
-    //=================== Setters ===================
+
+    //=================== Setters (builder) ===================
 
     /**
      * Set the size of the view plane.
@@ -80,14 +96,28 @@ public class Camera {
      * @return updated Camera itself
      */
     public Camera setVPSize(double width, double height) {
-
         this.width = width;
         this.height = height;
         return this;
     }
 
     /**
-     * set the distance of the camera from the view plane.
+     * Set Depth Of Field with its parameters
+     *
+     * @param focalDistance distance from the camera to the focal plane
+     * @param aperture
+     * @param numOfRays     number of rays for depth of field effects
+     * @return updated Camera object
+     */
+    public Camera setDof(double focalDistance, double aperture, int numOfRays) {
+        this.focalLength = focalDistance;
+        this.aperture = aperture;
+        this.numRays = numOfRays;
+        return this;
+    }
+
+    /**
+     * Set the distance of the camera from the view plane.
      *
      * @param distance from the camera to the view plane
      * @return updated Camera itself
@@ -119,6 +149,8 @@ public class Camera {
         return this;
     }
 
+    // =================== Functions ===================
+
     /**
      * Construct a ray through a pixel in the view plane.
      *
@@ -128,7 +160,6 @@ public class Camera {
      * @param i  pixel number in Y axis
      * @return the ray through the pixel
      */
-    // =================== functions ===================
     public Ray constructRay(int nX, int nY, int j, int i) {
         double rY = this.height / nY;
         double rX = this.width / nX;
@@ -143,9 +174,66 @@ public class Camera {
         return new Ray(this.p0, pIJ.subtract(this.p0));
     }
 
+
+    /**
+     * Constructs a list of rays through a pixel in the view plane with depth of field effects.
+     *
+     * @param nX number of pixels in X axis
+     * @param nY number of pixels in Y axis
+     * @param j  pixel number in X axis
+     * @param i  pixel number in Y axis
+     * @return the list of rays through the pixel with depth of field effects
+     */
+    private List<Ray> constructRaysWithDOF(int nX, int nY, int j, int i) {
+        Ray ray = constructRay(nX, nY, j, i);
+        if (numRays <= 1)
+            return List.of(ray);
+
+        List<Ray> rays = new LinkedList<>();
+        // Center of the aperture plane
+        Point pCenter = ray.getP0();
+
+        // Vector representing the aperture plane
+        Vector apertureVector = this.vRight.scale(this.width).crossProduct(this.vUp.scale(this.height)).normalize();
+
+        for (int k = 0; k < this.numRays; k++) {
+            // Generate a random point on the aperture
+            Point pointOnAperture = generatePointOnAperture(pCenter);
+
+            // Calculate the point on the image plane based on distance
+            Point pointOnImagePlane = constructRay(nX, nY, j, i).getPoint(this.distance);
+
+            // Calculate the direction of the ray from the point on the aperture to the focal point
+            Vector direction = pointOnImagePlane.subtract(pointOnAperture).normalize();
+
+            // Add the constructed ray to the list
+            rays.add(new Ray(pointOnImagePlane, direction));
+        }
+
+        return rays;
+    }
+
+
+    /**
+     * Generates a random point on the aperture plane for depth of field effects.
+     * contributes to the realistic rendering of the depth of field effect
+     *
+     * @param pCenter the center point of the aperture plane
+     * @return the random point on the aperture plane
+     */
+    private Point generatePointOnAperture(Point pCenter) {
+        double angle = Math.random() * 2 * Math.PI;
+        double radius = Math.random() * (aperture / 2);
+        double x = pCenter.getX() + radius * Math.cos(angle);
+        double y = pCenter.getY() + radius * Math.sin(angle);
+        double z = pCenter.getZ();
+        return new Point(x, y, z);
+    }
+
     /**
      * Throws UnsupportedOperationException if any of the required resources are missing
      * (rayTracerBase, imageWriter, width, height, distance).
+     *
      * @return the camera itself
      */
     public Camera renderImage() {
@@ -153,12 +241,20 @@ public class Camera {
             throw new UnsupportedOperationException("MissingResourcesException");
         int nX = this.imageWriter.getNx();
         int nY = this.imageWriter.getNy();
-        for (int i = 0; i < nY; i++) {
-            for (int j = 0; j < nX; j++) {
-                this.imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
-            }
-        }
+        for (int i = 0; i < nY; i++)
+            for (int j = 0; j < nX; j++)
+                castRay(j, i, nX, nY);
         return this;
+    }
+
+    /**
+     * Casts ray or rays through the given pixel and color it with the color returned by the ray tracer.
+     */
+    private void castRay(int j, int i, int nX, int nY) {
+        List<Color> colors = new LinkedList<>();
+        for (Ray ray : constructRaysWithDOF(nX, nY, j, i))
+            colors.add(this.tracer.traceRay(ray));
+        this.imageWriter.writePixel(j, i, Color.average(colors));
     }
 
     /**
@@ -189,16 +285,5 @@ public class Camera {
         this.imageWriter.writeToImage();
     }
 
-    /**
-     * Throws UnsupportedOperationException if imageWriter object is null.
-     *
-     * @param nX number of pixels in X axis
-     * @param nY number of pixels in Y axis
-     * @param j  pixel number in X axis
-     * @param i  pixel number in Y axis
-     * @return the color of the pixel
-     */
-    private Color castRay(int nX, int nY, int j, int i) {
-        return this.tracer.traceRay(this.constructRay(nX, nY, j, i));
-    }
+
 }

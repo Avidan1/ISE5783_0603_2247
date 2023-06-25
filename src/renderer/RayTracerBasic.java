@@ -76,6 +76,7 @@ public class RayTracerBasic extends RayTracerBase {
         // if there are no intersections return the background color;
     }
 
+
     /**
      * Computes the color of the intersection point using the Phong reflection model.
      *

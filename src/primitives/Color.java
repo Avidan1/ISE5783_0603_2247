@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.List;
+
 /**
  * Wrapper class for java.jwt.Color The constructors operate with any
  * non-negative RGB values. The colors are maintained without upper limit of
@@ -62,6 +64,17 @@ public class Color {
      */
     public Color(java.awt.Color other) {
         rgb = new Double3(other.getRed(), other.getGreen(), other.getBlue());
+    }
+
+    public static Color average(List<Color> colors) {
+        double r = 0, g = 0, b = 0;
+        for (Color c : colors) {
+            r += c.rgb.d1;
+            g += c.rgb.d2;
+            b += c.rgb.d3;
+        }
+        int size = colors.size();
+        return new Color(r / size, g / size, b / size);
     }
 
     /**
