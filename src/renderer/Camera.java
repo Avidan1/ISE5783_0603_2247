@@ -194,7 +194,7 @@ public class Camera {
         List<Ray> rays = new LinkedList<>();
         // add the centerRay to the list
         rays.add(centerRay);
-        Point focalPoint= centerRay.getPoint(this.focalDistance);
+        Point focalPoint = centerRay.getPoint(this.focalDistance);
         // Center of the apertureSize plane
         Point pCenter = centerRay.getP0();
         for (int k = 0; k < this.numRays; k++) {
@@ -202,7 +202,7 @@ public class Camera {
             Point pointOnAperture = generatePointOnAperture(pCenter);
             Vector toFocalPoint = focalPoint.subtract(pointOnAperture).normalize();
             // Add the constructed centerRay  to the list
-            rays.add(new Ray(pointOnAperture,toFocalPoint));
+            rays.add(new Ray(pointOnAperture, toFocalPoint));
         }
 
         return rays;
@@ -217,12 +217,12 @@ public class Camera {
      * @return the random point on the apertureSize plane
      */
     private Point generatePointOnAperture(Point pCenter) {
-/*        double angle = Math.random() * 2 * Math.PI;*/
+        /*        double angle = Math.random() * 2 * Math.PI;*/
         double radius = (apertureSize / 2);
         double x = pCenter.getX() + (Math.random() * apertureSize) - (apertureSize / 2);
         double y = pCenter.getY() + (Math.random() * apertureSize) - (apertureSize / 2);
         double z = pCenter.getZ() + (Math.random() * apertureSize) - (apertureSize / 2);
-        if (x>radius+pCenter.getX()||y>radius+pCenter.getY()||z>radius+pCenter.getZ())
+        if (x > radius + pCenter.getX() || y > radius + pCenter.getY() || z > radius + pCenter.getZ())
             return generatePointOnAperture(pCenter);
         return new Point(x, y, z);
     }
@@ -246,6 +246,11 @@ public class Camera {
 
     /**
      * Casts ray or rays through the given pixel and color it with the color returned by the ray tracer.
+     *
+     * @param j  pixel number in X axis
+     * @param i  pixel number in Y axis
+     * @param nX number of pixels in X axis
+     * @param nY number of pixels in Y axis
      */
     private void castRay(int j, int i, int nX, int nY) {
         List<Color> colors = new LinkedList<>();
