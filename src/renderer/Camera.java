@@ -194,15 +194,14 @@ public class Camera {
         List<Ray> rays = new LinkedList<>();
         // add the centerRay to the list
         rays.add(centerRay);
-        Point focalPoint = centerRay.getPoint(this.focalDistance);
         // Center of the apertureSize plane
+        Point focalPoint = centerRay.getPoint(this.focalDistance);
         Point pCenter = centerRay.getP0();
         for (int k = 0; k < this.numRays; k++) {
             Point pointOnAperture = generatePointOnAperture(pCenter);
             Vector toFocalPoint = focalPoint.subtract(pointOnAperture).normalize();
             rays.add(new Ray(pointOnAperture, toFocalPoint));
         }
-
         return rays;
     }
 

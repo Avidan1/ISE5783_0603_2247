@@ -2,8 +2,6 @@ package primitives;
 
 import geometries.Intersectable.GeoPoint;
 
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import static primitives.Util.isZero;
 
