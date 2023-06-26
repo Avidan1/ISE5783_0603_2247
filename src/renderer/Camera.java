@@ -60,13 +60,14 @@ public class Camera {
      */
     private int numRays;
     /**
-     * The aperture size for depth of field effects.
+     * The apertureSize size for depth of field effects.
      */
-    private double aperture;
+    private double apertureSize = 1;
+
     /**
      * The focal length for depth of field effects.
      */
-    private double focalLength;
+    private double focalDistance = 0;
 
     //=================== Constructors ===================
 
@@ -105,13 +106,13 @@ public class Camera {
      * Set Depth Of Field with its parameters
      *
      * @param focalDistance distance from the camera to the focal plane
-     * @param aperture
+     * @param aperture      size of the aperture
      * @param numOfRays     number of rays for depth of field effects
      * @return updated Camera object
      */
     public Camera setDof(double focalDistance, double aperture, int numOfRays) {
-        this.focalLength = focalDistance;
-        this.aperture = aperture;
+        this.focalDistance = focalDistance;
+        this.apertureSize = aperture;
         this.numRays = numOfRays;
         return this;
     }
@@ -185,29 +186,23 @@ public class Camera {
      * @return the list of rays through the pixel with depth of field effects
      */
     private List<Ray> constructRaysWithDOF(int nX, int nY, int j, int i) {
-        Ray ray = constructRay(nX, nY, j, i);
+        // Construct the centerRay
+        Ray centerRay = constructRay(nX, nY, j, i);
         if (numRays <= 1)
-            return List.of(ray);
+            return List.of(centerRay);
 
         List<Ray> rays = new LinkedList<>();
-        // Center of the aperture plane
-        Point pCenter = ray.getP0();
-
-        // Vector representing the aperture plane
-        Vector apertureVector = this.vRight.scale(this.width).crossProduct(this.vUp.scale(this.height)).normalize();
-
+        // add the centerRay to the list
+        rays.add(centerRay);
+        Point focalPoint= centerRay.getPoint(this.focalDistance);
+        // Center of the apertureSize plane
+        Point pCenter = centerRay.getP0();
         for (int k = 0; k < this.numRays; k++) {
-            // Generate a random point on the aperture
+            // Generate a random point on the apertureSize
             Point pointOnAperture = generatePointOnAperture(pCenter);
-
-            // Calculate the point on the image plane based on distance
-            Point pointOnImagePlane = constructRay(nX, nY, j, i).getPoint(this.distance);
-
-            // Calculate the direction of the ray from the point on the aperture to the focal point
-            Vector direction = pointOnImagePlane.subtract(pointOnAperture).normalize();
-
-            // Add the constructed ray to the list
-            rays.add(new Ray(pointOnImagePlane, direction));
+            Vector toFocalPoint = focalPoint.subtract(pointOnAperture).normalize();
+            // Add the constructed centerRay  to the list
+            rays.add(new Ray(pointOnAperture,toFocalPoint));
         }
 
         return rays;
@@ -215,18 +210,20 @@ public class Camera {
 
 
     /**
-     * Generates a random point on the aperture plane for depth of field effects.
+     * Generates a random point on the apertureSize plane for depth of field effects.
      * contributes to the realistic rendering of the depth of field effect
      *
-     * @param pCenter the center point of the aperture plane
-     * @return the random point on the aperture plane
+     * @param pCenter the center point of the apertureSize plane
+     * @return the random point on the apertureSize plane
      */
     private Point generatePointOnAperture(Point pCenter) {
-        double angle = Math.random() * 2 * Math.PI;
-        double radius = Math.random() * (aperture / 2);
-        double x = pCenter.getX() + radius * Math.cos(angle);
-        double y = pCenter.getY() + radius * Math.sin(angle);
-        double z = pCenter.getZ();
+/*        double angle = Math.random() * 2 * Math.PI;*/
+        double radius = (apertureSize / 2);
+        double x = pCenter.getX() + (Math.random() * apertureSize) - (apertureSize / 2);
+        double y = pCenter.getY() + (Math.random() * apertureSize) - (apertureSize / 2);
+        double z = pCenter.getZ() + (Math.random() * apertureSize) - (apertureSize / 2);
+        if (x>radius+pCenter.getX()||y>radius+pCenter.getY()||z>radius+pCenter.getZ())
+            return generatePointOnAperture(pCenter);
         return new Point(x, y, z);
     }
 

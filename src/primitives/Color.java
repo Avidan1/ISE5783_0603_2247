@@ -11,6 +11,9 @@ import java.util.List;
  * @author Dan Zilberstein
  */
 public class Color {
+    /**
+     * White color = (255, 255, 255)
+     */
     public static final Color WHITE = new Color(255, 255, 255);
     /**
      * The internal fields maintain RGB components as double numbers from 0 to
@@ -66,6 +69,11 @@ public class Color {
         rgb = new Double3(other.getRed(), other.getGreen(), other.getBlue());
     }
 
+    /**
+     * Calcaulte average of colors
+     * @param colors list of colors
+     * @return average color
+     */
     public static Color average(List<Color> colors) {
         double r = 0, g = 0, b = 0;
         for (Color c : colors) {

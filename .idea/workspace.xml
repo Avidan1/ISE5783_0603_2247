@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="07a51ac3-e45b-41f2-b6a8-7af7efd63a26" name="Changes" comment="add dof">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/OurImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/OurImage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +51,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.renderer in ISE5783_0603_2247">
+  <component name="RunManager" selected="JUnit.OurImage.ourImageFinalPic">
     <configuration name="All in ISE5783_0603_2247" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <option name="PACKAGE_NAME" value="" />
@@ -87,6 +91,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OurImage.ourImageFinalPic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_0603_2247" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.OurImage" />
+      <option name="METHOD_NAME" value="ourImageFinalPic" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="renderer in ISE5783_0603_2247" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_0603_2247" />
       <extension name="coverage">
@@ -103,10 +123,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.renderer in ISE5783_0603_2247" />
-        <item itemvalue="JUnit.OurImage.ourImage2" />
+        <item itemvalue="JUnit.OurImage.ourImageFinalPic" />
         <item itemvalue="JUnit.OurImage" />
         <item itemvalue="JUnit.All in ISE5783_0603_2247" />
+        <item itemvalue="JUnit.renderer in ISE5783_0603_2247" />
+        <item itemvalue="JUnit.OurImage.ourImage2" />
       </list>
     </recent_temporary>
   </component>
@@ -133,7 +154,7 @@
       <workItem from="1687454784373" duration="1937000" />
       <workItem from="1687633738866" duration="7195000" />
       <workItem from="1687689480468" duration="1999000" />
-      <workItem from="1687703754054" duration="4746000" />
+      <workItem from="1687703754054" duration="11318000" />
     </task>
     <task id="LOCAL‎-00002" summary="add dof">
       <created>1687708477156</created>
@@ -142,7 +163,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687708477156</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎-00003" summary="add dof">
+      <created>1687708623943</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687708623943</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +181,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

@@ -130,12 +130,10 @@ public class OurImage {
 
     @Test
     public void ourImageFinalPic() {
-        Color pyramidColor=new Color(0, 30, 150);
-        Material pyramidMaterial=new Material().setKd(0.5).setKs(0.5).setNShininess(100);
+        Color pyramidColor = new Color(0, 30, 150);
+        Material pyramidMaterial = new Material().setKd(0.5).setKs(0.5).setNShininess(100);
         Scene scene1 = new Scene("Test scene");
-        Camera camera = new Camera(new Point(25, 50, 50),
-                new Vector(0, -1, -1), new Vector(0, 1, -1))
-                .setVPSize(2500, 2500).setVPDistance(1000);
+
         Geometry plane = new Plane(new Point(0, 0, 0), new Vector(0, 1, 0))
                 .setEmission(new Color(50, 50, 50)).setMaterial(new Material().setKd(0.5).setKs(0.5).setKr(0.5).setNShininess(70));
         Geometry sphere1 = new Sphere(new Point(-50, 15, -50), 15d)
@@ -171,17 +169,18 @@ public class OurImage {
         Geometry triangleP3 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(7.68, 0, 5.59 + 45), new Point(-27.68, 0, -5.59 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
 
-        scene1.geometries.add(plane, sphere1, sphere2, sphere3, sphere4, sphere5,sphereInSphere1,sphereInSphere3,sphereInSphere2,sphere11, sphere22, sphere33, sphere44, sphere55, triangleP1, triangleP2, triangleP3);
+        scene1.geometries.add(plane, sphere1, sphere2, sphere3, sphere4, sphere5, sphereInSphere1, sphereInSphere3, sphereInSphere2, sphere11, sphere22, sphere33, sphere44, sphere55, triangleP1, triangleP2, triangleP3);
         scene1.lights.add(new DirectionalLight(Color.WHITE, new Vector(10, -15, -15)));
         //scene1.lights.add(new DirectionalLight(new Color(0, 15, 15), new Vector(0, -15, -15)));
 
-
-        ImageWriter imageWriter = new ImageWriter("ourImageFinalPic", 1000, 1000);
-        camera.setImageWriter(imageWriter).setRayTracer(new RayTracerBasic(scene1));
-        camera.renderImage();
-        camera.writeToImage();
+        new Camera(new Point(25, 50, 50),
+                new Vector(0, -1, -1), new Vector(0, 1, -1))
+                .setVPSize(2500, 2500).setVPDistance(1000)
+                .setDof(60, 50, 50)
+                .setImageWriter(new ImageWriter("ourImageFinalPic", 1000, 1000))
+                .setRayTracer(new RayTracerBasic(scene1))
+                .renderImage().writeToImage();
     }
-
 
 
 }
