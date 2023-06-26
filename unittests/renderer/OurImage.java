@@ -32,13 +32,11 @@ public class OurImage {
     private final Material material = new Material().setKd(KD3).setKs(KS3).setNShininess(SHININESS);
     private final Color trianglesLightColor = new Color(800, 500, 250);
     private final Color sphereLightColor1 = new Color(800, 500, 0);
-    private final Color sphereLightColor2 = new Color(0, 500, 250);
     private final Color sphereLightColor3 = new Color(800, 0, 250);
     private final Color sphereColor = new Color(BLUE).reduce(2);
 
     private final Point sphereCenter1 = new Point(-30, 30, -30);
     private final Point sphereCenter2 = new Point(20, -30, -30);
-    private final Point sphereCenter3 = new Point(50, 50, 0);
     private final Point sphereCenter4 = new Point(0, -50, 0);
     private final Point sphereCenter5 = new Point(0, 0, -100);
     private final Point sphereCenter6 = new Point(0, 50, 100);
@@ -65,9 +63,6 @@ public class OurImage {
             .setEmission(sphereColor).setMaterial(new Material().setKd(KD).setKs(KS).setNShininess(SHININESS));
     private final Geometry sphere2 = new Sphere(sphereCenter2, SPHERE_RADIUS).setEmission(new Color(30, 10, 100))
             .setMaterial(new Material().setKd(KD).setKs(KS).setNShininess(SHININESS));
-    private final Geometry sphere3 = new Sphere(sphereCenter3, SPHERE_RADIUS).setEmission(new Color(30, 100, 40))
-            .setMaterial(new Material().setKd(KD).setKs(KS).setNShininess(SHININESS));
-
     private final Geometry sphere4 = new Sphere(sphereCenter4, SPHERE_RADIUS).setEmission(new Color(100, 30, 40))
             .setMaterial(new Material().setKd(KD).setKs(KS).setNShininess(SHININESS));
     private final Geometry sphere5 = new Sphere(sphereCenter5, SPHERE_RADIUS).setEmission(new Color(100, 100, 100))
@@ -162,7 +157,7 @@ public class OurImage {
                 .setEmission(new Color(0, 255, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
         Geometry sphere55 = new Sphere(new Point(38, 7, -300), 7d)
                 .setEmission(new Color(255, 0, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
-        Geometry triangleP1 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(0, 0, 0 + 45), new Point(-4.41, 0, -17.68 + 45))
+        Geometry triangleP1 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(0, 0,  45), new Point(-4.41, 0, -17.68 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
         Geometry triangleP2 = new Triangle(new Point(-17.89, 10, -16.97 + 45), new Point(-4.41, 0, -17.68 + 45), new Point(7.68, 0, 5.59 + 45))
                 .setEmission(pyramidColor).setMaterial(pyramidMaterial);
