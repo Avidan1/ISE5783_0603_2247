@@ -188,7 +188,7 @@ public class Camera {
     private List<Ray> constructRaysWithDOF(int nX, int nY, int j, int i) {
         // Construct the centerRay
         Ray centerRay = constructRay(nX, nY, j, i);
-        if (numRays <= 1)
+        if (this.numRays <= 1)
             return List.of(centerRay);
 
         List<Ray> rays = new LinkedList<>();
@@ -198,10 +198,8 @@ public class Camera {
         // Center of the apertureSize plane
         Point pCenter = centerRay.getP0();
         for (int k = 0; k < this.numRays; k++) {
-            // Generate a random point on the apertureSize
             Point pointOnAperture = generatePointOnAperture(pCenter);
             Vector toFocalPoint = focalPoint.subtract(pointOnAperture).normalize();
-            // Add the constructed centerRay  to the list
             rays.add(new Ray(pointOnAperture, toFocalPoint));
         }
 
@@ -218,10 +216,10 @@ public class Camera {
      */
     private Point generatePointOnAperture(Point pCenter) {
         /*        double angle = Math.random() * 2 * Math.PI;*/
-        double radius = (apertureSize / 2);
-        double x = pCenter.getX() + (Math.random() * apertureSize) - (apertureSize / 2);
-        double y = pCenter.getY() + (Math.random() * apertureSize) - (apertureSize / 2);
-        double z = pCenter.getZ() + (Math.random() * apertureSize) - (apertureSize / 2);
+        double radius = (this.apertureSize / 2);
+        double x = pCenter.getX() + (Math.random() * this.apertureSize) - radius;
+        double y = pCenter.getY() + (Math.random() * this.apertureSize) - radius;
+        double z = pCenter.getZ() + (Math.random() * this.apertureSize) - radius;
         if (x > radius + pCenter.getX() || y > radius + pCenter.getY() || z > radius + pCenter.getZ())
             return generatePointOnAperture(pCenter);
         return new Point(x, y, z);
