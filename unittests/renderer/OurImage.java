@@ -176,7 +176,7 @@ public class OurImage {
         new Camera(new Point(25, 50, 50),
                 new Vector(0, -1, -1), new Vector(0, 1, -1))
                 .setVPSize(2500, 2500).setVPDistance(1000)
-                .setDof(60, 50, 50)
+                .setDof(60, 3, 50)
                 .setImageWriter(new ImageWriter("ourImageFinalPic", 1000, 1000))
                 .setRayTracer(new RayTracerBasic(scene1))
                 .renderImage().writeToImage();
