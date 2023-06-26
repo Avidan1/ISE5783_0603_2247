@@ -146,11 +146,11 @@ public class OurImage {
                 .setEmission(new Color(0, 255, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.9));
         Geometry sphere5 = new Sphere(new Point(38, 7, -50), 7d)
                 .setEmission(new Color(255, 0, 255)).setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(40).setKr(0.2));
-        Geometry sphereInSphere1 = new Sphere(new Point(30, 20, 40), 20d)
+        Geometry sphereInSphere1 = new Sphere(new Point(40, 20, 40), 20d)
                 .setEmission(new Color(0, 0, 100)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(40).setKt(0.5));
-        Geometry sphereInSphere2 = new Sphere(new Point(30, 20, 40), 15d)
+        Geometry sphereInSphere2 = new Sphere(new Point(40, 20, 40), 15d)
                 .setEmission(new Color(0, 100, 0)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(40).setKt(0.5));
-        Geometry sphereInSphere3 = new Sphere(new Point(30, 20, 40), 10d)
+        Geometry sphereInSphere3 = new Sphere(new Point(40, 20, 40), 10d)
                 .setEmission(new Color(100, 0, 0)).setMaterial(new Material().setKd(0.2).setKs(0.2).setNShininess(40).setKr(0.5));
         Geometry sphere11 = new Sphere(new Point(-50, 15, -300), 15d)
                 .setEmission(new Color(180, 0, 0)).setMaterial(new Material().setKd(0.4).setKs(0.8).setNShininess(70).setKt(0.8));
@@ -176,7 +176,7 @@ public class OurImage {
         new Camera(new Point(25, 50, 50),
                 new Vector(0, -1, -1), new Vector(0, 1, -1))
                 .setVPSize(2500, 2500).setVPDistance(1000)
-                .setDof(60, 2.2, 50)
+                .setDof(70, 2.2, 100)
                 .setImageWriter(new ImageWriter("ourImageFinalPic", 1000, 1000))
                 .setRayTracer(new RayTracerBasic(scene1))
                 .renderImage().writeToImage();
