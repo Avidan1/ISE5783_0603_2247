@@ -17,6 +17,14 @@ public class Point {
      */
     final protected Double3 xyz;
 
+    public static Point createMaxPoint(Point maxBbox, Point max) {
+        return new Point(Math.max(maxBbox.getX(), max.getX()), Math.max(maxBbox.getY(), max.getY()), Math.max(maxBbox.getZ(), max.getZ()));
+    }
+
+    public static Point createMinPoint(Point minBbox, Point min) {
+    return new Point(Math.min(minBbox.getX(), min.getX()), Math.min(minBbox.getY(), min.getY()), Math.min(minBbox.getZ(), min.getZ()));
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -34,7 +42,7 @@ public class Point {
      *
      * @param xyz The coordinates of the point.
      */
-    Point(Double3 xyz) {
+    public Point(Double3 xyz) {
         this.xyz = xyz;
     }
 
@@ -118,4 +126,6 @@ public class Point {
     public double getZ() {
         return this.xyz.d3;
     }
+
+
 }

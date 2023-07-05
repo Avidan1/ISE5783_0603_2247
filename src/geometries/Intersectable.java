@@ -10,12 +10,6 @@ import java.util.List;
  * Intersectable interface represents a geometry in 3D Cartesian coordinate system
  */
 public abstract class Intersectable {
-    protected AABB getBBox() {
-        return boundingBox
-                ;
-
-    }
-
     /**
      * GeoPoint class represents a point on a geometry
      */
@@ -54,44 +48,40 @@ public abstract class Intersectable {
     }
 
     /**
-     * calculate the intersection points of the geometry with the specified ray
-     *
-     * @param ray to intersect with
-     * @return a list of the intersection points
+     * The AABB class represents an Axis-Aligned Bounding Box.
+     * It is used to enclose objects and determine intersection in computer graphics and collision detection algorithms.
      */
-    public final List<Point> findIntersections(Ray ray) {
-        List<GeoPoint> geoList = findGeoIntersections(ray);
-        return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
-    }
+    public static class AABB {
+        /**
+         * min point of the box
+         */
+        Point min;
+        /**
+         * max point of the box
+         */
+        Point max;
+        /**
+         * center point of the box
+         */
+        Point center;
+        /**
+         * Flag indicating if the AABB is infinite.
+         */
+        boolean isInfinite = false;
 
-    /**
-     * calculate the intersection points of the geometry with the specified ray
-     *
-     * @param ray to intersect with
-     * @return a list of the intersection points
-     */
-    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
-
-    /**
-     * calculate the intersection points of the geometry with the specified ray
-     *
-     * @param ray to intersect with
-     * @return a list of the intersection points
-     */
-    public final List<GeoPoint> findGeoIntersections(Ray ray) {
-        return findGeoIntersectionsHelper(ray);
-    }
-
-    /**
-     * Represents an Axis-Aligned Bounding Box (AABB).
-     */
-    public class AABB {
-        private Point min;
-        private Point max;
-        private Point center;
-        private boolean infinite;
-
+        /**
+         * Constant value used for expanding the AABB slightly.
+         */
         private static final double DELTA = 0.1;
+
+        /**
+         * Checks if the AABB is infinite.
+         *
+         * @return true if the AABB is infinite, false otherwise.
+         */
+        public boolean isInfinite() {
+            return isInfinite;
+        }
 
         /**
          * Constructs an AABB with the given minimum point, maximum point, and center point.
@@ -102,8 +92,10 @@ public abstract class Intersectable {
          * @param center The center point of the AABB.
          */
         public AABB(Point min, Point max, Point center) {
-            this.min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
-            this.max = max.add(new Vector(DELTA, DELTA, DELTA));
+            min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
+            max = max.add(new Vector(DELTA, DELTA, DELTA));
+            this.min = min;
+            this.max = max;
             this.center = center;
         }
 
@@ -115,87 +107,47 @@ public abstract class Intersectable {
          * @param max The maximum point of the AABB.
          */
         public AABB(Point min, Point max) {
-            this.min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
-            this.max = max.add(new Vector(DELTA, DELTA, DELTA));
-            this.center = new Point(
-                    (min.getX() + max.getX()) / 2,
-                    (min.getY() + max.getY()) / 2,
-                    (min.getZ() + max.getZ()) / 2
-            );
-        }
-
-        /**
-         * Checks if the AABB is infinite.
-         *
-         * @return true if the AABB is infinite, false otherwise.
-         */
-        public boolean isInfinite() {
-            return infinite;
-        }
-
-        /**
-         * Sets the infinity flag of the AABB.
-         *
-         * @param infinite true to set the AABB as infinite, false otherwise.
-         * @return The updated AABB instance.
-         */
-        public AABB setInfinite(boolean infinite) {
-            this.infinite = infinite;
-            return this;
+            min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
+            max = max.add(new Vector(DELTA, DELTA, DELTA));
+            this.min = min;
+            this.max = max;
+            center = new Point((min.getX() + max.getX()) / 2, (min.getY() + max.getY()) / 2, (min.getZ() + max.getZ()) / 2);
         }
 
         /**
          * Checks if the AABB intersects with the given Ray within the specified maximum distance.
          *
-         * @param ray         The Ray to check for intersection.
-         * @param maxDistance The maximum distance at which intersection can occur.
+         * @param ray    The Ray to check for intersection.
+         * @param maxDis The maximum distance at which intersection can occur.
          * @return true if the AABB intersects with the Ray, false otherwise.
          */
-        public boolean intersect(Ray ray, double maxDistance) {
-            if (infinite) {
-                return true;
-            }
+        public boolean intersect(Ray ray, double maxDis) {
+            if (isInfinite) return true;
+            Vector dir = ray.getDir();
+            Point p0 = ray.getP0();
+            Vector invDir = new Vector(1 / dir.getX(), 1 / dir.getY(), 1 / dir.getZ());
+            int[] sign = {invDir.getX() < 0 ? 1 : 0, invDir.getY() < 0 ? 1 : 0, invDir.getZ() < 0 ? 1 : 0};
+            double tmin, tmax, tymin, tymax, tzmin, tzmax;
+            Point bounds[] = {min, max};
+            double p0x = p0.getX(), p0y = p0.getY(), p0z = p0.getZ();
+            double inx = invDir.getX(), iny = invDir.getY(), inz = invDir.getZ();
+            tmin = (bounds[sign[0]].getX() - p0x) * inx;
+            tmax = (bounds[1 - sign[0]].getX() - p0x) * inx;
+            tymin = (bounds[sign[1]].getY() - p0y) * iny;
+            tymax = (bounds[1 - sign[1]].getY() - p0y) * iny;
+            if ((tmin > tymax) || (tymin > tmax)) return false;
 
-            // Calculate intersection with AABB using the slab method
-            Vector direction = ray.getDir();
-            Vector invDirection = new Vector(1 / direction.getX(), 1 / direction.getY(), 1 / direction.getZ());
-            Point[] bounds = {min, max};
-            int[] sign = {
-                    invDirection.getX() < 0 ? 1 : 0,
-                    invDirection.getY() < 0 ? 1 : 0,
-                    invDirection.getZ() < 0 ? 1 : 0
-            };
+            if (tymin > tmin) tmin = tymin;
+            if (tymax < tmax) tmax = tymax;
 
-            // Initialize variables for intersection tests
-            double tMin, tMax, tyMin, tyMax, tzMin, tzMax;
-            tMin = (bounds[sign[0]].getX() - ray.getP0().getX()) * invDirection.getX();
-            tMax = (bounds[1 - sign[0]].getX() - ray.getP0().getX()) * invDirection.getX();
-            tyMin = (bounds[sign[1]].getY() - ray.getP0().getY()) * invDirection.getY();
-            tyMax = (bounds[1 - sign[1]].getY() - ray.getP0().getY()) * invDirection.getY();
+            tzmin = (bounds[sign[2]].getZ() - p0z) * inz;
+            tzmax = (bounds[1 - sign[2]].getZ() - p0z) * inz;
 
-            // Check for intersection with Y-axis
-            if (tMin > tyMax || tyMin > tMax) {
-                return false;
-            }
+            if ((tmin > tzmax) || (tzmin > tmax)) return false;
+            if (tzmax < tmax)
+                tmax = tzmax;
 
-            if (tyMin > tMin) {
-                tMin = tyMin;
-            }
-
-            if (tyMax < tMax) {
-                tMax = tyMax;
-            }
-
-            tzMin = (bounds[sign[2]].getZ() - ray.getP0().getZ()) * invDirection.getZ();
-            tzMax = (bounds[1 - sign[2]].getZ() - ray.getP0().getZ()) * invDirection.getZ();
-
-            // Check for intersection with Z-axis
-            if (tMin > tzMax || tzMin > tMax) {
-                return false;
-            }
-
-            // Check if the intersection occurs within the specified maximum distance
-            return tzMax < tMax && tMax < maxDistance;
+            return (tzmin <= maxDis);
         }
 
         /**
@@ -203,9 +155,10 @@ public abstract class Intersectable {
          *
          * @return The surface area of the AABB.
          */
-        public double getAABBArea() {
-            Point extent = max.subtract(min);
-            return extent.getX() * extent.getY() + extent.getY() * extent.getZ() + extent.getZ() * extent.getX();
+        public double AABBsurfaceArea() {
+            Point extents = max.subtract(min);
+            double x = extents.getX(), y = extents.getY(), z = extents.getZ();
+            return 2 * (x * y + x * z + y * z); // todo *2?
         }
 
         /**
@@ -235,8 +188,66 @@ public abstract class Intersectable {
             return center;
         }
 
-        public AABB boundingBox;
+        /**
+         * Sets the infinity flag of the AABB.
+         *
+         * @param isInfinite true to set the AABB as infinite, false otherwise.
+         * @return The updated AABB instance.
+         */
+        public AABB setInfinity(boolean isInfinite) {
+            this.isInfinite = isInfinite;
+            return this;
+        }
 
     }
 
-}
+    /**
+     * The box for AABB improvement
+     */
+
+    public AABB bbox;
+
+    /**
+     * calculate the intersection points of the geometry with the specified ray
+     *
+     * @param ray to intersect with
+     * @return a list of the intersection points
+     */
+    public final List<Point> findIntersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null : geoList.stream().map(gp -> gp).toList();
+    }
+
+
+
+    /**
+     * calculate the intersection points of the geometry with the specified ray
+     *
+     * @param ray to intersect with
+     * @return a list of the intersection points
+     */
+    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance);
+
+    /**
+     * find geo intersection limited whit max distance
+     * @param ray To find the intersection whit
+     * @param maxDistance To limit the intersection points
+     * @return List<GeoPoint> the ray intersect
+     */
+    public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance){
+        return findGeoIntersectionsHelper(ray, maxDistance);
+    }
+
+
+    /**
+     * calculate the intersection points of the geometry with the specified ray
+     *
+     * @param ray to intersect with
+     * @return a list of the intersection points
+     */
+    public final List<Point> findGeoIntersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null : geoList.stream().map(gp -> gp).toList();
+    }
+    }
+
