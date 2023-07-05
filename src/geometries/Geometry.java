@@ -1,9 +1,8 @@
 package geometries;
 
-import primitives.Color;
-import primitives.Material;
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
+
+import java.util.List;
 
 /**
  * Geometry interface represents a geometry in 3D Cartesian coordinate system
@@ -15,6 +14,7 @@ public abstract class Geometry extends Intersectable {
      */
     protected Color emission = Color.BLACK;
 
+    protected AABB bbox;
     /**
      * Getter for the emission color of the geometry.
      *

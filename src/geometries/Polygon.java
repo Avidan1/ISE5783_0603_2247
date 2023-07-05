@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
@@ -52,6 +53,26 @@ public class Polygon extends Geometry {
         this.vertices = List.of(vertices);
         int size = vertices.length;
 
+        //calc bbox
+        double sumX = 0;
+        double sumY = 0;
+        double sumZ = 0;
+
+        Point minPoint = new Point(0, 0, 0);
+        Point maxPoint = new Point(Double3.NEGATIVE_INFINITY);
+        //find min point and max point and center point
+        for (Point p : vertices) {
+            minPoint = Point.createMinPoint(minPoint, p);
+            maxPoint = Point.createMaxPoint(maxPoint, p);
+            sumX += p.getX();
+            sumY += p.getY();
+            sumZ += p.getZ();
+        }
+
+        // Create the center point
+        var centerAABB = new Point(sumX / size, sumY / size, sumZ / size);
+        this.bbox = new AABB(minPoint, maxPoint, centerAABB);
+
         // Generate the plane according to the first three vertices and associate the
         // polygon with this plane.
         // The plane holds the invariant normal (orthogonal unit) vector to the polygon
@@ -96,7 +117,5 @@ public class Polygon extends Geometry {
          return null;
      }*/
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        return null;
-    }
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {return null;}
 }

@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
@@ -28,6 +29,7 @@ public class Sphere extends RadialGeometry {
     public Sphere(Point center, double radius) {
         super(radius);
         this.center = center;
+        this.bbox = new AABB(center.add(new Vector(new Double3(-radius))), center.add(new Vector(new Double3(radius))), center);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         // if the ray starts at the center of the sphere
         if (ray.getP0().equals(this.center)) {
             return List.of(new GeoPoint(this, this.center.add(ray.getDir().scale(this.radius))));

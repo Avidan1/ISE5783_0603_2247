@@ -9,7 +9,7 @@ public class Vector extends Point {
      *
      * @param xyz The coordinates of the vector.
      */
-    Vector(Double3 xyz) {
+    public Vector(Double3 xyz) {
         super(xyz);
         if (xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException();

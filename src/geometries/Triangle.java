@@ -24,12 +24,12 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public final List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        List<Point> intersections = super.plane.findIntersections(ray);
+    public final List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
+        List<GeoPoint> intersections = super.plane.findGeoIntersections(ray, maxDistance);
         // Check if the ray intersects the plane of the triangle.
         if (intersections == null)
             return null;
-        Point p = intersections.get(0);
+        GeoPoint p = intersections.get(0);
         // Check if the ray intersects the triangle.
         Vector v1 = this.vertices.get(0).subtract(ray.getP0());
         Vector v2 = this.vertices.get(1).subtract(ray.getP0());
@@ -46,7 +46,7 @@ public class Triangle extends Polygon {
         double dotProduct3 = n3.dotProduct(ray.getDir());
         if (dotProduct3 * dotProduct1 <= 0) return null;
 
-        return List.of(new GeoPoint(this, p));
+        return List.of(new GeoPoint(this, p.point));
     }
 }
 

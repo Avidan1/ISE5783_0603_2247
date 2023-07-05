@@ -55,19 +55,19 @@ public abstract class Intersectable {
         /**
          * min point of the box
          */
-        Point min;
+        public Point min;
         /**
          * max point of the box
          */
-        Point max;
+        public Point max;
         /**
          * center point of the box
          */
-        Point center;
+        public Point center;
         /**
          * Flag indicating if the AABB is infinite.
          */
-        boolean isInfinite = false;
+        public boolean isInfinite = false;
 
         /**
          * Constant value used for expanding the AABB slightly.
@@ -80,7 +80,7 @@ public abstract class Intersectable {
          * @return true if the AABB is infinite, false otherwise.
          */
         public boolean isInfinite() {
-            return isInfinite;
+            return this.isInfinite;
         }
 
         /**
@@ -92,10 +92,8 @@ public abstract class Intersectable {
          * @param center The center point of the AABB.
          */
         public AABB(Point min, Point max, Point center) {
-            min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
-            max = max.add(new Vector(DELTA, DELTA, DELTA));
-            this.min = min;
-            this.max = max;
+            this.min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
+            this.max = max.add(new Vector(DELTA, DELTA, DELTA));
             this.center = center;
         }
 
@@ -107,11 +105,9 @@ public abstract class Intersectable {
          * @param max The maximum point of the AABB.
          */
         public AABB(Point min, Point max) {
-            min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
-            max = max.add(new Vector(DELTA, DELTA, DELTA));
-            this.min = min;
-            this.max = max;
-            center = new Point((min.getX() + max.getX()) / 2, (min.getY() + max.getY()) / 2, (min.getZ() + max.getZ()) / 2);
+            this.min = min.add(new Vector(-DELTA, -DELTA, -DELTA));
+            this.max = max.add(new Vector(DELTA, DELTA, DELTA));
+            center = new Point((this.min.getX() + this.max.getX()) / 2, (this.min.getY() + this.max.getY()) / 2, (this.min.getZ() + this.max.getZ()) / 2);
         }
 
         /**
@@ -122,13 +118,13 @@ public abstract class Intersectable {
          * @return true if the AABB intersects with the Ray, false otherwise.
          */
         public boolean intersect(Ray ray, double maxDis) {
-            if (isInfinite) return true;
+            if (this.isInfinite) return true;
             Vector dir = ray.getDir();
             Point p0 = ray.getP0();
             Vector invDir = new Vector(1 / dir.getX(), 1 / dir.getY(), 1 / dir.getZ());
             int[] sign = {invDir.getX() < 0 ? 1 : 0, invDir.getY() < 0 ? 1 : 0, invDir.getZ() < 0 ? 1 : 0};
             double tmin, tmax, tymin, tymax, tzmin, tzmax;
-            Point bounds[] = {min, max};
+            Point bounds[] = {this.min, this.max};
             double p0x = p0.getX(), p0y = p0.getY(), p0z = p0.getZ();
             double inx = invDir.getX(), iny = invDir.getY(), inz = invDir.getZ();
             tmin = (bounds[sign[0]].getX() - p0x) * inx;

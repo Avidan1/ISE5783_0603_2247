@@ -35,6 +35,16 @@ public class Double3 {
     public static final Double3 ONE = new Double3(1, 1, 1);
 
     /**
+     * Negative infinity triad (-Infinity, -Infinity, -Infinity)
+     */
+    public static final Double3 NEGATIVE_INFINITY = new Double3(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+
+    /**
+     * Positive infinity triad (Infinity, Infinity, Infinity)
+     */
+    public static final Double3 POSITIVE_INFINITY = new Double3(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+
+    /**
      * Constructor to initialize Double3 based object with its three number values
      *
      * @param d1 first number value

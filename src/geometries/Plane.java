@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.Double3;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
@@ -32,6 +33,7 @@ public class Plane extends Geometry {
     public Plane(Point q0, Vector normal) {
         this.q0 = q0;
         this.normal = normal.normalize();
+        this.bbox = new AABB(new Point(Double3.NEGATIVE_INFINITY), new Point(Double3.POSITIVE_INFINITY), Point.ZERO).setInfinity(true);
     }
 
     /**
@@ -44,6 +46,7 @@ public class Plane extends Geometry {
     public Plane(Point p1, Point p2, Point p3) {
         this.q0 = p1;
         this.normal = p1.subtract(p2).crossProduct(p1.subtract(p3)).normalize();
+        this.bbox = new AABB(new Point(Double3.NEGATIVE_INFINITY), new Point(Double3.POSITIVE_INFINITY), Point.ZERO).setInfinity(true);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class Plane extends Geometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         Point p0 = ray.getP0();
         Vector v = ray.getDir();
         Vector n = getNormal(p0);
@@ -66,7 +69,7 @@ public class Plane extends Geometry {
         Vector p0Q0 = this.q0.subtract(p0);
         double nP0Q0 = alignZero(n.dotProduct(p0Q0));
         double t = alignZero(nP0Q0 / nv);
-        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
+        return (t > 0 && alignZero(t - maxDistance) <= 0) ? List.of(new GeoPoint(this, ray.getPoint(t))) : null;
     }
 
     /**
