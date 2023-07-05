@@ -56,9 +56,10 @@ public class Sphere extends RadialGeometry {
 
         double t2 = alignZero(tM + tH);
         // if the father point is before the ray head - there are not intersections
-        if (t2 <= 0) return null;
+        if (t2 <= 0 || alignZero(t2 - maxDistance) > 0) return null;
 
         double t1 = alignZero(tM - tH);
+        if (alignZero(t1 - maxDistance) > 0) return null;
         return t1 <= 0 //
                 ? List.of(new GeoPoint(this, ray.getPoint(t2))) //
                 : List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
