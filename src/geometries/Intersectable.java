@@ -118,11 +118,11 @@ public abstract class Intersectable {
          * @return true if the AABB intersects with the Ray, false otherwise.
          */
         public boolean intersect(Ray ray, double maxDis) {
-            Point rayOrigin = ray.getP0();
-            Vector rayDirection = ray.getDir();
+            Point rayP0 = ray.getP0();
+            Vector rayDir = ray.getDir();
 
-            double tMin = (this.min.getX() - rayOrigin.getX()) / rayDirection.getX();
-            double tMax = (this.max.getX() - rayOrigin.getX()) / rayDirection.getX();
+            double tMin = (this.min.getX() - rayP0.getX()) / rayDir.getX();
+            double tMax = (this.max.getX() - rayP0.getX()) / rayDir.getX();
 
             if (tMin > tMax) {
                 double temp = tMin;
@@ -130,8 +130,8 @@ public abstract class Intersectable {
                 tMax = temp;
             }
 
-            double tyMin = (this.min.getY() - rayOrigin.getY()) / rayDirection.getY();
-            double tyMax = (this.max.getY() - rayOrigin.getY()) / rayDirection.getY();
+            double tyMin = (this.min.getY() - rayP0.getY()) / rayDir.getY();
+            double tyMax = (this.max.getY() - rayP0.getY()) / rayDir.getY();
 
             if (tyMin > tyMax) {
                 double temp = tyMin;
@@ -145,8 +145,8 @@ public abstract class Intersectable {
             if (tyMax < tMax)
                 tMax = tyMax;
 
-            double tzMin = (this.min.getZ() - rayOrigin.getZ()) / rayDirection.getZ();
-            double tzMax = (this.max.getZ() - rayOrigin.getZ()) / rayDirection.getZ();
+            double tzMin = (this.min.getZ() - rayP0.getZ()) / rayDir.getZ();
+            double tzMax = (this.max.getZ() - rayP0.getZ()) / rayDir.getZ();
 
             if (tzMin > tzMax) {
                 double temp = tzMin;
