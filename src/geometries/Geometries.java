@@ -53,21 +53,22 @@ public class Geometries extends Intersectable {
     }
     /***
      * add geometries to te list
-     * @param geometries to add
+     * @param geometries list of geometries
+     * @return the geometries object after adding the geometries
      */
     public Geometries add(List<Intersectable> geometries){
         if (geometries.size() == 0) return this;
-        Point maxBbox = bbox.getMax(), minBbox = bbox.getMin();
-        boolean inf = bbox.isInfinite();
+        Point maxBbox = this.bbox.getMax(), minBbox = this.bbox.getMin();
+        boolean inf = this.bbox.isInfinite();
         for (Intersectable geometry : geometries) {
-            intersectables.add(geometry);
+            this.intersectables.add(geometry);
             if (geometry.bbox.isInfinite()) {
                 inf = true;
             }
             maxBbox = Point.createMaxPoint(maxBbox, geometry.bbox.getMax());
             minBbox = Point.createMinPoint(minBbox, geometry.bbox.getMin());
         }
-        bbox = new AABB(minBbox, maxBbox).setInfinity(inf);
+        this.bbox = new AABB(minBbox, maxBbox).setInfinity(inf);
         return this;
     }
     @Override

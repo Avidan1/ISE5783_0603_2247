@@ -220,6 +220,7 @@ public abstract class Intersectable {
      * calculate the intersection points of the geometry with the specified ray
      *
      * @param ray to intersect with
+     * @param maxDistance to limit the intersection points
      * @return a list of the intersection points
      */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance);
