@@ -54,7 +54,7 @@ public class RayTracerBasic extends RayTracerBase {
         Vector lightDirection = l.scale(-1); // from point to light source
         Ray lightRay = new Ray(gp.point, lightDirection, n);
         Point point = lightRay.getP0();
-        List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(lightRay);
+        List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(lightRay, Double.POSITIVE_INFINITY);
         if (intersections == null) return Double3.ONE;
 
         double distToLight = lightSource.getDistance(point);
