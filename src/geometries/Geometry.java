@@ -18,8 +18,6 @@ public abstract class Geometry extends Intersectable {
      * The bounding box of the geometry.
      */
 
-    protected AABB bbox;
-
     /**
      * Getter for the emission color of the geometry.
      *

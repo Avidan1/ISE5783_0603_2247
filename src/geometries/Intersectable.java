@@ -118,43 +118,49 @@ public abstract class Intersectable {
          * @return true if the AABB intersects with the Ray, false otherwise.
          */
         public boolean intersect(Ray ray, double maxDis) {
-            if (this.isInfinite) return true;
-            Vector dir = ray.getDir();
-            Point p0 = ray.getP0();
-            Vector invDir = new Vector(1 / dir.getX(), 1 / dir.getY(), 1 / dir.getZ());
-            int[] sign = {invDir.getX() < 0 ? 1 : 0, invDir.getY() < 0 ? 1 : 0, invDir.getZ() < 0 ? 1 : 0};
-            double tmin, tmax, tymin, tymax, tzmin, tzmax;
-            Point bounds[] = {this.min, this.max};
-            double p0x = p0.getX(), p0y = p0.getY(), p0z = p0.getZ();
-            double inx = invDir.getX(), iny = invDir.getY(), inz = invDir.getZ();
-            tmin = (bounds[sign[0]].getX() - p0x) * inx;
-            tmax = (bounds[1 - sign[0]].getX() - p0x) * inx;
-            tymin = (bounds[sign[1]].getY() - p0y) * iny;
-            tymax = (bounds[1 - sign[1]].getY() - p0y) * iny;
-            if ((tmin > tymax) || (tymin > tmax)) return false;
+            Point rayP0 = ray.getP0();
+            Vector rayDir = ray.getDir();
 
-            if (tymin > tmin) tmin = tymin;
-            if (tymax < tmax) tmax = tymax;
+            double tMin = (this.min.getX() - rayP0.getX()) / rayDir.getX();
+            double tMax = (this.max.getX() - rayP0.getX()) / rayDir.getX();
 
-            tzmin = (bounds[sign[2]].getZ() - p0z) * inz;
-            tzmax = (bounds[1 - sign[2]].getZ() - p0z) * inz;
+            if (tMin > tMax) {
+                double temp = tMin;
+                tMin = tMax;
+                tMax = temp;
+            }
 
-            if ((tmin > tzmax) || (tzmin > tmax)) return false;
-            if (tzmax < tmax)
-                tmax = tzmax;
+            double tyMin = (this.min.getY() - rayP0.getY()) / rayDir.getY();
+            double tyMax = (this.max.getY() - rayP0.getY()) / rayDir.getY();
 
-            return (tzmin <= maxDis);
-        }
+            if (tyMin > tyMax) {
+                double temp = tyMin;
+                tyMin = tyMax;
+                tyMax = temp;
+            }
+            if ((tMin > tyMax) || (tyMin > tMax))
+                return false;
+            if (tyMin > tMin)
+                tMin = tyMin;
+            if (tyMax < tMax)
+                tMax = tyMax;
 
-        /**
-         * Calculates the surface area of the AABB.
-         *
-         * @return The surface area of the AABB.
-         */
-        public double AABBsurfaceArea() {
-            Point extents = max.subtract(min);
-            double x = extents.getX(), y = extents.getY(), z = extents.getZ();
-            return 2 * (x * y + x * z + y * z); // todo *2?
+            double tzMin = (this.min.getZ() - rayP0.getZ()) / rayDir.getZ();
+            double tzMax = (this.max.getZ() - rayP0.getZ()) / rayDir.getZ();
+
+            if (tzMin > tzMax) {
+                double temp = tzMin;
+                tzMin = tzMax;
+                tzMax = temp;
+            }
+            if ((tMin > tzMax) || (tzMin > tMax))
+                return false;
+            if (tzMin > tMin)
+                tMin = tzMin;
+            if (tzMax < tMax)
+                tMax = tzMax;
+
+            return (tMin < maxDis) && (tMax > DELTA);
         }
 
         /**
@@ -215,23 +221,23 @@ public abstract class Intersectable {
     }
 
 
-
     /**
      * calculate the intersection points of the geometry with the specified ray
      *
-     * @param ray to intersect with
+     * @param ray         to intersect with
      * @param maxDistance to limit the intersection points
      * @return a list of the intersection points
      */
-    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance);
+    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);
 
     /**
      * find geo intersection limited whit max distance
-     * @param ray To find the intersection whit
+     *
+     * @param ray         To find the intersection whit
      * @param maxDistance To limit the intersection points
      * @return List<GeoPoint> the ray intersect
      */
-    public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance){
+    public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         return findGeoIntersectionsHelper(ray, maxDistance);
     }
 
@@ -243,10 +249,7 @@ public abstract class Intersectable {
      * @return a list of the intersection points
      */
     public final List<GeoPoint> findGeoIntersections(Ray ray) {
-        return findGeoIntersectionsHelper(ray,Double.POSITIVE_INFINITY );
-
+        return findGeoIntersectionsHelper(ray, Double.POSITIVE_INFINITY);
     }
-
-
-    }
+}
 

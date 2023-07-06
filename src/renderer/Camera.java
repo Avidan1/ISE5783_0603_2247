@@ -7,6 +7,7 @@ import primitives.Vector;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.*;
 
 import static primitives.Util.isZero;
 
@@ -67,7 +68,19 @@ public class Camera {
     /**
      * The focal length for depth of field effects.
      */
-    private double focalDistance = 0;
+    private double focalDistance = 2;
+
+    /**
+     * Pixel manager for supporting:
+     * <ul>
+     * <li>multi-threading</li>
+     * <li>debug print of progress percentage in Console window/tab</li>
+     * <ul>
+     */
+
+    private PixelManager pixelManager;
+
+    private int threadsCount = 4;
 
     //=================== Constructors ===================
 
@@ -82,8 +95,7 @@ public class Camera {
         this.p0 = p0;
         this.vTo = vTo.normalize();
         this.vUp = vUp.normalize();
-        if (!isZero(vUp.dotProduct(vTo)))
-            throw new IllegalArgumentException("vUp and vTo must be orthogonal");
+        if (!isZero(vUp.dotProduct(vTo))) throw new IllegalArgumentException("vUp and vTo must be orthogonal");
         this.vRight = vTo.crossProduct(vUp).normalize();
     }
 
@@ -188,8 +200,7 @@ public class Camera {
     private List<Ray> constructRaysWithDOF(int nX, int nY, int j, int i) {
         // Construct the centerRay
         Ray centerRay = constructRay(nX, nY, j, i);
-        if (this.numRays <= 1)
-            return List.of(centerRay);
+        if (this.numRays <= 1) return List.of(centerRay);
 
         List<Ray> rays = new LinkedList<>();
         // add the centerRay to the list
@@ -235,9 +246,16 @@ public class Camera {
             throw new UnsupportedOperationException("MissingResourcesException");
         int nX = this.imageWriter.getNx();
         int nY = this.imageWriter.getNy();
-        for (int i = 0; i < nY; i++)
-            for (int j = 0; j < nX; j++)
-                castRay(j, i, nX, nY);
+        pixelManager = new PixelManager(nY, nX, 100);
+        if (threadsCount == 0) {
+            for (int i = 0; i < nY; i++)
+                for (int j = 0; j < nX; j++)
+                    castRay(j, i, nX, nY);
+        } else {
+            IntStream.range(0, nY).parallel().forEach(i -> {
+                IntStream.range(0, nX).parallel().forEach(j -> castRay(j, i, nX, nY));
+            });
+        }
         return this;
     }
 
@@ -254,6 +272,7 @@ public class Camera {
         for (Ray ray : constructRaysWithDOF(nX, nY, j, i))
             colors.add(this.tracer.traceRay(ray));
         this.imageWriter.writePixel(j, i, Color.average(colors));
+        pixelManager.pixelDone();
     }
 
     /**
@@ -270,8 +289,7 @@ public class Camera {
         int nY = this.imageWriter.getNy();
         for (int i = 0; i < nY; i++) {
             for (int j = 0; j < nX; j++) {
-                if (i % interval == 0 || j % interval == 0)
-                    this.imageWriter.writePixel(j, i, color);
+                if (i % interval == 0 || j % interval == 0) this.imageWriter.writePixel(j, i, color);
             }
         }
     }
