@@ -17,10 +17,22 @@ public class Point {
      */
     final protected Double3 xyz;
 
+    /**
+     * Creates a Point with the maximum coordinates from two input Points.
+     * @param maxBbox The first Point.
+     * @param max The second Point.
+     * @return A new Point with the maximum coordinates from the two input Points.
+     */
     public static Point createMaxPoint(Point maxBbox, Point max) {
         return new Point(Math.max(maxBbox.getX(), max.getX()), Math.max(maxBbox.getY(), max.getY()), Math.max(maxBbox.getZ(), max.getZ()));
     }
 
+    /**
+     * Creates a Point with the minimum coordinates from two input Points.
+     * @param minBbox The first Point.
+     * @param min The second Point.
+     * @return A new Point with the minimum coordinates from the two input Points.
+     */
     public static Point createMinPoint(Point minBbox, Point min) {
     return new Point(Math.min(minBbox.getX(), min.getX()), Math.min(minBbox.getY(), min.getY()), Math.min(minBbox.getZ(), min.getZ()));
     }
