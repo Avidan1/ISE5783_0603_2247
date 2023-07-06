@@ -252,9 +252,21 @@ public class Camera {
                 for (int j = 0; j < nX; j++)
                     castRay(j, i, nX, nY);
         } else {
-            IntStream.range(0, nY).parallel().forEach(i -> {
-                IntStream.range(0, nX).parallel().forEach(j -> castRay(j, i, nX, nY));
-            });
+//            var threads = new LinkedList<Thread>(); // list of threads
+//            while (threadsCount-- > 0) // add appropriate number of threads
+//                threads.add(new Thread(() -> { // add a thread with its code
+//                    PixelManager.Pixel pixel; // current pixel(row,col)
+//                    // allocate pixel(row,col) in loop until there are no more pixels
+//                    while ((pixel = pixelManager.nextPixel()) != null)
+//                        // cast ray through pixel (and color it – inside castRay)
+//                         castRay(pixel.col(), pixel.row(), nX, nY);
+//                }));
+//            // start all the threads
+//            for (var thread : threads) thread.start();
+//            // wait until all the threads have finished
+//            try { for (var thread : threads) thread.join(); } catch (InterruptedException ignore) {}
+
+            IntStream.range(0, nY).parallel().forEach(i -> IntStream.range(0, nX).parallel().forEach(j -> castRay(j, i, nX, nY)));
         }
         return this;
     }
